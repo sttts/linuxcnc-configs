@@ -3,4 +3,23 @@
 
 source TsHW_2_9.hal
 
-net key-10    =>  iocontrol.0.emc-enable-in
+
+##
+## estop
+##
+unlinkp iocontrol.0.emc-enable-in
+unlinkp iocontrol.0.user-enable-out
+
+loadrt estop_latch count=2
+addf estop-latch.0 servo-thread
+addf estop-latch.1 servo-thread
+
+net estop-latch-ok-in iocontrol.0.user-enable-out      => estop-latch.0.ok-in
+net estop-latch0-out  estop-latch.0.ok-out             => estop-latch.1.ok-in
+
+net estop-latch-reset iocontrol.0.user-request-enable  => estop-latch.0.reset estop-latch.1.reset
+net estop-latch-out   estop-latch.1.ok-out             => iocontrol.0.emc-enable-in
+net estop-out         estop-latch.1.fault-out
+
+net estop-tshw hm2_7i76e.0.TsHW.0.1.key-10-not => estop-latch.0.fault-in
+net estop-ext => estop-latch.1.fault-in
