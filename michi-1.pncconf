@@ -46,13 +46,13 @@
   <property name="acbmotor_worm" type="bool" value="False"/>
   <property name="acompfilename" type="string" value="acompensation"/>
   <property name="acomptype" type="int" value="0"/>
-  <property name="addcompbase" type="eval" value="[]"/>
-  <property name="addcompservo" type="eval" value="[]"/>
+  <property name="addcompbase" type="eval" value="['']"/>
+  <property name="addcompservo" type="eval" value="['']"/>
   <property name="adeadband" type="int" value="0"/>
   <property name="adirhold" type="int" value="10000"/>
   <property name="adirsetup" type="int" value="10000"/>
   <property name="adrivertype" type="string" value="custom"/>
-  <property name="advanced_option" type="bool" value="False"/>
+  <property name="advanced_option" type="bool" value="True"/>
   <property name="aencoder_leadscrew" type="int" value="5"/>
   <property name="aencoder_leadscrew_tpi" type="int" value="5"/>
   <property name="aencoder_pulleydriven" type="int" value="1"/>
@@ -104,7 +104,7 @@
   <property name="axisposition" type="eval" value="[False, 0.0, 0.0]"/>
   <property name="axissize" type="eval" value="[False, 0.0, 0.0]"/>
   <property name="baseperiod" type="int" value="50000"/>
-  <property name="bitmem" type="int" value="50"/>
+  <property name="bitmem" type="float" value="50.0"/>
   <property name="cbencoder_pitch" type="string" value="51679"/>
   <property name="cbencoder_pulley" type="string" value="51682"/>
   <property name="cbencoder_tpi" type="string" value="51680"/>
@@ -116,14 +116,14 @@
   <property name="cbmotor_worm" type="string" value="51686"/>
   <property name="centerembededgvcp" type="bool" value="True"/>
   <property name="cl_haluicmds" type="int" value="0"/>
-  <property name="classicladder" type="int" value="0"/>
+  <property name="classicladder" type="bool" value="False"/>
   <property name="createshortcut" type="bool" value="True"/>
   <property name="createsymlink" type="bool" value="False"/>
   <property name="customhal" type="bool" value="False"/>
   <property name="default_angular_velocity" type="float" value="12.0"/>
   <property name="default_linear_velocity" type="float" value="6.0"/>
-  <property name="digitsin" type="int" value="15"/>
-  <property name="digitsout" type="int" value="15"/>
+  <property name="digitsin" type="float" value="15.0"/>
+  <property name="digitsout" type="float" value="15.0"/>
   <property name="dirhold" type="int" value="20000"/>
   <property name="dirsetup" type="int" value="20000"/>
   <property name="drivertype" type="string" value="other"/>
@@ -140,30 +140,30 @@
   <property name="externalmpg" type="bool" value="False"/>
   <property name="externalmvo" type="bool" value="False"/>
   <property name="externalso" type="bool" value="False"/>
-  <property name="floatsin" type="int" value="10"/>
-  <property name="floatsout" type="int" value="10"/>
+  <property name="floatsin" type="float" value="10.0"/>
+  <property name="floatsout" type="float" value="10.0"/>
   <property name="fo_usempg" type="bool" value="False"/>
-  <property name="fo_useswitch" type="bool" value="False"/>
+  <property name="fo_useswitch" type="bool" value="True"/>
   <property name="fodebounce" type="bool" value="True"/>
   <property name="fodebouncetime" type="float" value="0.2"/>
   <property name="fograycode" type="bool" value="False"/>
   <property name="foignorefalse" type="bool" value="False"/>
-  <property name="foincrvalue0" type="int" value="0"/>
-  <property name="foincrvalue1" type="int" value="5"/>
-  <property name="foincrvalue10" type="int" value="140"/>
-  <property name="foincrvalue11" type="int" value="150"/>
-  <property name="foincrvalue12" type="int" value="165"/>
-  <property name="foincrvalue13" type="int" value="180"/>
-  <property name="foincrvalue14" type="int" value="190"/>
-  <property name="foincrvalue15" type="int" value="200"/>
-  <property name="foincrvalue2" type="int" value="10"/>
-  <property name="foincrvalue3" type="int" value="25"/>
-  <property name="foincrvalue4" type="int" value="50"/>
-  <property name="foincrvalue5" type="int" value="75"/>
-  <property name="foincrvalue6" type="int" value="90"/>
-  <property name="foincrvalue7" type="int" value="100"/>
-  <property name="foincrvalue8" type="int" value="110"/>
-  <property name="foincrvalue9" type="int" value="125"/>
+  <property name="foincrvalue0" type="float" value="0.0"/>
+  <property name="foincrvalue1" type="float" value="5.0"/>
+  <property name="foincrvalue10" type="float" value="100.0"/>
+  <property name="foincrvalue11" type="float" value="150.0"/>
+  <property name="foincrvalue12" type="float" value="165.0"/>
+  <property name="foincrvalue13" type="float" value="180.0"/>
+  <property name="foincrvalue14" type="float" value="190.0"/>
+  <property name="foincrvalue15" type="float" value="200.0"/>
+  <property name="foincrvalue2" type="float" value="10.0"/>
+  <property name="foincrvalue3" type="float" value="25.0"/>
+  <property name="foincrvalue4" type="float" value="50.0"/>
+  <property name="foincrvalue5" type="float" value="75.0"/>
+  <property name="foincrvalue6" type="float" value="90.0"/>
+  <property name="foincrvalue7" type="float" value="100.0"/>
+  <property name="foincrvalue8" type="float" value="110.0"/>
+  <property name="foincrvalue9" type="float" value="125.0"/>
   <property name="frontend" type="int" value="1"/>
   <property name="gearselect" type="bool" value="False"/>
   <property name="geometry" type="string" value="xyz"/>
@@ -181,11 +181,11 @@
   <property name="gladevcpypos" type="float" value="0.0"/>
   <property name="gmcpytheme" type="string" value="Follow System Theme"/>
   <property name="gs2_vfd" type="bool" value="True"/>
-  <property name="gs2_vfd_accel" type="int" value="10"/>
+  <property name="gs2_vfd_accel" type="float" value="10.0"/>
   <property name="gs2_vfd_baud" type="int" value="9600"/>
-  <property name="gs2_vfd_deaccel" type="int" value="0"/>
+  <property name="gs2_vfd_deaccel" type="float" value="0.0"/>
   <property name="gs2_vfd_port" type="string" value="/dev/ttyS0"/>
-  <property name="gs2_vfd_slave" type="int" value="1"/>
+  <property name="gs2_vfd_slave" type="float" value="1.0"/>
   <property name="gsdebounce" type="bool" value="True"/>
   <property name="gsdebouncetime" type="float" value="0.2"/>
   <property name="gsgraycode" type="bool" value="False"/>
@@ -218,15 +218,15 @@
   <property name="halresolversignames" type="eval" value="[]"/>
   <property name="halsteppersignames" type="eval" value="[]"/>
   <property name="haltppwmoutputsignames" type="eval" value="[]"/>
-  <property name="halui" type="int" value="0"/>
-  <property name="halui_cmd0" type="string" value=""/>
-  <property name="halui_cmd1" type="string" value=""/>
+  <property name="halui" type="bool" value="True"/>
+  <property name="halui_cmd0" type="string" value="G10 L20 P1 X0"/>
+  <property name="halui_cmd1" type="string" value="G10 L20 P1 Y0"/>
   <property name="halui_cmd10" type="string" value=""/>
   <property name="halui_cmd11" type="string" value=""/>
   <property name="halui_cmd12" type="string" value=""/>
   <property name="halui_cmd13" type="string" value=""/>
   <property name="halui_cmd14" type="string" value=""/>
-  <property name="halui_cmd2" type="string" value=""/>
+  <property name="halui_cmd2" type="string" value="G10 L20 P1 Z0"/>
   <property name="halui_cmd3" type="string" value=""/>
   <property name="halui_cmd4" type="string" value=""/>
   <property name="halui_cmd5" type="string" value=""/>
@@ -234,7 +234,7 @@
   <property name="halui_cmd7" type="string" value=""/>
   <property name="halui_cmd8" type="string" value=""/>
   <property name="halui_cmd9" type="string" value=""/>
-  <property name="help" type="string" value="help-axisconfig.txt"/>
+  <property name="help" type="string" value="help-realtime.txt"/>
   <property name="homeboth" type="bool" value="False"/>
   <property name="homeindex" type="bool" value="False"/>
   <property name="homenone" type="bool" value="True"/>
@@ -269,7 +269,7 @@
   <property name="joystickjograpidrate1" type="float" value="1.0"/>
   <property name="joystickjograpidrate2" type="float" value="10.0"/>
   <property name="joystickjograpidrate3" type="float" value="100.0"/>
-  <property name="ladderconnect" type="int" value="1"/>
+  <property name="ladderconnect" type="bool" value="True"/>
   <property name="ladderexist" type="bool" value="False"/>
   <property name="ladderhaltype" type="int" value="0"/>
   <property name="laddername" type="string" value="custom.clp"/>
@@ -280,8 +280,8 @@
   <property name="limitstype" type="int" value="0"/>
   <property name="limitswitch" type="bool" value="False"/>
   <property name="linuxcnc_version" type="string" value="2.8"/>
-  <property name="loadcompbase" type="eval" value="[]"/>
-  <property name="loadcompservo" type="eval" value="[]"/>
+  <property name="loadcompbase" type="eval" value="['']"/>
+  <property name="loadcompservo" type="eval" value="['']"/>
   <property name="machinename" type="string" value="michi-1"/>
   <property name="max_angular_velocity" type="float" value="180.0"/>
   <property name="max_feed_override" type="float" value="2.0"/>
@@ -1023,7 +1023,7 @@
   <property name="mesa0sserial0_0pin29type" type="string" value="GPIO Input"/>
   <property name="mesa0sserial0_0pin2inv" type="bool" value="True"/>
   <property name="mesa0sserial0_0pin2type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin3" type="string" value="unused-input"/>
+  <property name="mesa0sserial0_0pin3" type="string" value="estop-ext"/>
   <property name="mesa0sserial0_0pin30" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin30inv" type="bool" value="False"/>
   <property name="mesa0sserial0_0pin30type" type="string" value="GPIO Input"/>
@@ -3801,7 +3801,7 @@
   <property name="mitsub_vfd_feedback_scale" type="int" value="1"/>
   <property name="mitsub_vfd_id" type="string" value="('spindle_vfd', 1)"/>
   <property name="mitsub_vfd_port" type="string" value="/dev/ttyS0"/>
-  <property name="modbus" type="int" value="0"/>
+  <property name="modbus" type="bool" value="False"/>
   <property name="motor_leadscrew" type="string" value="51672"/>
   <property name="motor_leadscrew_tpi" type="string" value="51673"/>
   <property name="motor_pulleydriven" type="string" value="51677"/>
@@ -3812,7 +3812,7 @@
   <property name="mpgdebouncetime" type="float" value="0.2"/>
   <property name="mpggraycode" type="bool" value="False"/>
   <property name="mpgignorefalse" type="bool" value="False"/>
-  <property name="mpgincrvalue0" type="int" value="0"/>
+  <property name="mpgincrvalue0" type="float" value="0.0"/>
   <property name="mpgincrvalue1" type="float" value="0.0001"/>
   <property name="mpgincrvalue10" type="float" value="0.125"/>
   <property name="mpgincrvalue11" type="float" value="0.125"/>
@@ -3832,27 +3832,27 @@
   <property name="multimpg" type="bool" value="False"/>
   <property name="mux16names" type="string" value=""/>
   <property name="mvo_usempg" type="bool" value="False"/>
-  <property name="mvo_useswitch" type="bool" value="False"/>
+  <property name="mvo_useswitch" type="bool" value="True"/>
   <property name="mvodebounce" type="bool" value="True"/>
   <property name="mvodebouncetime" type="float" value="0.2"/>
   <property name="mvograycode" type="bool" value="False"/>
   <property name="mvoignorefalse" type="bool" value="False"/>
-  <property name="mvoincrvalue0" type="int" value="0"/>
-  <property name="mvoincrvalue1" type="int" value="5"/>
-  <property name="mvoincrvalue10" type="int" value="100"/>
-  <property name="mvoincrvalue11" type="int" value="100"/>
-  <property name="mvoincrvalue12" type="int" value="100"/>
-  <property name="mvoincrvalue13" type="int" value="100"/>
-  <property name="mvoincrvalue14" type="int" value="100"/>
-  <property name="mvoincrvalue15" type="int" value="100"/>
-  <property name="mvoincrvalue2" type="int" value="10"/>
-  <property name="mvoincrvalue3" type="int" value="25"/>
-  <property name="mvoincrvalue4" type="int" value="50"/>
-  <property name="mvoincrvalue5" type="int" value="75"/>
-  <property name="mvoincrvalue6" type="int" value="90"/>
-  <property name="mvoincrvalue7" type="int" value="100"/>
-  <property name="mvoincrvalue8" type="int" value="100"/>
-  <property name="mvoincrvalue9" type="int" value="100"/>
+  <property name="mvoincrvalue0" type="float" value="0.0"/>
+  <property name="mvoincrvalue1" type="float" value="5.0"/>
+  <property name="mvoincrvalue10" type="float" value="100.0"/>
+  <property name="mvoincrvalue11" type="float" value="100.0"/>
+  <property name="mvoincrvalue12" type="float" value="100.0"/>
+  <property name="mvoincrvalue13" type="float" value="100.0"/>
+  <property name="mvoincrvalue14" type="float" value="100.0"/>
+  <property name="mvoincrvalue15" type="float" value="100.0"/>
+  <property name="mvoincrvalue2" type="float" value="10.0"/>
+  <property name="mvoincrvalue3" type="float" value="25.0"/>
+  <property name="mvoincrvalue4" type="float" value="50.0"/>
+  <property name="mvoincrvalue5" type="float" value="75.0"/>
+  <property name="mvoincrvalue6" type="float" value="90.0"/>
+  <property name="mvoincrvalue7" type="float" value="100.0"/>
+  <property name="mvoincrvalue8" type="float" value="100.0"/>
+  <property name="mvoincrvalue9" type="float" value="100.0"/>
   <property name="number_mesa" type="int" value="1"/>
   <property name="number_pports" type="int" value="0"/>
   <property name="period" type="int" value="25000"/>
@@ -4035,8 +4035,8 @@
   <property name="random_toolchanger" type="bool" value="False"/>
   <property name="require_homing" type="bool" value="True"/>
   <property name="restore_joint_position" type="bool" value="False"/>
-  <property name="s32in" type="int" value="10"/>
-  <property name="s32out" type="int" value="10"/>
+  <property name="s32in" type="float" value="10.0"/>
+  <property name="s32out" type="float" value="10.0"/>
   <property name="s3pwmdeadtime" type="int" value="500"/>
   <property name="s3pwmscale" type="int" value="1"/>
   <property name="s8i20maxcurrent" type="float" value="5.0"/>
@@ -4089,12 +4089,12 @@
   <property name="serial_vfd" type="bool" value="False"/>
   <property name="servoperiod" type="float" value="1000000.0"/>
   <property name="sfiltergain" type="float" value="1.0"/>
-  <property name="sharedmpg" type="bool" value="False"/>
+  <property name="sharedmpg" type="bool" value="True"/>
   <property name="shomefinalvel" type="int" value="0"/>
   <property name="shomepos" type="int" value="0"/>
   <property name="shomesw" type="int" value="0"/>
   <property name="sideembededgvcp" type="bool" value="False"/>
-  <property name="singlejogbuttons" type="bool" value="False"/>
+  <property name="singlejogbuttons" type="bool" value="True"/>
   <property name="sinvertencoder" type="int" value="0"/>
   <property name="sinvertmotor" type="int" value="0"/>
   <property name="slatchdir" type="int" value="0"/>
@@ -4113,27 +4113,27 @@
   <property name="snearscale" type="float" value="1.2"/>
   <property name="snegative_rot" type="bool" value="False"/>
   <property name="so_usempg" type="bool" value="False"/>
-  <property name="so_useswitch" type="bool" value="False"/>
+  <property name="so_useswitch" type="bool" value="True"/>
   <property name="sodebounce" type="bool" value="True"/>
   <property name="sodebouncetime" type="float" value="0.2"/>
   <property name="sograycode" type="bool" value="False"/>
   <property name="soignorefalse" type="bool" value="False"/>
-  <property name="soincrvalue0" type="int" value="0"/>
-  <property name="soincrvalue1" type="int" value="5"/>
-  <property name="soincrvalue10" type="int" value="140"/>
-  <property name="soincrvalue11" type="int" value="150"/>
-  <property name="soincrvalue12" type="int" value="165"/>
-  <property name="soincrvalue13" type="int" value="180"/>
-  <property name="soincrvalue14" type="int" value="190"/>
-  <property name="soincrvalue15" type="int" value="200"/>
-  <property name="soincrvalue2" type="int" value="10"/>
-  <property name="soincrvalue3" type="int" value="25"/>
-  <property name="soincrvalue4" type="int" value="50"/>
-  <property name="soincrvalue5" type="int" value="75"/>
-  <property name="soincrvalue6" type="int" value="90"/>
-  <property name="soincrvalue7" type="int" value="100"/>
-  <property name="soincrvalue8" type="int" value="110"/>
-  <property name="soincrvalue9" type="int" value="125"/>
+  <property name="soincrvalue0" type="float" value="0.0"/>
+  <property name="soincrvalue1" type="float" value="5.0"/>
+  <property name="soincrvalue10" type="float" value="140.0"/>
+  <property name="soincrvalue11" type="float" value="150.0"/>
+  <property name="soincrvalue12" type="float" value="165.0"/>
+  <property name="soincrvalue13" type="float" value="180.0"/>
+  <property name="soincrvalue14" type="float" value="190.0"/>
+  <property name="soincrvalue15" type="float" value="200.0"/>
+  <property name="soincrvalue2" type="float" value="10.0"/>
+  <property name="soincrvalue3" type="float" value="25.0"/>
+  <property name="soincrvalue4" type="float" value="50.0"/>
+  <property name="soincrvalue5" type="float" value="75.0"/>
+  <property name="soincrvalue6" type="float" value="90.0"/>
+  <property name="soincrvalue7" type="float" value="100.0"/>
+  <property name="soincrvalue8" type="float" value="110.0"/>
+  <property name="soincrvalue9" type="float" value="125.0"/>
   <property name="soutputmaxvoltage" type="int" value="10"/>
   <property name="soutputscale" type="int" value="2000"/>
   <property name="soutputscale2" type="int" value="10"/>
@@ -4177,7 +4177,7 @@
   <property name="userneededmux16" type="int" value="0"/>
   <property name="userneededpid" type="int" value="0"/>
   <property name="userneededscale" type="int" value="0"/>
-  <property name="wordmem" type="int" value="50"/>
+  <property name="wordmem" type="float" value="50.0"/>
   <property name="x3pwmdeadtime" type="float" value="100.0"/>
   <property name="x3pwmscale" type="float" value="1.0"/>
   <property name="x8i20maxcurrent" type="float" value="0.0"/>

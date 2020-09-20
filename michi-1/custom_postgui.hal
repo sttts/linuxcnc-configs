@@ -1,2 +1,6 @@
 # Include your custom_postgui HAL commands here
 # This file will not be overwritten when you run PNCconf again
+
+source TsHW_2_9.hal
+
+net key-10    =>  iocontrol.0.emc-enable-in
