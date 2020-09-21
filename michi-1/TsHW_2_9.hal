@@ -114,7 +114,7 @@ net key-ena => shw.ena-x.in1
 net key-ena => shw.ena-y.in1
 net key-ena => shw.ena-z.in1
 net key-ena => halui.mode.manual
-net key-ena => axisui.notifications-clear
+# net key-ena => axisui.notifications-clear
 net key-ena => hm2_7i76e.0.TsHW.0.1.led-00
 
 
