@@ -26,9 +26,6 @@
 #
 ###################################################################
 
-## sttts:
-loadrt lut5 names=shw.led-08,shw.led-01
-
 ####################
 ##      TsHW      ##
 ####################
@@ -69,33 +66,35 @@ net step-choice => axis.x.jog-scale
 net step-choice => axis.y.jog-scale
 net step-choice => axis.z.jog-scale
 
-## sttts: led-08 table - on when either no scale is selected or 0.1
-addf shw.led-08 servo-thread
-net key-01 =>  shw.led-08.in-0
-net key-001 =>  shw.led-08.in-1
-net key-0001 =>  shw.led-08.in-2
-setp shw.led-08.function 3
+## sttts: led-02 table - on when either no scale is selected or 0.1
+loadrt lut5 names=shw.led-02,shw.led-07
+addf shw.led-02 servo-thread
+net key-01 =>  shw.led-02.in-0
+net key-001 =>  shw.led-02.in-1
+net key-0001 =>  shw.led-02.in-2
+setp shw.led-02.function 3
 setp shw.step-choice.in0 0.1 # sttts: override initial jog mode
-net key-08-led shw.led-08.out => hm2_7i76e.0.TsHW.0.1.led-08
+net key-09-led shw.led-02.out => hm2_7i76e.0.TsHW.0.1.led-02
 
-net key-0001 <= hm2_7i76e.0.TsHW.0.1.key-02
-net key-0001 => hm2_7i76e.0.TsHW.0.1.led-02
+net key-0001 <= hm2_7i76e.0.TsHW.0.1.key-08
+net key-0001 => hm2_7i76e.0.TsHW.0.1.led-08
 net key-001 <= hm2_7i76e.0.TsHW.0.1.key-05
 net key-001 => hm2_7i76e.0.TsHW.0.1.led-05
-net key-01 <= hm2_7i76e.0.TsHW.0.1.key-08
-# sttts disabled: net key-01 => hm2_7i76e.0.TsHW.0.1.led-08
+net key-01 <= hm2_7i76e.0.TsHW.0.1.key-02
+# sttts disabled: net key-01 => hm2_7i76e.0.TsHW.0.1.led-02
 
-## sttts: led-01 table - on when either no axis is selected or x
-addf shw.led-01 servo-thread
-net key-x =>  shw.led-01.in-0
-net key-y =>  shw.led-01.in-1
-net key-z =>  shw.led-01.in-2
-setp shw.led-01.function 3
-net key-01-led shw.led-01.out => hm2_7i76e.0.TsHW.0.1.led-01
-net key-01-led => shw.ena-x.in0
+## sttts: led-07 table - on when either no axis is selected or x
+# loadrt lut5 names=shw.led-07
+addf shw.led-07 servo-thread
+net key-x =>  shw.led-07.in-0
+net key-y =>  shw.led-07.in-1
+net key-z =>  shw.led-07.in-2
+setp shw.led-07.function 3
+net key-08-led shw.led-07.out => hm2_7i76e.0.TsHW.0.1.led-07
+net key-08-led => shw.ena-x.in0
 
-net key-x <= hm2_7i76e.0.TsHW.0.1.key-01
-# sttts: disabled: net key-x => hm2_7i76e.0.TsHW.0.1.led-01
+net key-x <= hm2_7i76e.0.TsHW.0.1.key-07
+# sttts: disabled: net key-x => hm2_7i76e.0.TsHW.0.1.led-07
 # sttts: disabled: net key-x => shw.ena-x.in0
 net ena-x shw.ena-x.out => axis.x.jog-enable
 
@@ -104,8 +103,8 @@ net key-y => hm2_7i76e.0.TsHW.0.1.led-06
 net key-y => shw.ena-y.in0
 net ena-y shw.ena-y.out => axis.y.jog-enable
 
-net key-z <= hm2_7i76e.0.TsHW.0.1.key-07
-net key-z => hm2_7i76e.0.TsHW.0.1.led-07
+net key-z <= hm2_7i76e.0.TsHW.0.1.key-01
+net key-z => hm2_7i76e.0.TsHW.0.1.led-01
 net key-z => shw.ena-z.in0
 net ena-z shw.ena-z.out => axis.z.jog-enable
 
