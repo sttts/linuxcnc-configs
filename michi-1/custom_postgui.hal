@@ -21,5 +21,26 @@ net estop-latch-reset iocontrol.0.user-request-enable  => estop-latch.0.reset es
 net estop-latch-out   estop-latch.1.ok-out             => iocontrol.0.emc-enable-in
 net estop-out         estop-latch.1.fault-out
 
-net estop-tshw hm2_7i76e.0.TsHW.0.1.key-10-not => estop-latch.0.fault-in
-net estop-ext => estop-latch.1.fault-in
+net estop-tshw        hm2_7i76e.0.TsHW.0.1.key-10-not  => estop-latch.0.fault-in
+net estop-ext                                          => estop-latch.1.fault-in
+
+##
+## rapid override poti (255-0 => 0-100)
+##
+loadrt conv_u32_float names=poti-float
+addf poti-float servo-thread
+net poti-float-in     poti-float.in                    <= hm2_7i76e.0.TsHW.0.1.poti
+
+setp halui.rapid-override.direct-value true
+setp halui.rapid-override.count-enable true
+loadrt scale names=rapid-override-scale
+addf rapid-override-scale servo-thread
+setp rapid-override-scale.gain -0.392156863
+setp rapid-override-scale.offset 100
+net rapid-override-scale-in  rapid-override-scale.in   <= poti-float.out
+
+loadrt conv_float_s32 names=rapid-override
+addf rapid-override servo-thread
+net rapid-override-in rapid-override-scale.out => rapid-override.in
+setp halui.rapid-override.scale 0.01
+net rapid-override-out rapid-override.out  => halui.rapid-override.counts
