@@ -375,9 +375,9 @@
   <property name="mesa0c1pin8" type="string" value="unused-input"/>
   <property name="mesa0c1pin8inv" type="bool" value="False"/>
   <property name="mesa0c1pin8type" type="string" value="GPIO Input"/>
-  <property name="mesa0c1pin9" type="string" value="unused-input"/>
+  <property name="mesa0c1pin9" type="string" value="x-enable"/>
   <property name="mesa0c1pin9inv" type="bool" value="False"/>
-  <property name="mesa0c1pin9type" type="string" value="GPIO Input"/>
+  <property name="mesa0c1pin9type" type="string" value="GPIO Output"/>
   <property name="mesa0c2pin0" type="string" value="unused-input"/>
   <property name="mesa0c2pin0inv" type="bool" value="False"/>
   <property name="mesa0c2pin0type" type="string" value="GPIO Input"/>
@@ -4329,7 +4329,7 @@
   <property name="yencoder_wormdriver" type="float" value="1.0"/>
   <property name="yencodercounts" type="int" value="4000"/>
   <property name="yencoderscale" type="int" value="0"/>
-  <property name="yhomefinalvel" type="float" value="33.3333333333"/>
+  <property name="yhomefinalvel" type="float" value="33.3166666667"/>
   <property name="yhomelatchvel" type="float" value="1.0"/>
   <property name="yhomepos" type="float" value="-225.0"/>
   <property name="yhomesearchvel" type="float" value="16.6666666667"/>
@@ -4426,7 +4426,7 @@
   <property name="zerox" type="bool" value="False"/>
   <property name="zeroy" type="bool" value="False"/>
   <property name="zeroz" type="bool" value="False"/>
-  <property name="zhomefinalvel" type="float" value="33.3333333333"/>
+  <property name="zhomefinalvel" type="float" value="33.3166666667"/>
   <property name="zhomelatchvel" type="float" value="1.0"/>
   <property name="zhomepos" type="float" value="-2.0"/>
   <property name="zhomesearchvel" type="float" value="16.6666666667"/>
