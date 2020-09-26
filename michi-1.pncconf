@@ -105,15 +105,15 @@
   <property name="axissize" type="eval" value="[False, 0.0, 0.0]"/>
   <property name="baseperiod" type="int" value="50000"/>
   <property name="bitmem" type="float" value="50.0"/>
-  <property name="cbencoder_pitch" type="string" value="51679"/>
-  <property name="cbencoder_pulley" type="string" value="51682"/>
-  <property name="cbencoder_tpi" type="string" value="51680"/>
-  <property name="cbencoder_worm" type="string" value="51681"/>
-  <property name="cbmicrosteps" type="string" value="51685"/>
-  <property name="cbmotor_pitch" type="string" value="51683"/>
-  <property name="cbmotor_pulley" type="string" value="51687"/>
-  <property name="cbmotor_tpi" type="string" value="51684"/>
-  <property name="cbmotor_worm" type="string" value="51686"/>
+  <property name="cbencoder_pitch" type="string" value="66769"/>
+  <property name="cbencoder_pulley" type="string" value="66772"/>
+  <property name="cbencoder_tpi" type="string" value="66770"/>
+  <property name="cbencoder_worm" type="string" value="66771"/>
+  <property name="cbmicrosteps" type="string" value="66775"/>
+  <property name="cbmotor_pitch" type="string" value="66773"/>
+  <property name="cbmotor_pulley" type="string" value="66777"/>
+  <property name="cbmotor_tpi" type="string" value="66774"/>
+  <property name="cbmotor_worm" type="string" value="66776"/>
   <property name="centerembededgvcp" type="bool" value="True"/>
   <property name="cl_haluicmds" type="int" value="0"/>
   <property name="classicladder" type="bool" value="False"/>
@@ -127,14 +127,14 @@
   <property name="dirhold" type="int" value="20000"/>
   <property name="dirsetup" type="int" value="20000"/>
   <property name="drivertype" type="string" value="other"/>
-  <property name="editor" type="string" value="gedit"/>
-  <property name="encoder_leadscrew" type="string" value="51665"/>
-  <property name="encoder_leadscrew_tpi" type="string" value="51666"/>
-  <property name="encoder_pulleydriven" type="string" value="51669"/>
-  <property name="encoder_pulleydriver" type="string" value="51670"/>
-  <property name="encoder_wormdriven" type="string" value="51667"/>
-  <property name="encoder_wormdriver" type="string" value="51668"/>
-  <property name="encoderline" type="string" value="51664"/>
+  <property name="editor" type="string" value="subl"/>
+  <property name="encoder_leadscrew" type="string" value="66755"/>
+  <property name="encoder_leadscrew_tpi" type="string" value="66756"/>
+  <property name="encoder_pulleydriven" type="string" value="66759"/>
+  <property name="encoder_pulleydriver" type="string" value="66760"/>
+  <property name="encoder_wormdriven" type="string" value="66757"/>
+  <property name="encoder_wormdriver" type="string" value="66758"/>
+  <property name="encoderline" type="string" value="66754"/>
   <property name="externalfo" type="bool" value="False"/>
   <property name="externaljog" type="bool" value="False"/>
   <property name="externalmpg" type="bool" value="False"/>
@@ -227,7 +227,7 @@
   <property name="halui_cmd13" type="string" value=""/>
   <property name="halui_cmd14" type="string" value=""/>
   <property name="halui_cmd2" type="string" value="G10 L20 P1 Z0"/>
-  <property name="halui_cmd3" type="string" value=""/>
+  <property name="halui_cmd3" type="string" value="G10 L20 P1 X0 Y0 Z0"/>
   <property name="halui_cmd4" type="string" value=""/>
   <property name="halui_cmd5" type="string" value=""/>
   <property name="halui_cmd6" type="string" value=""/>
@@ -285,7 +285,7 @@
   <property name="machinename" type="string" value="michi-1"/>
   <property name="max_angular_velocity" type="float" value="180.0"/>
   <property name="max_feed_override" type="float" value="2.0"/>
-  <property name="max_linear_velocity" type="float" value="25.0"/>
+  <property name="max_linear_velocity" type="float" value="33.3333333333"/>
   <property name="max_spindle_override" type="float" value="1.0"/>
   <property name="maxspeeddisplay" type="float" value="1000.0"/>
   <property name="md5sums" type="eval" value="[]"/>
@@ -3791,7 +3791,7 @@
   <property name="mesa1sserial0_5pin9inv" type="bool" value="False"/>
   <property name="mesa1sserial0_5pin9type" type="string" value="GPIO Input"/>
   <property name="mesa1sserial0_5subboard" type="string" value="none"/>
-  <property name="microstep" type="string" value="51674"/>
+  <property name="microstep" type="string" value="66764"/>
   <property name="min_angular_velocity" type="float" value="1.66666666667"/>
   <property name="min_linear_velocity" type="float" value="0.5"/>
   <property name="min_spindle_override" type="float" value="0.5"/>
@@ -3802,12 +3802,12 @@
   <property name="mitsub_vfd_id" type="string" value="('spindle_vfd', 1)"/>
   <property name="mitsub_vfd_port" type="string" value="/dev/ttyS0"/>
   <property name="modbus" type="bool" value="False"/>
-  <property name="motor_leadscrew" type="string" value="51672"/>
-  <property name="motor_leadscrew_tpi" type="string" value="51673"/>
-  <property name="motor_pulleydriven" type="string" value="51677"/>
-  <property name="motor_pulleydriver" type="string" value="51678"/>
-  <property name="motor_wormdriven" type="string" value="51675"/>
-  <property name="motor_wormdriver" type="string" value="51676"/>
+  <property name="motor_leadscrew" type="string" value="66762"/>
+  <property name="motor_leadscrew_tpi" type="string" value="66763"/>
+  <property name="motor_pulleydriven" type="string" value="66767"/>
+  <property name="motor_pulleydriver" type="string" value="66768"/>
+  <property name="motor_wormdriven" type="string" value="66765"/>
+  <property name="motor_wormdriver" type="string" value="66766"/>
   <property name="mpgdebounce" type="bool" value="True"/>
   <property name="mpgdebouncetime" type="float" value="0.2"/>
   <property name="mpggraycode" type="bool" value="False"/>
@@ -4147,7 +4147,7 @@
   <property name="sstepspace" type="int" value="5000"/>
   <property name="ssteptime" type="int" value="5000"/>
   <property name="standalonegvcp" type="bool" value="False"/>
-  <property name="steprev" type="string" value="51671"/>
+  <property name="steprev" type="string" value="66761"/>
   <property name="stepspace" type="int" value="5000"/>
   <property name="steptime" type="int" value="5000"/>
   <property name="suseatspeed" type="bool" value="False"/>
@@ -4217,7 +4217,7 @@
   <property name="xcbencoder_pulley" type="bool" value="False"/>
   <property name="xcbencoder_tpi" type="bool" value="False"/>
   <property name="xcbencoder_worm" type="bool" value="False"/>
-  <property name="xcbmicrosteps" type="bool" value="False"/>
+  <property name="xcbmicrosteps" type="bool" value="True"/>
   <property name="xcbmotor_pitch" type="bool" value="True"/>
   <property name="xcbmotor_pulley" type="bool" value="False"/>
   <property name="xcbmotor_tpi" type="bool" value="False"/>
@@ -4236,25 +4236,25 @@
   <property name="xencoder_wormdriver" type="float" value="1.0"/>
   <property name="xencodercounts" type="int" value="4000"/>
   <property name="xencoderscale" type="int" value="0"/>
-  <property name="xhomefinalvel" type="float" value="0.0"/>
-  <property name="xhomelatchvel" type="float" value="0.5"/>
-  <property name="xhomepos" type="float" value="0.0"/>
-  <property name="xhomesearchvel" type="float" value="1.0"/>
+  <property name="xhomefinalvel" type="float" value="33.3166666667"/>
+  <property name="xhomelatchvel" type="float" value="1.0"/>
+  <property name="xhomepos" type="float" value="-187.5"/>
+  <property name="xhomesearchvel" type="float" value="16.6666666667"/>
   <property name="xhomesequence" type="float" value="1.0"/>
-  <property name="xhomesw" type="float" value="0.0"/>
+  <property name="xhomesw" type="float" value="-375.0"/>
   <property name="xhomevel" type="float" value="1.5"/>
   <property name="xinvertencoder" type="bool" value="False"/>
   <property name="xinvertmotor" type="bool" value="False"/>
   <property name="xlatchdir" type="int" value="0"/>
-  <property name="xmaxacc" type="float" value="750.0"/>
+  <property name="xmaxacc" type="float" value="100.0"/>
   <property name="xmaxferror" type="float" value="10.0"/>
-  <property name="xmaxlim" type="float" value="200.0"/>
+  <property name="xmaxlim" type="float" value="0.0"/>
   <property name="xmaxoutput" type="float" value="0.0"/>
-  <property name="xmaxvel" type="float" value="25.0"/>
-  <property name="xmicrostep" type="float" value="5.0"/>
+  <property name="xmaxvel" type="float" value="33.3333333333"/>
+  <property name="xmicrostep" type="float" value="8.0"/>
   <property name="xminferror" type="float" value="1.0"/>
-  <property name="xminlim" type="float" value="0.0"/>
-  <property name="xmotor_leadscrew" type="float" value="2.0"/>
+  <property name="xminlim" type="float" value="-375.0"/>
+  <property name="xmotor_leadscrew" type="float" value="1.0"/>
   <property name="xmotor_leadscrew_tpi" type="float" value="5.0"/>
   <property name="xmotor_pulleydriven" type="float" value="1.0"/>
   <property name="xmotor_pulleydriver" type="float" value="1.0"/>
@@ -4264,8 +4264,8 @@
   <property name="xoutputminlimit" type="float" value="-10.0"/>
   <property name="xoutputscale" type="float" value="10.0"/>
   <property name="xsearchdir" type="int" value="0"/>
-  <property name="xsteprev" type="float" value="200.0"/>
-  <property name="xstepscale" type="float" value="100.0"/>
+  <property name="xsteprev" type="float" value="40.0"/>
+  <property name="xstepscale" type="float" value="320.0"/>
   <property name="xstepspace" type="float" value="5000.0"/>
   <property name="xsteptime" type="float" value="5000.0"/>
   <property name="xusebacklash" type="bool" value="False"/>
@@ -4310,8 +4310,8 @@
   <property name="ycbencoder_pulley" type="bool" value="False"/>
   <property name="ycbencoder_tpi" type="bool" value="False"/>
   <property name="ycbencoder_worm" type="bool" value="False"/>
-  <property name="ycbmicrosteps" type="bool" value="False"/>
-  <property name="ycbmotor_pitch" type="bool" value="False"/>
+  <property name="ycbmicrosteps" type="bool" value="True"/>
+  <property name="ycbmotor_pitch" type="bool" value="True"/>
   <property name="ycbmotor_pulley" type="bool" value="False"/>
   <property name="ycbmotor_tpi" type="bool" value="False"/>
   <property name="ycbmotor_worm" type="bool" value="False"/>
@@ -4321,44 +4321,44 @@
   <property name="ydirhold" type="float" value="10000.0"/>
   <property name="ydirsetup" type="float" value="10000.0"/>
   <property name="ydrivertype" type="string" value="custom"/>
-  <property name="yencoder_leadscrew" type="int" value="5"/>
-  <property name="yencoder_leadscrew_tpi" type="int" value="5"/>
-  <property name="yencoder_pulleydriven" type="int" value="1"/>
-  <property name="yencoder_pulleydriver" type="int" value="1"/>
-  <property name="yencoder_wormdriven" type="int" value="1"/>
-  <property name="yencoder_wormdriver" type="int" value="1"/>
+  <property name="yencoder_leadscrew" type="float" value="5.0"/>
+  <property name="yencoder_leadscrew_tpi" type="float" value="5.0"/>
+  <property name="yencoder_pulleydriven" type="float" value="1.0"/>
+  <property name="yencoder_pulleydriver" type="float" value="1.0"/>
+  <property name="yencoder_wormdriven" type="float" value="1.0"/>
+  <property name="yencoder_wormdriver" type="float" value="1.0"/>
   <property name="yencodercounts" type="int" value="4000"/>
   <property name="yencoderscale" type="int" value="0"/>
-  <property name="yhomefinalvel" type="float" value="0.0"/>
-  <property name="yhomelatchvel" type="float" value="0.5"/>
-  <property name="yhomepos" type="float" value="0.0"/>
-  <property name="yhomesearchvel" type="float" value="1.0"/>
-  <property name="yhomesequence" type="float" value="2.0"/>
-  <property name="yhomesw" type="float" value="0.0"/>
+  <property name="yhomefinalvel" type="float" value="33.3333333333"/>
+  <property name="yhomelatchvel" type="float" value="1.0"/>
+  <property name="yhomepos" type="float" value="-225.0"/>
+  <property name="yhomesearchvel" type="float" value="16.6666666667"/>
+  <property name="yhomesequence" type="float" value="1.0"/>
+  <property name="yhomesw" type="float" value="-450.0"/>
   <property name="yhomevel" type="float" value="1.5"/>
   <property name="yinvertencoder" type="bool" value="False"/>
   <property name="yinvertmotor" type="bool" value="False"/>
   <property name="ylatchdir" type="int" value="0"/>
-  <property name="ymaxacc" type="float" value="750.0"/>
+  <property name="ymaxacc" type="float" value="100.0"/>
   <property name="ymaxferror" type="float" value="10.0"/>
-  <property name="ymaxlim" type="float" value="200.0"/>
+  <property name="ymaxlim" type="float" value="0.0"/>
   <property name="ymaxoutput" type="float" value="0.0"/>
-  <property name="ymaxvel" type="float" value="25.0"/>
-  <property name="ymicrostep" type="int" value="5"/>
+  <property name="ymaxvel" type="float" value="33.3333333333"/>
+  <property name="ymicrostep" type="float" value="8.0"/>
   <property name="yminferror" type="float" value="1.0"/>
-  <property name="yminlim" type="float" value="0.0"/>
-  <property name="ymotor_leadscrew" type="int" value="5"/>
-  <property name="ymotor_leadscrew_tpi" type="int" value="5"/>
-  <property name="ymotor_pulleydriven" type="int" value="1"/>
-  <property name="ymotor_pulleydriver" type="int" value="1"/>
-  <property name="ymotor_wormdriven" type="int" value="1"/>
-  <property name="ymotor_wormdriver" type="int" value="1"/>
+  <property name="yminlim" type="float" value="-450.0"/>
+  <property name="ymotor_leadscrew" type="float" value="1.0"/>
+  <property name="ymotor_leadscrew_tpi" type="float" value="5.0"/>
+  <property name="ymotor_pulleydriven" type="float" value="1.0"/>
+  <property name="ymotor_pulleydriver" type="float" value="1.0"/>
+  <property name="ymotor_wormdriven" type="float" value="1.0"/>
+  <property name="ymotor_wormdriver" type="float" value="1.0"/>
   <property name="youtputmaxlimit" type="float" value="10.0"/>
   <property name="youtputminlimit" type="float" value="-10.0"/>
   <property name="youtputscale" type="float" value="10.0"/>
   <property name="ysearchdir" type="int" value="0"/>
-  <property name="ysteprev" type="int" value="200"/>
-  <property name="ystepscale" type="float" value="1.0"/>
+  <property name="ysteprev" type="float" value="40.0"/>
+  <property name="ystepscale" type="float" value="320.0"/>
   <property name="ystepspace" type="float" value="5000.0"/>
   <property name="ysteptime" type="float" value="5000.0"/>
   <property name="yusebacklash" type="bool" value="False"/>
@@ -4403,8 +4403,8 @@
   <property name="zcbencoder_pulley" type="bool" value="False"/>
   <property name="zcbencoder_tpi" type="bool" value="False"/>
   <property name="zcbencoder_worm" type="bool" value="False"/>
-  <property name="zcbmicrosteps" type="bool" value="False"/>
-  <property name="zcbmotor_pitch" type="bool" value="False"/>
+  <property name="zcbmicrosteps" type="bool" value="True"/>
+  <property name="zcbmotor_pitch" type="bool" value="True"/>
   <property name="zcbmotor_pulley" type="bool" value="False"/>
   <property name="zcbmotor_tpi" type="bool" value="False"/>
   <property name="zcbmotor_worm" type="bool" value="False"/>
@@ -4414,48 +4414,48 @@
   <property name="zdirhold" type="float" value="10000.0"/>
   <property name="zdirsetup" type="float" value="10000.0"/>
   <property name="zdrivertype" type="string" value="custom"/>
-  <property name="zencoder_leadscrew" type="int" value="5"/>
-  <property name="zencoder_leadscrew_tpi" type="int" value="5"/>
-  <property name="zencoder_pulleydriven" type="int" value="1"/>
-  <property name="zencoder_pulleydriver" type="int" value="1"/>
-  <property name="zencoder_wormdriven" type="int" value="1"/>
-  <property name="zencoder_wormdriver" type="int" value="1"/>
+  <property name="zencoder_leadscrew" type="float" value="5.0"/>
+  <property name="zencoder_leadscrew_tpi" type="float" value="5.0"/>
+  <property name="zencoder_pulleydriven" type="float" value="1.0"/>
+  <property name="zencoder_pulleydriver" type="float" value="1.0"/>
+  <property name="zencoder_wormdriven" type="float" value="1.0"/>
+  <property name="zencoder_wormdriver" type="float" value="1.0"/>
   <property name="zencodercounts" type="int" value="4000"/>
   <property name="zencoderscale" type="int" value="0"/>
   <property name="zeroa" type="bool" value="False"/>
   <property name="zerox" type="bool" value="False"/>
   <property name="zeroy" type="bool" value="False"/>
   <property name="zeroz" type="bool" value="False"/>
-  <property name="zhomefinalvel" type="float" value="0.0"/>
-  <property name="zhomelatchvel" type="float" value="0.5"/>
-  <property name="zhomepos" type="float" value="0.0"/>
-  <property name="zhomesearchvel" type="float" value="1.0"/>
+  <property name="zhomefinalvel" type="float" value="33.3333333333"/>
+  <property name="zhomelatchvel" type="float" value="1.0"/>
+  <property name="zhomepos" type="float" value="-2.0"/>
+  <property name="zhomesearchvel" type="float" value="16.6666666667"/>
   <property name="zhomesequence" type="float" value="0.0"/>
   <property name="zhomesw" type="float" value="0.0"/>
   <property name="zhomevel" type="float" value="1.5"/>
   <property name="zinvertencoder" type="bool" value="False"/>
   <property name="zinvertmotor" type="bool" value="False"/>
   <property name="zlatchdir" type="int" value="0"/>
-  <property name="zmaxacc" type="float" value="750.0"/>
+  <property name="zmaxacc" type="float" value="100.0"/>
   <property name="zmaxferror" type="float" value="10.0"/>
   <property name="zmaxlim" type="float" value="0.0"/>
   <property name="zmaxoutput" type="float" value="0.0"/>
-  <property name="zmaxvel" type="float" value="25.0"/>
-  <property name="zmicrostep" type="int" value="5"/>
+  <property name="zmaxvel" type="float" value="33.3333333333"/>
+  <property name="zmicrostep" type="float" value="8.0"/>
   <property name="zminferror" type="float" value="1.0"/>
   <property name="zminlim" type="float" value="-150.0"/>
-  <property name="zmotor_leadscrew" type="int" value="5"/>
-  <property name="zmotor_leadscrew_tpi" type="int" value="5"/>
-  <property name="zmotor_pulleydriven" type="int" value="1"/>
-  <property name="zmotor_pulleydriver" type="int" value="1"/>
-  <property name="zmotor_wormdriven" type="int" value="1"/>
-  <property name="zmotor_wormdriver" type="int" value="1"/>
+  <property name="zmotor_leadscrew" type="float" value="1.0"/>
+  <property name="zmotor_leadscrew_tpi" type="float" value="5.0"/>
+  <property name="zmotor_pulleydriven" type="float" value="1.0"/>
+  <property name="zmotor_pulleydriver" type="float" value="1.0"/>
+  <property name="zmotor_wormdriven" type="float" value="1.0"/>
+  <property name="zmotor_wormdriver" type="float" value="1.0"/>
   <property name="zoutputmaxlimit" type="float" value="10.0"/>
   <property name="zoutputminlimit" type="float" value="-10.0"/>
   <property name="zoutputscale" type="float" value="10.0"/>
-  <property name="zsearchdir" type="int" value="0"/>
-  <property name="zsteprev" type="int" value="200"/>
-  <property name="zstepscale" type="float" value="1.0"/>
+  <property name="zsearchdir" type="int" value="1"/>
+  <property name="zsteprev" type="float" value="40.0"/>
+  <property name="zstepscale" type="float" value="320.0"/>
   <property name="zstepspace" type="float" value="5000.0"/>
   <property name="zsteptime" type="float" value="5000.0"/>
   <property name="zusebacklash" type="bool" value="False"/>
