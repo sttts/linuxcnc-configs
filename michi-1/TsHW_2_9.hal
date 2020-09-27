@@ -59,22 +59,22 @@ net key-001   => shw.step-choice.sel1
 net key-01    => shw.step-choice.sel2
 
 setp shw.step-choice.in1 0.001
-setp shw.step-choice.in2 0.01
-setp shw.step-choice.in4 0.1
+setp shw.step-choice.in2 0.02
+setp shw.step-choice.in4 0.5
 
 net step-choice <= shw.step-choice.out
 net step-choice => axis.x.jog-scale
 net step-choice => axis.y.jog-scale
 net step-choice => axis.z.jog-scale
 
-# key-01 - on when either no scale is selected or 0.1
+# key-01 - on when either no scale is selected or 0.5
 loadrt lut5 names=shw.led-02,shw.led-07,led-green
 addf shw.led-02 servo-thread
 net key-01 =>  shw.led-02.in-0
 net key-001 =>  shw.led-02.in-1
 net key-0001 =>  shw.led-02.in-2
 setp shw.led-02.function 3
-setp shw.step-choice.in0 0.1 # sttts: override initial jog mode
+setp shw.step-choice.in0 0.5 # sttts: override initial jog mode
 net key-09-led shw.led-02.out => hm2_7i76e.0.TsHW.0.1.led-02
 net key-01 <= hm2_7i76e.0.TsHW.0.1.key-02
 
