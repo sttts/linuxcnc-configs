@@ -300,7 +300,7 @@
   <property name="mesa0_numof_resolvers" type="int" value="0"/>
   <property name="mesa0_numof_sserialchannels" type="int" value="2"/>
   <property name="mesa0_numof_sserialports" type="int" value="1"/>
-  <property name="mesa0_numof_stepgens" type="int" value="3"/>
+  <property name="mesa0_numof_stepgens" type="int" value="4"/>
   <property name="mesa0_numof_tppwmgens" type="int" value="0"/>
   <property name="mesa0_parportaddrs" type="string" value="0x378"/>
   <property name="mesa0_pdm_frequency" type="float" value="6000000.0"/>
@@ -322,13 +322,13 @@
   <property name="mesa0c1pin13" type="string" value="unused-sserial"/>
   <property name="mesa0c1pin13inv" type="bool" value="False"/>
   <property name="mesa0c1pin13type" type="string" value="SSERIAL-P1-RX"/>
-  <property name="mesa0c1pin14" type="string" value="unused-input"/>
+  <property name="mesa0c1pin14" type="string" value="both-home-x"/>
   <property name="mesa0c1pin14inv" type="bool" value="False"/>
   <property name="mesa0c1pin14type" type="string" value="GPIO Input"/>
-  <property name="mesa0c1pin15" type="string" value="unused-input"/>
+  <property name="mesa0c1pin15" type="string" value="both-home-y"/>
   <property name="mesa0c1pin15inv" type="bool" value="False"/>
   <property name="mesa0c1pin15type" type="string" value="GPIO Input"/>
-  <property name="mesa0c1pin16" type="string" value="unused-input"/>
+  <property name="mesa0c1pin16" type="string" value="both-home-z"/>
   <property name="mesa0c1pin16inv" type="bool" value="False"/>
   <property name="mesa0c1pin16type" type="string" value="GPIO Input"/>
   <property name="mesa0c1pin17" type="string" value="unused-unused"/>
@@ -366,12 +366,12 @@
   <property name="mesa0c1pin5" type="string" value="z-stepgen-step"/>
   <property name="mesa0c1pin5inv" type="bool" value="False"/>
   <property name="mesa0c1pin5type" type="string" value="Step Gen-A"/>
-  <property name="mesa0c1pin6" type="string" value="unused-input"/>
+  <property name="mesa0c1pin6" type="string" value="unused-stepgen"/>
   <property name="mesa0c1pin6inv" type="bool" value="False"/>
-  <property name="mesa0c1pin6type" type="string" value="GPIO Input"/>
-  <property name="mesa0c1pin7" type="string" value="unused-input"/>
+  <property name="mesa0c1pin6type" type="string" value="Dir Gen-B"/>
+  <property name="mesa0c1pin7" type="string" value="unused-stepgen"/>
   <property name="mesa0c1pin7inv" type="bool" value="False"/>
-  <property name="mesa0c1pin7type" type="string" value="GPIO Input"/>
+  <property name="mesa0c1pin7type" type="string" value="Step Gen-A"/>
   <property name="mesa0c1pin8" type="string" value="unused-input"/>
   <property name="mesa0c1pin8inv" type="bool" value="False"/>
   <property name="mesa0c1pin8type" type="string" value="GPIO Input"/>
@@ -954,10 +954,10 @@
   <property name="mesa0c9pin9" type="string" value="unused-input"/>
   <property name="mesa0c9pin9inv" type="bool" value="False"/>
   <property name="mesa0c9pin9type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin0" type="string" value="home-x"/>
+  <property name="mesa0sserial0_0pin0" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin0inv" type="bool" value="True"/>
   <property name="mesa0sserial0_0pin0type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin1" type="string" value="home-y"/>
+  <property name="mesa0sserial0_0pin1" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin10" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin10inv" type="bool" value="False"/>
   <property name="mesa0sserial0_0pin10type" type="string" value="GPIO Input"/>
@@ -990,7 +990,7 @@
   <property name="mesa0sserial0_0pin19type" type="string" value="GPIO Output"/>
   <property name="mesa0sserial0_0pin1inv" type="bool" value="True"/>
   <property name="mesa0sserial0_0pin1type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin2" type="string" value="home-z"/>
+  <property name="mesa0sserial0_0pin2" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin20" type="string" value="unused-output"/>
   <property name="mesa0sserial0_0pin20inv" type="bool" value="False"/>
   <property name="mesa0sserial0_0pin20type" type="string" value="GPIO Output"/>
@@ -4236,10 +4236,10 @@
   <property name="xencoder_wormdriver" type="float" value="1.0"/>
   <property name="xencodercounts" type="int" value="4000"/>
   <property name="xencoderscale" type="int" value="0"/>
-  <property name="xhomefinalvel" type="float" value="33.3166666667"/>
+  <property name="xhomefinalvel" type="float" value="2.0"/>
   <property name="xhomelatchvel" type="float" value="1.0"/>
   <property name="xhomepos" type="float" value="-187.5"/>
-  <property name="xhomesearchvel" type="float" value="16.6666666667"/>
+  <property name="xhomesearchvel" type="float" value="2.0"/>
   <property name="xhomesequence" type="float" value="1.0"/>
   <property name="xhomesw" type="float" value="-375.0"/>
   <property name="xhomevel" type="float" value="1.5"/>
@@ -4329,10 +4329,10 @@
   <property name="yencoder_wormdriver" type="float" value="1.0"/>
   <property name="yencodercounts" type="int" value="4000"/>
   <property name="yencoderscale" type="int" value="0"/>
-  <property name="yhomefinalvel" type="float" value="33.3166666667"/>
+  <property name="yhomefinalvel" type="float" value="2.0"/>
   <property name="yhomelatchvel" type="float" value="1.0"/>
   <property name="yhomepos" type="float" value="-225.0"/>
-  <property name="yhomesearchvel" type="float" value="16.6666666667"/>
+  <property name="yhomesearchvel" type="float" value="2.0"/>
   <property name="yhomesequence" type="float" value="1.0"/>
   <property name="yhomesw" type="float" value="-450.0"/>
   <property name="yhomevel" type="float" value="1.5"/>
@@ -4426,10 +4426,10 @@
   <property name="zerox" type="bool" value="False"/>
   <property name="zeroy" type="bool" value="False"/>
   <property name="zeroz" type="bool" value="False"/>
-  <property name="zhomefinalvel" type="float" value="33.3166666667"/>
+  <property name="zhomefinalvel" type="float" value="2.0"/>
   <property name="zhomelatchvel" type="float" value="1.0"/>
   <property name="zhomepos" type="float" value="-2.0"/>
-  <property name="zhomesearchvel" type="float" value="16.6666666667"/>
+  <property name="zhomesearchvel" type="float" value="2.0"/>
   <property name="zhomesequence" type="float" value="0.0"/>
   <property name="zhomesw" type="float" value="0.0"/>
   <property name="zhomevel" type="float" value="1.5"/>

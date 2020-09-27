@@ -2,7 +2,7 @@
 # This file will not be overwritten when you run PNCconf again
 
 source TsHW_2_9.hal
-
+source time.hal
 
 ##
 ## estop
