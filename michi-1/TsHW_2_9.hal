@@ -40,7 +40,8 @@ setp axis.x.jog-vel-mode 1
 setp axis.y.jog-vel-mode 1
 setp axis.z.jog-vel-mode 1
 
-loadrt and2 names=shw.ena-x,shw.ena-y,shw.ena-z,shw.zero-x,shw.zero-y,shw.zero-z,key-run,key-resume,key-stop,key-pause,key-zero-all,key-zero-single
+loadrt and2 names=shw.ena-x,shw.ena-y,shw.ena-z,shw.zero-x,shw.zero-y,shw.zero-z,key-run,key-resume,key-stop,key-pause,key-zero-all,key-zero-single,led-x,led-z
+loadrt or2 names=led-y,led-0001,led-001,led-01
 
 addf shw.ena-x servo-thread
 addf shw.ena-y servo-thread
@@ -68,48 +69,164 @@ net step-choice => axis.y.jog-scale
 net step-choice => axis.z.jog-scale
 
 # key-01 - on when either no scale is selected or 0.5
-loadrt lut5 names=shw.led-02,shw.led-07,led-green
+loadrt lut5 names=shw.led-02,shw.led-07,led-green,key-x-toggle-in,key-y-toggle-in,key-z-toggle-in,key-01-toggle-in,key-001-toggle-in,key-0001-toggle-in
+
+net key-01-raw <= hm2_7i76e.0.TsHW.0.1.key-02
+
+addf key-01-toggle-in servo-thread
+# 010**: f00
+# 00110, 00101, 00111: e0
+setp key-01-toggle-in.function 0xfe0 
+net key-ena => key-01-toggle-in.in-4
+net key-01-raw => key-01-toggle-in.in-3
+net key-01-toggle-out => key-01-toggle-in.in-2
+net key-001-raw => key-01-toggle-in.in-1
+net key-0001-raw => key-01-toggle-in.in-0
+
+loadrt toggle names=key-x-toggle,key-y-toggle,key-z-toggle,key-01-toggle,key-001-toggle,key-0001-toggle
+addf key-01-toggle servo-thread
+net key-01-toggle-in-out key-01-toggle-in.out => key-01-toggle.in
+net key-01-toggle-out <= key-01-toggle.out
+
 addf shw.led-02 servo-thread
-net key-01 =>  shw.led-02.in-0
+setp shw.led-02.function 3
+net key-01-toggle-out =>  shw.led-02.in-0
 net key-001 =>  shw.led-02.in-1
 net key-0001 =>  shw.led-02.in-2
-setp shw.led-02.function 3
+net key-01 <= shw.led-02.out
+
+addf led-01 servo-thread
+net key-01 => led-01.in0
+net key-ena => led-01.in1
+net led-01-out led-01.out => hm2_7i76e.0.TsHW.0.1.led-02
+
 setp shw.step-choice.in0 0.5 # sttts: override initial jog mode
-net key-09-led shw.led-02.out => hm2_7i76e.0.TsHW.0.1.led-02
-net key-01 <= hm2_7i76e.0.TsHW.0.1.key-02
 
 # key-001
-net key-001 <= hm2_7i76e.0.TsHW.0.1.key-05
-net key-001 => hm2_7i76e.0.TsHW.0.1.led-05
+net key-001-raw <= hm2_7i76e.0.TsHW.0.1.key-05
+
+addf key-001-toggle-in servo-thread
+# 010**: f00
+# 00110, 00101, 00111: e0
+setp key-001-toggle-in.function 0xfe0 
+net key-ena => key-001-toggle-in.in-4
+net key-001-raw => key-001-toggle-in.in-3
+net key-001 => key-001-toggle-in.in-2
+net key-01-raw => key-001-toggle-in.in-1
+net key-0001-raw => key-001-toggle-in.in-0
+
+addf key-001-toggle servo-thread
+net key-001-toggle-in-out key-001-toggle-in.out => key-001-toggle.in
+net key-001 <= key-001-toggle.out
+
+addf led-001 servo-thread
+net key-001 => led-001.in0
+net key-ena => led-001.in1
+net led-001-out led-001.out => hm2_7i76e.0.TsHW.0.1.led-05
 
 # key-0001
-net key-0001 <= hm2_7i76e.0.TsHW.0.1.key-08
-net key-0001 => hm2_7i76e.0.TsHW.0.1.led-08
+net key-0001-raw <= hm2_7i76e.0.TsHW.0.1.key-08
+
+addf key-0001-toggle-in servo-thread
+# 010**: f00
+# 00110, 00101, 00111: e0
+setp key-0001-toggle-in.function 0xfe0 
+net key-ena => key-0001-toggle-in.in-4
+net key-0001-raw => key-0001-toggle-in.in-3
+net key-0001 => key-0001-toggle-in.in-2
+net key-01-raw => key-0001-toggle-in.in-1
+net key-001-raw => key-0001-toggle-in.in-0
+
+addf key-0001-toggle servo-thread
+net key-0001-toggle-in-out key-0001-toggle-in.out => key-0001-toggle.in
+net key-0001 <= key-0001-toggle.out
+
+addf led-0001 servo-thread
+net key-0001 => led-0001.in0
+net key-ena => led-0001.in1
+net led-0001-out led-0001.out => hm2_7i76e.0.TsHW.0.1.led-08
 
 # key-x - on when either no axis is selected or x
+net key-x-raw <= hm2_7i76e.0.TsHW.0.1.key-07
+
+addf key-x-toggle-in servo-thread
+# 010**: f00
+# 00110, 00101, 00111: e0
+setp key-x-toggle-in.function 0xfe0 
+net key-ena => key-x-toggle-in.in-4
+net key-x-raw => key-x-toggle-in.in-3
+net key-x-toggle-out => key-x-toggle-in.in-2
+net key-y-raw => key-x-toggle-in.in-1
+net key-z-raw => key-x-toggle-in.in-0
+
+addf key-x-toggle servo-thread
+net key-x-toggle-in-out key-x-toggle-in.out => key-x-toggle.in
+net key-x-toggle-out <= key-x-toggle.out
+
 addf shw.led-07 servo-thread
-net key-x-raw =>  shw.led-07.in-0
+setp shw.led-07.function 3
+net key-x-toggle-out =>  shw.led-07.in-0
 net key-y =>  shw.led-07.in-1
 net key-z =>  shw.led-07.in-2
-setp shw.led-07.function 3
-net key-x shw.led-07.out => hm2_7i76e.0.TsHW.0.1.led-07
+net key-x <= shw.led-07.out
+
 net key-x => shw.ena-x.in0
-net key-x-raw <= hm2_7i76e.0.TsHW.0.1.key-07
-# sttts: disabled: net key-x => hm2_7i76e.0.TsHW.0.1.led-07
-# sttts: disabled: net key-x => shw.ena-x.in0
 net ena-x shw.ena-x.out => axis.x.jog-enable
 
+addf led-x servo-thread
+net key-x => led-x.in0
+net key-ena-not => led-x.in1
+net led-x-out led-x.out => hm2_7i76e.0.TsHW.0.1.led-07
+
 # key-y
-net key-y <= hm2_7i76e.0.TsHW.0.1.key-06
-net key-y => hm2_7i76e.0.TsHW.0.1.led-06
+net key-y-raw <= hm2_7i76e.0.TsHW.0.1.key-06
+
+addf key-y-toggle-in servo-thread
+# 010**: f00
+# 00110, 00101, 00111: e0
+setp key-y-toggle-in.function 0xfe0 
+net key-ena => key-y-toggle-in.in-4
+net key-y-raw => key-y-toggle-in.in-3
+net key-y => key-y-toggle-in.in-2
+net key-x-raw => key-y-toggle-in.in-1
+net key-z-raw => key-y-toggle-in.in-0
+
+addf key-y-toggle servo-thread
+net key-y-toggle-in-out key-y-toggle-in.out => key-y-toggle.in
+net key-y <= key-y-toggle.out
+
 net key-y => shw.ena-y.in0
 net ena-y shw.ena-y.out => axis.y.jog-enable
 
+addf led-y servo-thread
+net key-y => led-y.in0
+net key-ena => led-y.in1
+net led-y-out led-y.out => hm2_7i76e.0.TsHW.0.1.led-06
+
 # key-z
-net key-z <= hm2_7i76e.0.TsHW.0.1.key-01
-net key-z => hm2_7i76e.0.TsHW.0.1.led-01
+net key-z-raw <= hm2_7i76e.0.TsHW.0.1.key-01
+
+addf key-z-toggle-in servo-thread
+# 010**: f00
+# 00110, 00101, 00111: e0
+setp key-z-toggle-in.function 0xfe0 
+net key-ena => key-z-toggle-in.in-4
+net key-z-raw => key-z-toggle-in.in-3
+net key-z => key-z-toggle-in.in-2
+net key-x-raw => key-z-toggle-in.in-1
+net key-y-raw => key-z-toggle-in.in-0
+
+addf key-z-toggle servo-thread
+net key-z-toggle-in-out key-z-toggle-in.out => key-z-toggle.in
+net key-z <= key-z-toggle.out
+
 net key-z => shw.ena-z.in0
 net ena-z shw.ena-z.out => axis.z.jog-enable
+
+addf led-z servo-thread
+net key-z => led-z.in0
+net key-ena-not => led-z.in1
+net led-z-out led-z.out => hm2_7i76e.0.TsHW.0.1.led-01
 
 # key-ena
 net key-ena <= hm2_7i76e.0.TsHW.0.1.key-00
