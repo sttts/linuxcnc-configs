@@ -954,7 +954,7 @@
   <property name="mesa0c9pin9" type="string" value="unused-input"/>
   <property name="mesa0c9pin9inv" type="bool" value="False"/>
   <property name="mesa0c9pin9type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin0" type="string" value="unused-input"/>
+  <property name="mesa0sserial0_0pin0" type="string" value="estop-ext"/>
   <property name="mesa0sserial0_0pin0inv" type="bool" value="True"/>
   <property name="mesa0sserial0_0pin0type" type="string" value="GPIO Input"/>
   <property name="mesa0sserial0_0pin1" type="string" value="unused-input"/>
@@ -988,7 +988,7 @@
   <property name="mesa0sserial0_0pin19" type="string" value="unused-output"/>
   <property name="mesa0sserial0_0pin19inv" type="bool" value="False"/>
   <property name="mesa0sserial0_0pin19type" type="string" value="GPIO Output"/>
-  <property name="mesa0sserial0_0pin1inv" type="bool" value="True"/>
+  <property name="mesa0sserial0_0pin1inv" type="bool" value="False"/>
   <property name="mesa0sserial0_0pin1type" type="string" value="GPIO Input"/>
   <property name="mesa0sserial0_0pin2" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin20" type="string" value="unused-output"/>
@@ -1021,9 +1021,9 @@
   <property name="mesa0sserial0_0pin29" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin29inv" type="bool" value="False"/>
   <property name="mesa0sserial0_0pin29type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin2inv" type="bool" value="True"/>
+  <property name="mesa0sserial0_0pin2inv" type="bool" value="False"/>
   <property name="mesa0sserial0_0pin2type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin3" type="string" value="estop-ext"/>
+  <property name="mesa0sserial0_0pin3" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin30" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin30inv" type="bool" value="False"/>
   <property name="mesa0sserial0_0pin30type" type="string" value="GPIO Input"/>
@@ -1054,7 +1054,7 @@
   <property name="mesa0sserial0_0pin39" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin39inv" type="bool" value="False"/>
   <property name="mesa0sserial0_0pin39type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin3inv" type="bool" value="True"/>
+  <property name="mesa0sserial0_0pin3inv" type="bool" value="False"/>
   <property name="mesa0sserial0_0pin3type" type="string" value="GPIO Input"/>
   <property name="mesa0sserial0_0pin4" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin40" type="string" value="unused-output"/>
@@ -4236,7 +4236,7 @@
   <property name="xencoder_wormdriver" type="float" value="1.0"/>
   <property name="xencodercounts" type="int" value="4000"/>
   <property name="xencoderscale" type="int" value="0"/>
-  <property name="xhomefinalvel" type="float" value="33.3333333333"/>
+  <property name="xhomefinalvel" type="float" value="33.3166666667"/>
   <property name="xhomelatchvel" type="float" value="1.0"/>
   <property name="xhomepos" type="float" value="-187.5"/>
   <property name="xhomesearchvel" type="float" value="16.6666666667"/>
@@ -4329,7 +4329,7 @@
   <property name="yencoder_wormdriver" type="float" value="1.0"/>
   <property name="yencodercounts" type="int" value="4000"/>
   <property name="yencoderscale" type="int" value="0"/>
-  <property name="yhomefinalvel" type="float" value="33.3333333333"/>
+  <property name="yhomefinalvel" type="float" value="33.3166666667"/>
   <property name="yhomelatchvel" type="float" value="1.0"/>
   <property name="yhomepos" type="float" value="-225.0"/>
   <property name="yhomesearchvel" type="float" value="16.6666666667"/>
@@ -4426,7 +4426,7 @@
   <property name="zerox" type="bool" value="False"/>
   <property name="zeroy" type="bool" value="False"/>
   <property name="zeroz" type="bool" value="False"/>
-  <property name="zhomefinalvel" type="float" value="33.3333333333"/>
+  <property name="zhomefinalvel" type="float" value="33.3166666667"/>
   <property name="zhomelatchvel" type="float" value="1.0"/>
   <property name="zhomepos" type="float" value="0.0"/>
   <property name="zhomesearchvel" type="float" value="16.6666666667"/>
