@@ -1,6 +1,8 @@
 # Include your custom_postgui HAL commands here
 # This file will not be overwritten when you run PNCconf again
 
+loadrt or2 names=pause,resume,led-y,led-0001,led-001,led-01
+
 source TsHW_2_9.hal
 source time.hal
 
@@ -23,6 +25,22 @@ net estop-out         estop-latch.1.fault-out
 
 net estop-tshw        hm2_7i76e.0.TsHW.0.1.key-10-not  => estop-latch.0.fault-in
 net estop-ext                                          => estop-latch.1.fault-in
+
+##
+## pause
+##
+addf pause servo-thread
+net pause-out pause.out => halui.program.pause
+net key-pause => pause.in0
+net button-red hm2_7i76e.0.7i76.0.0.input-01 => pause.in1
+
+##
+## resume
+##
+addf resume servo-thread
+net resume-out resume.out => halui.program.resume
+net key-resume => resume.in0
+net button-green hm2_7i76e.0.7i76.0.0.input-02 => resume.in1
 
 ##
 ## rapid override poti (255-0 => 0-100)

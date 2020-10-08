@@ -41,7 +41,6 @@ setp axis.y.jog-vel-mode 1
 setp axis.z.jog-vel-mode 1
 
 loadrt and2 names=shw.ena-x,shw.ena-y,shw.ena-z,shw.zero-x,shw.zero-y,shw.zero-z,key-run,key-resume,key-stop,key-pause,key-zero-all,key-zero-single,led-x,led-z,key-x-plus,key-x-minus,key-y-plus,key-y-minus
-loadrt or2 names=led-y,led-0001,led-001,led-01
 
 addf shw.ena-x servo-thread
 addf shw.ena-y servo-thread
@@ -273,7 +272,7 @@ net key-red <= hm2_7i76e.0.TsHW.0.1.key-03
 addf key-pause servo-thread
 net key-red => key-pause.in0
 net key-ena-not => key-pause.in1
-net key-pause-out key-pause.out => halui.program.pause
+net key-pause <= key-pause.out 
 
 # key-stop
 addf key-stop servo-thread
@@ -301,7 +300,7 @@ net key-green <= hm2_7i76e.0.TsHW.0.1.key-09
 addf key-resume servo-thread
 net key-ena-not => key-resume.in0
 net key-green => key-resume.in1
-net key-resume-out key-resume.out => halui.program.resume
+net key-resume <= key-resume.out
 
 # key-run
 addf key-run servo-thread
