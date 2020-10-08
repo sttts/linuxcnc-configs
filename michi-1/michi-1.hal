@@ -6,7 +6,7 @@
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
 loadrt hostmot2
-loadrt hm2_eth board_ip="192.168.1.121" config=" num_encoders=0 num_pwmgens=0 num_stepgens=4 sserial_port_0=00xxxx" 
+loadrt hm2_eth board_ip="192.168.1.121" config=" num_encoders=0 num_pwmgens=0 num_stepgens=4 sserial_port_0=01xxxx" 
 setp    hm2_7i76e.0.watchdog.timeout_ns 5000000
 loadrt pid names=pid.x,pid.y,pid.z,pid.s
 
@@ -281,6 +281,10 @@ net coolant-flood     <=  iocontrol.0.coolant-flood
 #  ---probe signal---
 
 net probe-in     =>  motion.probe-input
+
+# ---jog button signals---
+
+sets    jog-speed 1000.000000
 
 #  ---motion control signals---
 

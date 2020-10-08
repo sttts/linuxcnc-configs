@@ -136,7 +136,7 @@
   <property name="encoder_wormdriver" type="string" value="71406"/>
   <property name="encoderline" type="string" value="71402"/>
   <property name="externalfo" type="bool" value="False"/>
-  <property name="externaljog" type="bool" value="False"/>
+  <property name="externaljog" type="bool" value="True"/>
   <property name="externalmpg" type="bool" value="False"/>
   <property name="externalmvo" type="bool" value="False"/>
   <property name="externalso" type="bool" value="False"/>
@@ -248,7 +248,7 @@
   <property name="ioaddr1" type="string" value="0"/>
   <property name="ioaddr2" type="string" value="1"/>
   <property name="ioaddr3" type="string" value="2"/>
-  <property name="jograpidrate" type="float" value="1.0"/>
+  <property name="jograpidrate" type="float" value="1000.0"/>
   <property name="joycmdanaloga" type="string" value=""/>
   <property name="joycmdanalogx" type="string" value=""/>
   <property name="joycmdanalogy" type="string" value=""/>
@@ -3828,7 +3828,7 @@
   <property name="mpgincrvalue7" type="float" value="0.1"/>
   <property name="mpgincrvalue8" type="float" value="0.125"/>
   <property name="mpgincrvalue9" type="float" value="0.125"/>
-  <property name="multijogbuttons" type="bool" value="False"/>
+  <property name="multijogbuttons" type="bool" value="True"/>
   <property name="multimpg" type="bool" value="False"/>
   <property name="mux16names" type="string" value=""/>
   <property name="mvo_usempg" type="bool" value="False"/>
@@ -4094,7 +4094,7 @@
   <property name="shomepos" type="int" value="0"/>
   <property name="shomesw" type="int" value="0"/>
   <property name="sideembededgvcp" type="bool" value="False"/>
-  <property name="singlejogbuttons" type="bool" value="True"/>
+  <property name="singlejogbuttons" type="bool" value="False"/>
   <property name="sinvertencoder" type="int" value="0"/>
   <property name="sinvertmotor" type="int" value="0"/>
   <property name="slatchdir" type="int" value="0"/>
