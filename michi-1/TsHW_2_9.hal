@@ -65,7 +65,12 @@ setp shw.step-choice.in4 0.5
 net step-choice <= shw.step-choice.out
 net step-choice => axis.x.jog-scale
 net step-choice => axis.y.jog-scale
-net step-choice => axis.z.jog-scale
+
+loadrt mult2 names=z-scale-scale
+addf z-scale-scale servo-thread
+net step-choice => z-scale-scale.in0
+setp z-scale-scale.in1 0.5
+net z-scale-scale-out z-scale-scale.out => axis.z.jog-scale
 
 # key-01 - on when either no scale is selected or 0.5
 loadrt lut5 names=shw.led-02,shw.led-07,led-green,key-x-toggle-in,key-y-toggle-in,key-z-toggle-in,key-01-toggle-in,key-001-toggle-in,key-0001-toggle-in
