@@ -1,7 +1,7 @@
 # Include your custom_postgui HAL commands here
 # This file will not be overwritten when you run PNCconf again
 
-loadrt or2 names=pause,resume,led-y,led-0001,led-001,led-01
+loadrt or2 names=pause,resume,led-y,led-0001,led-001,led-01,probes
 
 source TsHW_2_9.hal
 source time.hal
@@ -41,6 +41,20 @@ addf resume servo-thread
 net resume-out resume.out => halui.program.resume
 net key-resume => resume.in0
 net button-green hm2_7i76e.0.7i76.0.0.input-02 => resume.in1
+
+##
+## coolant
+##
+net coolant-air  =>     hm2_7i76e.0.7i76.0.0.output-00
+
+##
+## Probes
+##
+unlinkp hm2_7i76e.0.7i76.0.0.input-08-not
+addf probes servo-thread
+net probe-tool  hm2_7i76e.0.7i76.0.0.input-08-not => probes.in0
+net probe-3d    hm2_7i76e.0.7i76.0.0.input-09-not => probes.in1
+net probe-in <= probes.out
 
 ##
 ## rapid override poti (255-0 => 0-100)
