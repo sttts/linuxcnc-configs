@@ -4443,7 +4443,7 @@
   <property name="zmaxvel" type="float" value="33.3333333333"/>
   <property name="zmicrostep" type="float" value="8.0"/>
   <property name="zminferror" type="float" value="1.0"/>
-  <property name="zminlim" type="float" value="-150.0"/>
+  <property name="zminlim" type="float" value="-175.0"/>
   <property name="zmotor_leadscrew" type="float" value="5.0"/>
   <property name="zmotor_leadscrew_tpi" type="float" value="5.0"/>
   <property name="zmotor_pulleydriven" type="float" value="1.0"/>
