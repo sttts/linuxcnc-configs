@@ -66,7 +66,6 @@ net step-choice <= shw.step-choice.out
 net step-choice => axis.x.jog-scale
 net step-choice => axis.y.jog-scale
 
-loadrt mult2 names=z-scale-scale
 addf z-scale-scale servo-thread
 net step-choice => z-scale-scale.in0
 setp z-scale-scale.in1 0.5

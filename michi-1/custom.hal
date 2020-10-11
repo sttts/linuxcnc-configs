@@ -1,2 +1,4 @@
 # Include your custom HAL commands here
 # This file will not be overwritten when you run PNCconf again
+
+loadusr -Wn st500 mb2hal config=mb2hal.ini
