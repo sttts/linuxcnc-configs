@@ -1,0 +1,23 @@
+o<toolchange-touch-off> sub
+
+; assign the variables passed by M6 to some parameters
+#100 = #<_selected_tool>
+#110 = #<_current_tool>
+
+O10 if [#100 EQ #110] ; checks if tool in the spindle is same as requested
+	o<toolchange-touch-off> endsub [1]
+	M2
+O10 endif
+
+G53 G0 Z0       ; Raise spindle
+G53 G0 X0 Y0	; move to door
+
+#5231 = #100 ; Set persistent variable to remember tool in spindle after power cycle
+
+M61 Q#100 ; Set Current Tool
+
+o<tool_touch_off> call
+
+o<toolchange-touch-off> endsub [1]
+
+M2
