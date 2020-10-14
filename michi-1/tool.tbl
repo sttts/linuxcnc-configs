@@ -1,5 +1,4 @@
-;Tool  Pocket Z Offset     Diameter     Remark
-T1     P0     Z+28.000000  D+8.000000   ; Sorotec vhm schaft z1 8mm sl16 alu
-T2     P0     Z+0.000000   D+8.000000   ; 8mm test tool
-T99    P0     Z+5.939600   D+2.000000   ; 3D-Finder
-T100   P0     Z+0.000000   D+0.000000   ; Spindle Nose
+T1 P0 D8.000000 Z+22.394983 ; Sorotec vhm schaft z1 8mm sl16 alu
+T2 P0 D8.000000 Z+30.836483 ; 8mm test tool
+T99 P0 D2.000000 Z+5.939600 ; 3D-Finder
+T100 P0 ; Spindle Nose

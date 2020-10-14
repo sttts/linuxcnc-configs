@@ -32,7 +32,7 @@ o<toolchange_touch_off> sub
 
 (------------------------------- CONFIGURATION PARAMETERS ----------------------------------------------)
 #<_UseInches> =           0     ( set to 1 to use inches here, or 0 to use millimeters; should match units on tool.tbl dimensions )
-#<_TravelZ> =          -2.0     ( machine Z coordinate for travelling, typically near max Z to avoid ever hitting the work )
+#<_TravelZ> =             0     ( machine Z coordinate for travelling, typically near max Z to avoid ever hitting the work )
 #<_TravelFeed> =     2000.0     ( feedrate used for general Z moves when avoiding G0 )
 #<_ProbeX> =          -358.0 (#5181)     ( machine X coordinate of switch/touch-off plate )
 #<_ProbeY> =          -7.3   (#5182)     ( machine Y coordinate of switch/touch-off plate )
@@ -40,11 +40,13 @@ o<toolchange_touch_off> sub
 #<_ProbeMinZ> = [#<_ProbeFastZ> - 85.0]  ( machine Z coord to stop probe, shortest tool must touch switch at this Z, must be > min Z )
 #<_ProbeRetract> =      1.0     ( small distance to retract before approaching switch/touch-off plate second time )
 #<_ProbeFastFeed> =  1000.0     ( feed rate for moving to _ProbeFastZ )
+#<_ProbeSlowReturnFeed> =  300.0 ( feed rate for moving back to oldZ )
 #<_ProbeFeed1> =      300.0     ( feed rate for touching switch/touch-off plate first time )
 #<_ProbeFeed2> =       10.0     ( feed rate for touching switch/touch-off plate second time )
 #<_ToolChangeX> =       0.0     ( machine X coordinate to pause at for manual tool changing )
 #<_ToolChangeY> =       0.0     ( machine Y coordinate to pause at for manual tool changing )
 #<_MistOnDuringProbe> =   0     ( set to 1 for mist, or 2 for coolant, or 0 for nothing during probing, to clear switch of swarf )
+#<_spindle_zero_height> = 172   (G53 distance from home to spindle nose triggering point on touch plate)
 (-------------------------------------------------------------------------------------------------------)
 
 O100 IF [ EXISTS[#<_ToolDidFirst>] EQ 0 ]
@@ -59,61 +61,86 @@ M70                                            ( save current modal state )
 M9                                             ( turn off coolant, will be restored on return if it was on )
 M5                                             ( turn off spindle, cannot be on during the probe )
 G[21 - #<_UseInches>]                          ( use inches or millimeters as required here, units will be restored on return )
+
+#<_G30_oldX> = #5181                           ( backup G30 position )
+#<_G30_oldY> = #5182
+#<_G30_oldZ> = #5183
 G30.1                                          ( save current position in #5181-#5183... )
+#<_oldX> = #5181                               ( remember position )
+#<_oldY> = #5182
+#<_oldZ> = #5183
+#5181 = #<_G30_oldX>                           ( restore G30 position )
+#5182 = #<_G30_oldY>
+#5183 = #<_G30_oldZ>
+
+#<workspace_z> = #5220                         ( store coordinatin system before switching to 59.3)
+G59.3
 G49                                            ( clear tool length compensation )
 G90                                            ( use absolute positioning here )
 G94                                            ( use feedrate in units/min )
 G40                                            ( turn cutter radius compensation off here )
 
-O200 IF [ #<_ToolDidFirst> EQ 0 ]
-  M6                                           ( do the normal M6 stuff )
-  G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( go to high travel level on Z )
-  G53 G0 X[#<_ProbeX>] Y[#<_ProbeY>]           ( to probe switch )
-  G53 G1 F[#<_ProbeFastFeed>] Z[#<_ProbeFastZ>]( move tool closer to switch -- we shouldn't hit it )
-  G54 G1 F[#<_ProbeFeed1>] G91                 ( use relative positioning )
-  O101 IF [ #<_MistOnDuringProbe> EQ 1 OR #<_MistOnDuringProbe> EQ 2 ]
-    M[7 + #<_MistOnDuringProbe> - 1]           ( turn on mist/coolant )
-  O101 ENDIF
-  G38.2 Z[#<_ProbeMinZ> - #<_ProbeFastZ>] F[#<_ProbeFeed1>]    ( trip switch slowly )
-  G0 Z[#<_ProbeRetract>]                       ( go up slightly )
-  G38.2 Z[#<_ProbeRetract>*-1.25] F[#<_ProbeFeed2>]   ( trip switch very slowly )
-  M9                                           ( turn off mist )
-  G90                                          ( use absolute positioning )
-  #<_ToolZRef> = #5063                         ( save trip point )
-  #<_ToolZLast> = #<_ToolZRef>                 ( save last tool Z position )
-  G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( return to safe level )
-  G53 G0 X[#5181] Y[#5182]                     ( return to where we were in X Y)
-  G53 G1 F[#<_TravelFeed>] Z[#5183]            ( return to where we were in Z )
-  M72                                          ( restore modal state )
-  #<_ToolDidFirst> = 1                         ( we have been in this section to set reference value already )
-O200 ELSE
-  G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( go to high travel level on Z )
-  G53 G0 X[#<_ToolChangeX>] Y[#<_ToolChangeY>] ( nice place for changing tool )
-  M6                                           ( do the normal M6 stuff )
+M6                                           ( do the normal M6 stuff, including going to tool change position )
 
-  G53 G0 X[#<_ProbeX>] Y[#<_ProbeY>]           ( to high place directly over switch )
-  G53 G1 F[#<_ProbeFastFeed>] Z[#<_ProbeFastZ>]( move tool closer to switch -- we shouldn't hit it )
-  G54 G1 F[#<_ProbeFeed1>] G91                 ( use relative positioning )
-  O103 IF [ #<_MistOnDuringProbe> EQ 1 OR #<_MistOnDuringProbe> EQ 2 ]
-    M[7 + #<_MistOnDuringProbe> - 1]           ( turn on mist/coolant )
-  O103 ENDIF
-  G38.2 Z[#<_ProbeMinZ> - #<_ProbeFastZ>] F[#<_ProbeFeed1>]     ( trip switch slowly )
-  G0 Z[#<_ProbeRetract>]                       ( go up slightly )
-  G38.2 Z[#<_ProbeRetract>*-1.25] F[#<_ProbeFeed2>]   ( trip switch very slowly )
-  M9                                           ( turn off mist )
-  G90                                          ( use absolute positioning )
-  #<_ToolZ> = #5063                            ( save new tool length )
-  G43.1 Z[#<_ToolZ> - #<_ToolZRef>]            ( set new tool length Z offset, we do this now to show operator even though it has to be set again after M72 )
-  G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( return to high travel level )
-  G53 G0 X[#5181] Y[#5182]                     ( return to where we were in X Y)
-  G53 G1 F[#<_TravelFeed>] Z[#5183 - #<_ToolZLast> + #<_ToolZ>]   ( return to where we were in Z, ajusting for tool length change )
-  #<_ToolZLast> = #<_ToolZ>                    ( save last tool length )
+G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( go to high travel level on Z )
+G53 G0 X[#<_ProbeX>] Y[#<_ProbeY>]           ( to probe switch )
+G53 G1 F[#<_ProbeFastFeed>] Z[#<_ProbeFastZ>]( move tool closer to switch -- we shouldn't hit it )
 
-  M72                                          ( restore modal state )
-  G43.1 Z[#<_ToolZ> - #<_ToolZRef>]            ( set new tool length Z offset )
-O200 ENDIF
+O101 IF [ #<_MistOnDuringProbe> EQ 1 OR #<_MistOnDuringProbe> EQ 2 ]
+  M[7 + #<_MistOnDuringProbe> - 1]           ( turn on mist/coolant )
+O101 ENDIF
+
+G91                                          ( use relative positioning )
+G38.2 Z[#<_ProbeMinZ> - #<_ProbeFastZ>] F[#<_ProbeFeed1>] ( trip switch slowly )
+G0 Z[#<_ProbeRetract>] F[#<_ProbeFeed1>]     ( go up slightly )
+G38.2 Z[#<_ProbeRetract>*-1.25] F[#<_ProbeFeed2>]   ( trip switch very slowly )
+
+M9                                           ( turn off mist )
+G90                                          ( use absolute positioning )
+#<_ToolZ> = #5063                            ( save trip point )
+(DEBUG, Probed Pos: #5063 Z Pos: #<_z>)
+
+O210 IF [ #<_ToolDidFirst> EQ 0 ]
+  #<_ToolZLast> = #<_ToolZ>                  ( save last tool Z position )
+O210 ENDIF
+
+#<_new_tool_length_offset> = [#5063 + #<_spindle_zero_height>]
+
+M72                                          ( restore modal state )
+
+o<160> if [#<workspace_z> EQ 1]              ( restore coordinate system )
+  G54
+o<160> else if [#<workspace_z> EQ 2]
+  G55
+o<160> else if [#<workspace_z> EQ 3]
+  G56
+o<160> else if [#<workspace_z> EQ 4]
+  G57
+o<160> else if [#<workspace_z> EQ 5]
+  G58
+o<160> else if [#<workspace_z> EQ 6]
+  G59
+o<160> else if [#<workspace_z> EQ 7]
+  G59.1
+o<160> else if [#<workspace_z> EQ 8]
+  G59.2
+o<160> endif
+
+( G43.1 Z[#<_ToolZ> + #<_spindle_zero_height>] )
+G10 L1 P #5400 Z [#<_new_tool_length_offset>] (5400 = tool number)
+T #5400 G43  H #5400    (enable tool length offset)
+
+G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( return to safe level )
+G53 G0 X[#<_oldX>] Y[#<_oldY>]               ( return to where we were in X Y)
 
 M0                                           ( pause execution )
+
+G53 G1 F[#<_ProbeSlowReturnFeed>] Z[#<_oldZ> - #<_ToolZLast> + #<_ToolZ>]   ( return to where we were in Z, ajusting for tool length change )
+
+M0                                           ( pause execution )
+
+#<_ToolDidFirst> = 1                         ( we have been in this section to set reference value already )
+#<_ToolZLast> = #<_ToolZ>                    ( save last tool length )
 
 o<toolchange_touch_off> endsub
 M2
