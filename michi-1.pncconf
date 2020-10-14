@@ -4249,7 +4249,7 @@
   <property name="xhomepos" type="float" value="-187.5"/>
   <property name="xhomesearchvel" type="float" value="16.6666666667"/>
   <property name="xhomesequence" type="float" value="1.0"/>
-  <property name="xhomesw" type="float" value="-377.0"/>
+  <property name="xhomesw" type="float" value="2.0"/>
   <property name="xhomevel" type="float" value="1.5"/>
   <property name="xinvertencoder" type="bool" value="False"/>
   <property name="xinvertmotor" type="bool" value="True"/>
@@ -4271,7 +4271,7 @@
   <property name="xoutputmaxlimit" type="float" value="10.0"/>
   <property name="xoutputminlimit" type="float" value="-10.0"/>
   <property name="xoutputscale" type="float" value="10.0"/>
-  <property name="xsearchdir" type="int" value="0"/>
+  <property name="xsearchdir" type="int" value="1"/>
   <property name="xsteprev" type="float" value="200.0"/>
   <property name="xstepscale" type="float" value="320.0"/>
   <property name="xstepspace" type="float" value="10000.0"/>
@@ -4342,7 +4342,7 @@
   <property name="yhomepos" type="float" value="-225.0"/>
   <property name="yhomesearchvel" type="float" value="16.6666666667"/>
   <property name="yhomesequence" type="float" value="1.0"/>
-  <property name="yhomesw" type="float" value="-452.0"/>
+  <property name="yhomesw" type="float" value="2.0"/>
   <property name="yhomevel" type="float" value="1.5"/>
   <property name="yinvertencoder" type="bool" value="False"/>
   <property name="yinvertmotor" type="bool" value="True"/>
@@ -4364,7 +4364,7 @@
   <property name="youtputmaxlimit" type="float" value="10.0"/>
   <property name="youtputminlimit" type="float" value="-10.0"/>
   <property name="youtputscale" type="float" value="10.0"/>
-  <property name="ysearchdir" type="int" value="0"/>
+  <property name="ysearchdir" type="int" value="1"/>
   <property name="ysteprev" type="float" value="200.0"/>
   <property name="ystepscale" type="float" value="320.0"/>
   <property name="ystepspace" type="float" value="10000.0"/>
