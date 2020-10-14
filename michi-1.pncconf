@@ -4246,7 +4246,7 @@
   <property name="xencoderscale" type="int" value="0"/>
   <property name="xhomefinalvel" type="float" value="33.3166666667"/>
   <property name="xhomelatchvel" type="float" value="1.0"/>
-  <property name="xhomepos" type="float" value="-187.5"/>
+  <property name="xhomepos" type="float" value="0.0"/>
   <property name="xhomesearchvel" type="float" value="16.6666666667"/>
   <property name="xhomesequence" type="float" value="1.0"/>
   <property name="xhomesw" type="float" value="2.0"/>
@@ -4256,7 +4256,7 @@
   <property name="xlatchdir" type="int" value="0"/>
   <property name="xmaxacc" type="float" value="200.0"/>
   <property name="xmaxferror" type="float" value="10.0"/>
-  <property name="xmaxlim" type="float" value="0.0"/>
+  <property name="xmaxlim" type="float" value="0.01"/>
   <property name="xmaxoutput" type="float" value="0.0"/>
   <property name="xmaxvel" type="float" value="33.3333333333"/>
   <property name="xmicrostep" type="float" value="8.0"/>
@@ -4339,7 +4339,7 @@
   <property name="yencoderscale" type="int" value="0"/>
   <property name="yhomefinalvel" type="float" value="33.3166666667"/>
   <property name="yhomelatchvel" type="float" value="1.0"/>
-  <property name="yhomepos" type="float" value="-225.0"/>
+  <property name="yhomepos" type="float" value="0.0"/>
   <property name="yhomesearchvel" type="float" value="16.6666666667"/>
   <property name="yhomesequence" type="float" value="1.0"/>
   <property name="yhomesw" type="float" value="2.0"/>
@@ -4349,7 +4349,7 @@
   <property name="ylatchdir" type="int" value="0"/>
   <property name="ymaxacc" type="float" value="200.0"/>
   <property name="ymaxferror" type="float" value="10.0"/>
-  <property name="ymaxlim" type="float" value="0.0"/>
+  <property name="ymaxlim" type="float" value="0.01"/>
   <property name="ymaxoutput" type="float" value="0.0"/>
   <property name="ymaxvel" type="float" value="33.3333333333"/>
   <property name="ymicrostep" type="float" value="8.0"/>
@@ -4446,7 +4446,7 @@
   <property name="zlatchdir" type="int" value="0"/>
   <property name="zmaxacc" type="float" value="200.0"/>
   <property name="zmaxferror" type="float" value="10.0"/>
-  <property name="zmaxlim" type="float" value="0.0"/>
+  <property name="zmaxlim" type="float" value="0.01"/>
   <property name="zmaxoutput" type="float" value="0.0"/>
   <property name="zmaxvel" type="float" value="33.3333333333"/>
   <property name="zmicrostep" type="float" value="8.0"/>
