@@ -133,11 +133,14 @@ T #5400 G43  H #5400    (enable tool length offset)
 G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( return to safe level )
 G53 G0 X[#<_oldX>] Y[#<_oldY>]               ( return to where we were in X Y)
 
-M0                                           ( pause execution )
+#<_newZ> = [#<_oldZ> - #<_ToolZLast> + #<_ToolZ>]
 
-G53 G1 F[#<_ProbeSlowReturnFeed>] Z[#<_oldZ> - #<_ToolZLast> + #<_ToolZ>]   ( return to where we were in Z, ajusting for tool length change )
-
-M0                                           ( pause execution )
+O220 IF [ #<_newZ> EQ #<_TravelZ> ]
+O220 ELSE
+  M0                                         ( pause execution )
+  G53 G1 F[#<_ProbeSlowReturnFeed>] Z[#<_oldZ> - #<_ToolZLast> + #<_ToolZ>] ( return to where we were in Z, ajusting for tool length change )
+  M0                                         ( pause execution )
+O220 ENDIF
 
 #<_ToolDidFirst> = 1                         ( we have been in this section to set reference value already )
 #<_ToolZLast> = #<_ToolZ>                    ( save last tool length )
