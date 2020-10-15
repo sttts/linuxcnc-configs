@@ -4256,7 +4256,7 @@
   <property name="xlatchdir" type="int" value="0"/>
   <property name="xmaxacc" type="float" value="200.0"/>
   <property name="xmaxferror" type="float" value="10.0"/>
-  <property name="xmaxlim" type="float" value="0.01"/>
+  <property name="xmaxlim" type="float" value="0.1"/>
   <property name="xmaxoutput" type="float" value="0.0"/>
   <property name="xmaxvel" type="float" value="33.3333333333"/>
   <property name="xmicrostep" type="float" value="8.0"/>
@@ -4349,7 +4349,7 @@
   <property name="ylatchdir" type="int" value="0"/>
   <property name="ymaxacc" type="float" value="200.0"/>
   <property name="ymaxferror" type="float" value="10.0"/>
-  <property name="ymaxlim" type="float" value="0.01"/>
+  <property name="ymaxlim" type="float" value="0.1"/>
   <property name="ymaxoutput" type="float" value="0.0"/>
   <property name="ymaxvel" type="float" value="33.3333333333"/>
   <property name="ymicrostep" type="float" value="8.0"/>
@@ -4446,7 +4446,7 @@
   <property name="zlatchdir" type="int" value="0"/>
   <property name="zmaxacc" type="float" value="200.0"/>
   <property name="zmaxferror" type="float" value="10.0"/>
-  <property name="zmaxlim" type="float" value="0.01"/>
+  <property name="zmaxlim" type="float" value="0.1"/>
   <property name="zmaxoutput" type="float" value="0.0"/>
   <property name="zmaxvel" type="float" value="33.3333333333"/>
   <property name="zmicrostep" type="float" value="8.0"/>
