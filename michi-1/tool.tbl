@@ -1,4 +1,4 @@
-T1 P0 D8.000000 Z+22.394983 ; Sorotec vhm schaft z1 8mm sl16 alu
-T2 P0 D8.000000 Z+30.836483 ; 8mm test tool
-T99 P0 D2.000000 Z+5.939600 ; 3D-Finder
+T1 P0 D8.000000 Z+122.592134 ; Sorotec vhm schaft z1 8mm sl16 alu
+T2 P0 D8.000000 Z+72.973150 ; 8mm test tool
+T999 P0 D2.000000 Z+72.973483 ; 3D-Finder
 T100 P0 ; Spindle Nose

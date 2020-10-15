@@ -43,14 +43,15 @@ o<toolchange_touch_off> sub
 #<_ProbeSlowReturnFeed> =  300.0 ( feed rate for moving back to oldZ )
 #<_ProbeFeed1> =      300.0     ( feed rate for touching switch/touch-off plate first time )
 #<_ProbeFeed2> =       10.0     ( feed rate for touching switch/touch-off plate second time )
-#<_ToolChangeX> =       0.0     ( machine X coordinate to pause at for manual tool changing )
-#<_ToolChangeY> =       0.0     ( machine Y coordinate to pause at for manual tool changing )
 #<_MistOnDuringProbe> =   0     ( set to 1 for mist, or 2 for coolant, or 0 for nothing during probing, to clear switch of swarf )
 #<_spindle_zero_height> = 172   (G53 distance from home to spindle nose triggering point on touch plate)
 (-------------------------------------------------------------------------------------------------------)
 
+#<_oldWorkZ> = #<_z>                           ( store Z for possible error message to move back manually )
+(DEBUG, Starting toolchange at Z: #<_z>)
+
 O100 IF [ EXISTS[#<_ToolDidFirst>] EQ 0 ]
-        #<_ToolDidFirst> = 0
+    #<_ToolDidFirst> = 0
 O100 ENDIF
 O105 IF [ #<_ToolDidFirst> EQ 0 ]
    G49                                         ( clear tool length compensation prior to saving state if this is first time )
@@ -73,14 +74,15 @@ G30.1                                          ( save current position in #5181-
 #5182 = #<_G30_oldY>
 #5183 = #<_G30_oldZ>
 
-#<workspace_z> = #5220                         ( store coordinatin system before switching to 59.3)
 G59.3
 G49                                            ( clear tool length compensation )
 G90                                            ( use absolute positioning here )
 G94                                            ( use feedrate in units/min )
 G40                                            ( turn cutter radius compensation off here )
+G92.1                                          ( cancel G92 offset )
 
 M6                                           ( do the normal M6 stuff, including going to tool change position )
+G49                                          ( clear tool length compensation )
 
 G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( go to high travel level on Z )
 G53 G0 X[#<_ProbeX>] Y[#<_ProbeY>]           ( to probe switch )
@@ -93,40 +95,31 @@ O101 ENDIF
 G91                                          ( use relative positioning )
 G38.2 Z[#<_ProbeMinZ> - #<_ProbeFastZ>] F[#<_ProbeFeed1>] ( trip switch slowly )
 G0 Z[#<_ProbeRetract>] F[#<_ProbeFeed1>]     ( go up slightly )
+
 G38.2 Z[#<_ProbeRetract>*-1.25] F[#<_ProbeFeed2>]   ( trip switch very slowly )
 
 M9                                           ( turn off mist )
 G90                                          ( use absolute positioning )
-#<_ToolZ> = #5063                            ( save trip point )
-(DEBUG, Probed Pos: #5063 Z Pos: #<_z>)
+
+O130 if [#5070 EQ 1]                         ( verify probe event was succesful )
+  #<_ToolZ> = [#5063 + #5383]                ( save trip point, absolute mchine coordinates )
+  (DEBUG, Probed Pos: #5063 Z Pos: #<_z>)
+O130 else
+  M72
+  G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]    ( return to safe level )
+  G53 G0 X[#<_oldX>] Y[#<_oldY>]             ( return to where we were in X Y)
+  (MSG,Tool Length Offset Probe Failed. Old Z: #<_oldWorkZ>)
+  O130 return
+O130 endif
 
 O210 IF [ #<_ToolDidFirst> EQ 0 ]
   #<_ToolZLast> = #<_ToolZ>                  ( save last tool Z position )
 O210 ENDIF
 
-#<_new_tool_length_offset> = [#5063 + #<_spindle_zero_height>]
+#<_new_tool_length_offset> = [#<_ToolZ> + #<_spindle_zero_height>]
 
 M72                                          ( restore modal state )
 
-o<160> if [#<workspace_z> EQ 1]              ( restore coordinate system )
-  G54
-o<160> else if [#<workspace_z> EQ 2]
-  G55
-o<160> else if [#<workspace_z> EQ 3]
-  G56
-o<160> else if [#<workspace_z> EQ 4]
-  G57
-o<160> else if [#<workspace_z> EQ 5]
-  G58
-o<160> else if [#<workspace_z> EQ 6]
-  G59
-o<160> else if [#<workspace_z> EQ 7]
-  G59.1
-o<160> else if [#<workspace_z> EQ 8]
-  G59.2
-o<160> endif
-
-( G43.1 Z[#<_ToolZ> + #<_spindle_zero_height>] )
 G10 L1 P #5400 Z [#<_new_tool_length_offset>] (5400 = tool number)
 T #5400 G43  H #5400    (enable tool length offset)
 
