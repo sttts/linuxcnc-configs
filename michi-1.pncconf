@@ -105,17 +105,17 @@
   <property name="axissize" type="eval" value="[False, 0.0, 0.0]"/>
   <property name="baseperiod" type="int" value="50000"/>
   <property name="bitmem" type="float" value="50.0"/>
-  <property name="cbencoder_pitch" type="string" value="71417"/>
-  <property name="cbencoder_pulley" type="string" value="71420"/>
-  <property name="cbencoder_tpi" type="string" value="71418"/>
-  <property name="cbencoder_worm" type="string" value="71419"/>
-  <property name="cbmicrosteps" type="string" value="65747"/>
+  <property name="cbencoder_pitch" type="string" value="65813"/>
+  <property name="cbencoder_pulley" type="string" value="65816"/>
+  <property name="cbencoder_tpi" type="string" value="65814"/>
+  <property name="cbencoder_worm" type="string" value="65815"/>
+  <property name="cbmicrosteps" type="string" value="65819"/>
   <property name="cbmotor_gear1" type="string" value="65748"/>
   <property name="cbmotor_gear2" type="string" value="65749"/>
-  <property name="cbmotor_pitch" type="string" value="71421"/>
-  <property name="cbmotor_pulley" type="string" value="65750"/>
-  <property name="cbmotor_tpi" type="string" value="71422"/>
-  <property name="cbmotor_worm" type="string" value="71424"/>
+  <property name="cbmotor_pitch" type="string" value="65817"/>
+  <property name="cbmotor_pulley" type="string" value="65821"/>
+  <property name="cbmotor_tpi" type="string" value="65818"/>
+  <property name="cbmotor_worm" type="string" value="65820"/>
   <property name="centerembededgvcp" type="bool" value="True"/>
   <property name="cl_haluicmds" type="int" value="0"/>
   <property name="classicladder" type="bool" value="False"/>
@@ -130,13 +130,13 @@
   <property name="dirsetup" type="int" value="20000"/>
   <property name="drivertype" type="string" value="other"/>
   <property name="editor" type="string" value="subl"/>
-  <property name="encoder_leadscrew" type="string" value="71403"/>
-  <property name="encoder_leadscrew_tpi" type="string" value="71404"/>
-  <property name="encoder_pulleydriven" type="string" value="71407"/>
-  <property name="encoder_pulleydriver" type="string" value="71408"/>
-  <property name="encoder_wormdriven" type="string" value="71405"/>
-  <property name="encoder_wormdriver" type="string" value="71406"/>
-  <property name="encoderline" type="string" value="65737"/>
+  <property name="encoder_leadscrew" type="string" value="65799"/>
+  <property name="encoder_leadscrew_tpi" type="string" value="65800"/>
+  <property name="encoder_pulleydriven" type="string" value="65803"/>
+  <property name="encoder_pulleydriver" type="string" value="65804"/>
+  <property name="encoder_wormdriven" type="string" value="65801"/>
+  <property name="encoder_wormdriver" type="string" value="65802"/>
+  <property name="encoderline" type="string" value="65798"/>
   <property name="externalfo" type="bool" value="False"/>
   <property name="externaljog" type="bool" value="True"/>
   <property name="externalmpg" type="bool" value="False"/>
@@ -344,7 +344,7 @@
   <property name="mesa0c1pin19type" type="string" value="Not Used"/>
   <property name="mesa0c1pin1inv" type="bool" value="False"/>
   <property name="mesa0c1pin1type" type="string" value="Step Gen-A"/>
-  <property name="mesa0c1pin2" type="string" value="y-stepgen-dir"/>
+  <property name="mesa0c1pin2" type="string" value="unused-stepgen"/>
   <property name="mesa0c1pin20" type="string" value="unused-unused"/>
   <property name="mesa0c1pin20inv" type="bool" value="False"/>
   <property name="mesa0c1pin20type" type="string" value="Not Used"/>
@@ -359,7 +359,7 @@
   <property name="mesa0c1pin23type" type="string" value="Not Used"/>
   <property name="mesa0c1pin2inv" type="bool" value="False"/>
   <property name="mesa0c1pin2type" type="string" value="Dir Gen-B"/>
-  <property name="mesa0c1pin3" type="string" value="y-stepgen-step"/>
+  <property name="mesa0c1pin3" type="string" value="unused-stepgen"/>
   <property name="mesa0c1pin3inv" type="bool" value="False"/>
   <property name="mesa0c1pin3type" type="string" value="Step Gen-A"/>
   <property name="mesa0c1pin4" type="string" value="z-stepgen-dir"/>
@@ -368,10 +368,10 @@
   <property name="mesa0c1pin5" type="string" value="z-stepgen-step"/>
   <property name="mesa0c1pin5inv" type="bool" value="False"/>
   <property name="mesa0c1pin5type" type="string" value="Step Gen-A"/>
-  <property name="mesa0c1pin6" type="string" value="unused-stepgen"/>
+  <property name="mesa0c1pin6" type="string" value="y-stepgen-dir"/>
   <property name="mesa0c1pin6inv" type="bool" value="False"/>
   <property name="mesa0c1pin6type" type="string" value="Dir Gen-B"/>
-  <property name="mesa0c1pin7" type="string" value="unused-stepgen"/>
+  <property name="mesa0c1pin7" type="string" value="y-stepgen-step"/>
   <property name="mesa0c1pin7inv" type="bool" value="False"/>
   <property name="mesa0c1pin7type" type="string" value="Step Gen-A"/>
   <property name="mesa0c1pin8" type="string" value="unused-input"/>
@@ -3793,7 +3793,7 @@
   <property name="mesa1sserial0_5pin9inv" type="bool" value="False"/>
   <property name="mesa1sserial0_5pin9type" type="string" value="GPIO Input"/>
   <property name="mesa1sserial0_5subboard" type="string" value="none"/>
-  <property name="microstep" type="string" value="65739"/>
+  <property name="microstep" type="string" value="65808"/>
   <property name="min_angular_velocity" type="float" value="1.66666666667"/>
   <property name="min_linear_velocity" type="float" value="0.5"/>
   <property name="min_spindle_override" type="float" value="0.5"/>
@@ -3808,13 +3808,13 @@
   <property name="motor_gear1driver" type="string" value="65741"/>
   <property name="motor_gear2driven" type="string" value="65742"/>
   <property name="motor_gear2driver" type="string" value="65743"/>
-  <property name="motor_leadscrew" type="string" value="71410"/>
-  <property name="motor_leadscrew_tpi" type="string" value="71411"/>
+  <property name="motor_leadscrew" type="string" value="65806"/>
+  <property name="motor_leadscrew_tpi" type="string" value="65807"/>
   <property name="motor_max" type="string" value="65746"/>
-  <property name="motor_pulleydriven" type="string" value="65744"/>
-  <property name="motor_pulleydriver" type="string" value="65745"/>
-  <property name="motor_wormdriven" type="string" value="71413"/>
-  <property name="motor_wormdriver" type="string" value="71414"/>
+  <property name="motor_pulleydriven" type="string" value="65811"/>
+  <property name="motor_pulleydriver" type="string" value="65812"/>
+  <property name="motor_wormdriven" type="string" value="65809"/>
+  <property name="motor_wormdriver" type="string" value="65810"/>
   <property name="mpgdebounce" type="bool" value="True"/>
   <property name="mpgdebouncetime" type="float" value="0.2"/>
   <property name="mpggraycode" type="bool" value="False"/>
@@ -4155,7 +4155,7 @@
   <property name="sstepspace" type="float" value="5000.0"/>
   <property name="ssteptime" type="float" value="5000.0"/>
   <property name="standalonegvcp" type="bool" value="False"/>
-  <property name="steprev" type="string" value="65738"/>
+  <property name="steprev" type="string" value="65805"/>
   <property name="stepspace" type="int" value="5000"/>
   <property name="steptime" type="int" value="5000"/>
   <property name="suseatspeed" type="bool" value="False"/>
@@ -4326,8 +4326,8 @@
   <property name="ycompfilename" type="string" value="ycompensation"/>
   <property name="ycomptype" type="int" value="0"/>
   <property name="ydeadband" type="float" value="0.0"/>
-  <property name="ydirhold" type="float" value="10000.0"/>
-  <property name="ydirsetup" type="float" value="10000.0"/>
+  <property name="ydirhold" type="float" value="5000.0"/>
+  <property name="ydirsetup" type="float" value="5000.0"/>
   <property name="ydrivertype" type="string" value="custom"/>
   <property name="yencoder_leadscrew" type="float" value="5.0"/>
   <property name="yencoder_leadscrew_tpi" type="float" value="5.0"/>
@@ -4347,12 +4347,12 @@
   <property name="yinvertencoder" type="bool" value="False"/>
   <property name="yinvertmotor" type="bool" value="True"/>
   <property name="ylatchdir" type="int" value="0"/>
-  <property name="ymaxacc" type="float" value="200.0"/>
+  <property name="ymaxacc" type="float" value="1000.0"/>
   <property name="ymaxferror" type="float" value="10.0"/>
   <property name="ymaxlim" type="float" value="0.1"/>
   <property name="ymaxoutput" type="float" value="0.0"/>
-  <property name="ymaxvel" type="float" value="33.3333333333"/>
-  <property name="ymicrostep" type="float" value="8.0"/>
+  <property name="ymaxvel" type="float" value="100.0"/>
+  <property name="ymicrostep" type="float" value="16.0"/>
   <property name="yminferror" type="float" value="1.0"/>
   <property name="yminlim" type="float" value="-450.0"/>
   <property name="ymotor_leadscrew" type="float" value="5.0"/>
@@ -4365,10 +4365,10 @@
   <property name="youtputminlimit" type="float" value="-10.0"/>
   <property name="youtputscale" type="float" value="10.0"/>
   <property name="ysearchdir" type="int" value="1"/>
-  <property name="ysteprev" type="float" value="200.0"/>
-  <property name="ystepscale" type="float" value="320.0"/>
-  <property name="ystepspace" type="float" value="10000.0"/>
-  <property name="ysteptime" type="float" value="10000.0"/>
+  <property name="ysteprev" type="float" value="400.0"/>
+  <property name="ystepscale" type="float" value="1280.0"/>
+  <property name="ystepspace" type="float" value="1000.0"/>
+  <property name="ysteptime" type="float" value="5000.0"/>
   <property name="yusebacklash" type="bool" value="False"/>
   <property name="yusecomp" type="bool" value="False"/>
   <property name="yusehomeindex" type="int" value="0"/>
