@@ -1,5 +1,19 @@
-T1 P0 D8.000000 Z+122.592134 ; Sorotec vhm schaft z1 8mm sl16 alu
-T2 P0 D8.000000 Z+72.973200 ; 8mm test tool
-T30 P0 D3.000000 Z+25.278483 ; New Tool
-T999 P0 D2.000000 Z+72.973200 ; 3D-Finder
-T31 P0 D3.000000 Z+25.278317 ; New Tool
+T10 P0 D1.000000 Z+19.785317 ; VHM ultratools Schaft Z2 1mm SL3 uni
+T20 P0 D2.000000 ; VHM ultratools Schaft Z2 2mm SL6.3 uni
+T21 P0 D2.000000 ; VHM Schaft Z1 2mm SL16 Acryl
+T25 P0 D2.000000 Z+19.891817 ; VHM Sorotec Gravur 2mm 3,175
+T30 P0 D3.000000 Z+24.366650 ; HSS Garant Schaft Z3 3mm SL8 Alu
+T31 P0 D3.000000 ; VHM ultratools Schaft Z2 3mm SL12 uni
+T40 P0 D4.000000 ; VHM Sorotec Schaft Z1 4mm SL16 Alu
+T400 P0 D4.000000 ; HSS Profi Super 4mm (blaue Kiste)
+T41 P0 D4.000000 ; VHM Sorotec Schaft Z1 4mm SL16 Acryl
+T45 P0 D4.000000 ; VHM Ti Radius 4mm Z2 SL8 Alu
+T49 P0 D3.000000 ; Carbide NV Spotting Drill Bit
+T60 P0 D6.000000 ; VHM Azzkor Schaft Z3 6mm SL15 Alu
+T61 P0 D6.000000 ; HSS Garant Schaft Z3 6mm SL27 Alu
+T64 P0 D6.000000 ; VHM Ti Augusttools Z4 6mm SL16 Stahl
+T80 P0 D8.000000 ; VHM Sorotec Schaft Z1 8mm SL16 Alu
+T81 P0 D8.000000 ; VHM Sorotec Schaft Z1 36 D8 Proalu
+T85 P0 D8.000000 ; VHM Ti Rund Z2 8mm SL16 Alu
+T86 P0 D8.000000 ; VHM Sorotec Phase Z3 90 D8 Alu
+T999 P0 D2.000000 Z+73.712817 ; 3D Finder
