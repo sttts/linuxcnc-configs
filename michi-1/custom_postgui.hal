@@ -13,19 +13,28 @@ source time.hal
 unlinkp iocontrol.0.emc-enable-in
 unlinkp iocontrol.0.user-enable-out
 
-loadrt estop_latch count=2
-addf estop-latch.0 servo-thread
-addf estop-latch.1 servo-thread
+loadrt estop_latch count=5
+addf estop-latch.0 servo-thread # TsHW
+addf estop-latch.1 servo-thread # Button
+addf estop-latch.2 servo-thread # X
+addf estop-latch.3 servo-thread # Y
+addf estop-latch.4 servo-thread # Z
 
 net estop-latch-ok-in iocontrol.0.user-enable-out      => estop-latch.0.ok-in
 net estop-latch0-out  estop-latch.0.ok-out             => estop-latch.1.ok-in
+net estop-latch1-out  estop-latch.1.ok-out             => estop-latch.2.ok-in
+net estop-latch2-out  estop-latch.2.ok-out             => estop-latch.3.ok-in
+net estop-latch3-out  estop-latch.3.ok-out             => estop-latch.4.ok-in
 
-net estop-latch-reset iocontrol.0.user-request-enable  => estop-latch.0.reset estop-latch.1.reset
-net estop-latch-out   estop-latch.1.ok-out             => iocontrol.0.emc-enable-in
-net estop-out         estop-latch.1.fault-out
+net estop-latch-reset iocontrol.0.user-request-enable  => estop-latch.0.reset estop-latch.1.reset estop-latch.2.reset estop-latch.3.reset estop-latch.4.reset
+net estop-latch-out   estop-latch.4.ok-out             => iocontrol.0.emc-enable-in
+net estop-out         estop-latch.4.fault-out
 
 net estop-tshw        hm2_7i76e.0.TsHW.0.1.key-10-not  => estop-latch.0.fault-in
 net estop-ext                                          => estop-latch.1.fault-in
+net estop-x-alarm     hm2_7i76e.0.7i76.0.0.input-11    => estop-latch.2.fault-in
+net estop-y-alarm     hm2_7i76e.0.7i76.0.0.input-12    => estop-latch.3.fault-in
+net estop-z-alarm     hm2_7i76e.0.7i76.0.0.input-13    => estop-latch.4.fault-in
 
 ##
 ## pause
