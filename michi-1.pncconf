@@ -4247,7 +4247,7 @@
   <property name="xhomefinalvel" type="float" value="33.3166666667"/>
   <property name="xhomelatchvel" type="float" value="1.0"/>
   <property name="xhomepos" type="float" value="0.0"/>
-  <property name="xhomesearchvel" type="float" value="16.6666666667"/>
+  <property name="xhomesearchvel" type="float" value="25.0"/>
   <property name="xhomesequence" type="float" value="1.0"/>
   <property name="xhomesw" type="float" value="2.0"/>
   <property name="xhomevel" type="float" value="1.5"/>
@@ -4258,7 +4258,7 @@
   <property name="xmaxferror" type="float" value="10.0"/>
   <property name="xmaxlim" type="float" value="0.1"/>
   <property name="xmaxoutput" type="float" value="0.0"/>
-  <property name="xmaxvel" type="float" value="100.0"/>
+  <property name="xmaxvel" type="float" value="166.666666667"/>
   <property name="xmicrostep" type="float" value="16.0"/>
   <property name="xminferror" type="float" value="1.0"/>
   <property name="xminlim" type="float" value="-375.0"/>
@@ -4340,7 +4340,7 @@
   <property name="yhomefinalvel" type="float" value="33.3166666667"/>
   <property name="yhomelatchvel" type="float" value="1.0"/>
   <property name="yhomepos" type="float" value="0.0"/>
-  <property name="yhomesearchvel" type="float" value="16.6666666667"/>
+  <property name="yhomesearchvel" type="float" value="25.0"/>
   <property name="yhomesequence" type="float" value="1.0"/>
   <property name="yhomesw" type="float" value="2.0"/>
   <property name="yhomevel" type="float" value="1.5"/>
