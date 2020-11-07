@@ -4254,7 +4254,7 @@
   <property name="xinvertencoder" type="bool" value="False"/>
   <property name="xinvertmotor" type="bool" value="True"/>
   <property name="xlatchdir" type="int" value="0"/>
-  <property name="xmaxacc" type="float" value="500.0"/>
+  <property name="xmaxacc" type="float" value="750.0"/>
   <property name="xmaxferror" type="float" value="10.0"/>
   <property name="xmaxlim" type="float" value="0.1"/>
   <property name="xmaxoutput" type="float" value="0.0"/>
