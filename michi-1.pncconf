@@ -324,13 +324,13 @@
   <property name="mesa0c1pin13" type="string" value="unused-sserial"/>
   <property name="mesa0c1pin13inv" type="bool" value="False"/>
   <property name="mesa0c1pin13type" type="string" value="SSERIAL-P1-RX"/>
-  <property name="mesa0c1pin14" type="string" value="both-home-x"/>
+  <property name="mesa0c1pin14" type="string" value="unused-input"/>
   <property name="mesa0c1pin14inv" type="bool" value="True"/>
   <property name="mesa0c1pin14type" type="string" value="GPIO Input"/>
-  <property name="mesa0c1pin15" type="string" value="both-home-y"/>
+  <property name="mesa0c1pin15" type="string" value="unused-input"/>
   <property name="mesa0c1pin15inv" type="bool" value="True"/>
   <property name="mesa0c1pin15type" type="string" value="GPIO Input"/>
-  <property name="mesa0c1pin16" type="string" value="both-home-z"/>
+  <property name="mesa0c1pin16" type="string" value="unused-input"/>
   <property name="mesa0c1pin16inv" type="bool" value="True"/>
   <property name="mesa0c1pin16type" type="string" value="GPIO Input"/>
   <property name="mesa0c1pin17" type="string" value="unused-unused"/>
@@ -1041,14 +1041,14 @@
   <property name="mesa0sserial0_0pin34" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin34inv" type="bool" value="False"/>
   <property name="mesa0sserial0_0pin34type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin35" type="string" value="unused-input"/>
-  <property name="mesa0sserial0_0pin35inv" type="bool" value="False"/>
+  <property name="mesa0sserial0_0pin35" type="string" value="both-home-x"/>
+  <property name="mesa0sserial0_0pin35inv" type="bool" value="True"/>
   <property name="mesa0sserial0_0pin35type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin36" type="string" value="unused-input"/>
-  <property name="mesa0sserial0_0pin36inv" type="bool" value="False"/>
+  <property name="mesa0sserial0_0pin36" type="string" value="both-home-y"/>
+  <property name="mesa0sserial0_0pin36inv" type="bool" value="True"/>
   <property name="mesa0sserial0_0pin36type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin37" type="string" value="unused-input"/>
-  <property name="mesa0sserial0_0pin37inv" type="bool" value="False"/>
+  <property name="mesa0sserial0_0pin37" type="string" value="both-home-z"/>
+  <property name="mesa0sserial0_0pin37inv" type="bool" value="True"/>
   <property name="mesa0sserial0_0pin37type" type="string" value="GPIO Input"/>
   <property name="mesa0sserial0_0pin38" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin38inv" type="bool" value="False"/>
