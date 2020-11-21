@@ -5,7 +5,6 @@ loadrt or2 names=pause,resume,led-y,led-0001,led-001,led-01,probes
 loadrt mult2 names=spindle-current-factor,spindle-load-factor,z-scale-scale
 
 source TsHW_2_9.hal
-source time.hal
 
 ##
 ## estop
@@ -86,16 +85,3 @@ addf rapid-override servo-thread
 net rapid-override-in rapid-override-scale.out => rapid-override.in
 setp halui.rapid-override.scale 0.01
 net rapid-override-out rapid-override.out  => halui.rapid-override.counts
-
-##
-## spindle
-##
-net spindle-current-100 st500.current.state.float =>
-addf spindle-current-factor servo-thread
-net spindle-current-100 => spindle-current-factor.in0
-setp spindle-current-factor.in1 0.01
-net spindle-current <= spindle-current-factor.out
-addf spindle-load-factor servo-thread
-net spindle-current => spindle-load-factor.in0
-setp spindle-load-factor.in1 12.5
-net spindle-load spindle-load-factor.out => qtpyvcp.spindle-load-indicator.in-f
