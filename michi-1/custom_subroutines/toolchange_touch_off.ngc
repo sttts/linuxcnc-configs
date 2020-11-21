@@ -118,7 +118,7 @@ O200 else
   O130 RETURN
 O200 endif
 
-M72
+M72                                          ( restore current modal state )
 
 O210 IF [ #<_ToolDidFirst> EQ 0 ]            ( first tool change? )
   O215 IF [ #<_oldTool> EQ #5400 ]           ( same tool? )
