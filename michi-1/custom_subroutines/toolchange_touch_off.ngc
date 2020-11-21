@@ -104,10 +104,9 @@ G90                                          ( use absolute positioning )
 
 O200 if [#5070 EQ 1]                         ( verify probe event was succesful )
   #<_ToolZ> = [#5063 + #5383 + #<_spindle_zero_height>]                ( save trip point, absolute mchine coordinates )
-  (DEBUG, Probed Pos: #5063 Z Pos: #<_z>)
 O200 else
   M72
-  (DEBUG,Tool Length Offset Probe Failed. Old Z: #<_oldWorkZ>)
+  (MSG, Tool Length Offset Probe Failed. Old Z: #<_oldWorkZ>)
   G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]    ( return to safe level )
   G53 G0 X[#<_oldX>] Y[#<_oldY>]             ( return to where we were in X Y)
   M0
@@ -120,7 +119,6 @@ O210 IF [ #<_ToolDidFirst> EQ 0 ]            ( first tool change? )
   O215 IF [ #<_oldTool> EQ #5400 ]           ( same tool? )
     #<_ToolZLast> = #<_ToolZ>                ( move to same machine Z as before )
     #<_diffZ> = [- #<_oldTLO> + #<_ToolZ>]   ( compensate new TLO to keep Z constant )
-    (DEBUG, diffZ #<_diffZ>, oldTLO #<_oldTLO>, toolZ #<_ToolZ>)
     O217 IF [#5220 EQ 1]
       #5223 = [#5223 + #<_diffZ>]            ( G54 )
     O217 ELSE IF [#5220 EQ 2]
@@ -144,7 +142,6 @@ O210 IF [ #<_ToolDidFirst> EQ 0 ]            ( first tool change? )
     #<_ToolZLast> = #<_ToolZ>                ( don't move Z )
   O215 ELSE                                  ( real tool change )
     #<_ToolZLast> = #<_oldTLO>               ( trust TLO )
-    (DEBUG,Assuming old TLO #<_oldTLO>)
   O215 ENDIF
 O210 ENDIF
 
@@ -155,7 +152,6 @@ G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( return to safe level )
 G53 G0 X[#<_oldX>] Y[#<_oldY>]               ( return to where we were in X Y)
 
 #<_newZ> = [#<_oldZ> - #<_ToolZLast> + #<_ToolZ>]
-(DEBUG, New machine Z: #<_newZ>, old Z: #<_oldZ>)
 
 O220 IF [ #<_newZ> GE #<_TravelZ> ]
 O220 ELSE
