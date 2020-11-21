@@ -30,6 +30,11 @@ o<toolchange_touch_off> sub
 (  )
 ( Side effects: sets G30, sets motion mode to G1. )
 
+O010 IF [ #<_task> EQ 0 ]
+  M6
+  O020 RETURN
+O010 ENDIF
+
 (------------------------------- CONFIGURATION PARAMETERS ----------------------------------------------)
 #<_UseInches> =           0     ( set to 1 to use inches here, or 0 to use millimeters; should match units on tool.tbl dimensions )
 #<_TravelZ> =             0     ( machine Z coordinate for travelling, typically near max Z to avoid ever hitting the work )
@@ -110,7 +115,7 @@ O200 else
   G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]    ( return to safe level )
   G53 G0 X[#<_oldX>] Y[#<_oldY>]             ( return to where we were in X Y)
   M0
-  O130 return
+  O130 RETURN
 O200 endif
 
 M72
