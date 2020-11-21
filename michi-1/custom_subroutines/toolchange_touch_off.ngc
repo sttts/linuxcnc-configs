@@ -90,7 +90,7 @@ G92.1                                          ( cancel G92 offset )
 M6                                           ( do the normal M6 stuff, including going to tool change position )
 G49                                          ( clear tool length compensation )
 
-G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( go to high travel level on Z )
+G53 G0 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( go to high travel level on Z )
 G53 G0 X[#<_ProbeX>] Y[#<_ProbeY>]           ( to probe switch )
 G53 G1 F[#<_ProbeFastFeed>] Z[#<_ProbeFastZ>]( move tool closer to switch -- we shouldn't hit it )
 
@@ -110,12 +110,9 @@ G90                                          ( use absolute positioning )
 O200 if [#5070 EQ 1]                         ( verify probe event was succesful )
   #<_ToolZ> = [#5063 + #5383 + #<_spindle_zero_height>]                ( save trip point, absolute mchine coordinates )
 O200 else
-  M72
-  (MSG, Tool Length Offset Probe Failed. Old Z: #<_oldWorkZ>)
-  G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]    ( return to safe level )
+  G53 G0 F[#<_TravelFeed>] Z[#<_TravelZ>]    ( return to safe level )
   G53 G0 X[#<_oldX>] Y[#<_oldY>]             ( return to where we were in X Y)
-  M0
-  O130 RETURN
+  (ABORT, Tool Length Offset Probe Failed. Old Z: #<_oldWorkZ>)
 O200 endif
 
 M72                                          ( restore current modal state )
