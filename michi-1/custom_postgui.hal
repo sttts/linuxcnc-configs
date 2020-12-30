@@ -41,7 +41,7 @@ net estop-z-alarm     hm2_7i76e.0.7i76.0.0.input-13    => estop-latch.4.fault-in
 addf pause servo-thread
 net pause-out pause.out => halui.program.pause
 net key-pause => pause.in0
-net button-red hm2_7i76e.0.7i76.0.0.input-01 => pause.in1
+net button-red hm2_7i76e.0.7i76.0.0.input-01-not => pause.in1
 
 ##
 ## resume

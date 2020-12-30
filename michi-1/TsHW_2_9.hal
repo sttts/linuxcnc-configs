@@ -79,7 +79,7 @@ net key-01-raw <= hm2_7i76e.0.TsHW.0.1.key-02
 addf key-01-toggle-in servo-thread
 # 010**: f00
 # 00110, 00101, 00111: e0
-setp key-01-toggle-in.function 0xfe0 
+setp key-01-toggle-in.function 0xfe0
 net key-ena => key-01-toggle-in.in-4
 net key-01-raw => key-01-toggle-in.in-3
 net key-01-toggle-out => key-01-toggle-in.in-2
@@ -276,7 +276,7 @@ net key-red <= hm2_7i76e.0.TsHW.0.1.key-03
 addf key-pause servo-thread
 net key-red => key-pause.in0
 net key-ena-not => key-pause.in1
-net key-pause <= key-pause.out 
+net key-pause <= key-pause.out
 
 # key-stop
 addf key-stop servo-thread
