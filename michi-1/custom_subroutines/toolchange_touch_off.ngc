@@ -63,7 +63,7 @@ O110 IF [ #<_ToolDidFirst> EQ 0 ]
   G49                                          ( clear tool length compensation prior to saving state if this is first time )
 O110 ENDIF
 
-M70                                            ( save current modal state )
+M73                                            ( save current modal state )
 
 M9                                             ( turn off coolant, will be restored on return if it was on )
 M5                                             ( turn off spindle, cannot be on during the probe )

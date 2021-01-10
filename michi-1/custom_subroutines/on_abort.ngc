@@ -1,7 +1,5 @@
 o<on_abort> sub
 
-M72 ( restore current modal state )
-
 G54 (origin offsets are set to the default)
 G17 (select XY plane)
 G90 (absolute)
