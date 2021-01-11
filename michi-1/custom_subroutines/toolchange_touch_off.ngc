@@ -108,7 +108,10 @@ M9                                           ( turn off mist )
 G90                                          ( use absolute positioning )
 
 O200 if [#5070 EQ 1]                         ( verify probe event was succesful )
-  #<_ToolZ> = [#5063 + #5383 + #<_spindle_zero_height>]                ( save trip point, absolute mchine coordinates )
+  #<_ToolZ> = [#5063 + #5383 + #<_spindle_zero_height>] ( save trip point, absolute machine coordinates )
+  O205 IF [ #5400 EQ 999 ]
+    #<_ToolZ> = [#<_ToolZ> - 0.05]           ( distance 0.05mm to material of probing tool after 3d finder )
+  O205 ENDIF
 O200 else
   G53 G0 F[#<_TravelFeed>] Z[#<_TravelZ>]    ( return to safe level )
   G53 G0 X[#<_oldX>] Y[#<_oldY>]             ( return to where we were in X Y)
