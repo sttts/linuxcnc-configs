@@ -50,6 +50,7 @@ addf resume servo-thread
 net resume-out resume.out => halui.program.resume
 net key-resume => resume.in0
 net button-green hm2_7i76e.0.7i76.0.0.input-02 => resume.in1
+# net resume-out => hal_manualtoolchange.change_button
 
 ##
 ## coolant
