@@ -65,20 +65,34 @@ O110 ENDIF
 
 M73                                            ( save current modal state )
 
+M70
+  G59.3
+  #<_G59_3_X> = #5381                            ( save offsets of G59.3 )
+  #<_G59_3_Y> = #5382
+  #<_G59_3_Z> = #5383
+  #<_G59_3_R> = #5390
+  G10 L2 P9 X0 Y0 Z0 R0                          ( switch to 9th coordinate system )
+  
+  #<_G30_oldX> = #5181                           ( backup G30 position )
+  #<_G30_oldY> = #5182
+  #<_G30_oldZ> = #5183
+  G30.1                                          ( save current position in #5181-#5183... )
+  #<_oldX> = #5181                               ( remember position )
+  #<_oldY> = #5182
+  #<_oldZ> = #5183
+  #5181 = #<_G30_oldX>                           ( restore G30 position )
+  #5182 = #<_G30_oldY>
+  #5183 = #<_G30_oldZ>
+
+  #5381 = #<_G59_3_X>                            ( restore G59.3 offsets )
+  #5382 = #<_G59_3_Y>
+  #5383 = #<_G59_3_Z>
+  #5390 = #<_G59_3_R>
+M72
+
 M9                                             ( turn off coolant, will be restored on return if it was on )
 M5                                             ( turn off spindle, cannot be on during the probe )
 G[21 - #<_UseInches>]                          ( use inches or millimeters as required here, units will be restored on return )
-
-#<_G30_oldX> = #5181                           ( backup G30 position )
-#<_G30_oldY> = #5182
-#<_G30_oldZ> = #5183
-G30.1                                          ( save current position in #5181-#5183... )
-#<_oldX> = #5181                               ( remember position )
-#<_oldY> = #5182
-#<_oldZ> = #5183
-#5181 = #<_G30_oldX>                           ( restore G30 position )
-#5182 = #<_G30_oldY>
-#5183 = #<_G30_oldZ>
 
 G59.3
 G49                                            ( clear tool length compensation )
@@ -154,24 +168,27 @@ G10 L1 P #5400 Z[#<_ToolZ>]                  ( 5400 = tool number )
 T #5400 G43  H #5400                         ( enable tool length offset )
 
 G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( return to safe level )
-G53 G0 X[#<_oldX>] Y[#<_oldY>]               ( return to where we were in X Y)
 
 #<_newZ> = [#<_oldZ> - #<_ToolZLast> + #<_ToolZ>]
 
-O220 IF [ #<_newZ> GE #<_TravelZ> ]
-O220 ELSE
-  O225 IF [ #<_newZ> EQ #<_oldZ> ]
-    (DEBUG,Fahre auf gleiche Höhe wie vorher)
-  O225 ELSE IF [ #<_newZ> GT #<_oldZ> ]
-    #<_diffZ> = [#<_newZ>-#<_oldZ>]
-    (DEBUG,Fahre #<_diffZ>mm WENIGER runter als vorher)
-  O225 ELSE
-    #<_diffZ> = [-#<_newZ>+#<_oldZ>]
-    (DEBUG,Fahre #<_diffZ>mm WEITER runter als vorher)
-  O225 ENDIF
-  M0                                         ( pause )
+O225 IF [ #<_newZ> EQ #<_oldZ> ]
+  (DEBUG,Fahre auf gleiche Höhe wie vorher)
+O225 ELSE IF [ #<_newZ> GT #<_oldZ> ]
+  #<_diffZ> = [#<_newZ>-#<_oldZ>]
+  (DEBUG,Fahre #<_diffZ>mm WENIGER runter als vorher)
+O225 ELSE
+  #<_diffZ> = [-#<_newZ>+#<_oldZ>]
+  (DEBUG,Fahre #<_diffZ>mm WEITER runter als vorher)
+O225 ENDIF
+
+(MSG,Absaugung wieder montieren)
+M0
+(DEBUG,Zurück zu X#<_oldX> Y#<_oldY>)
+G53 G0 X[#<_oldX>] Y[#<_oldY>]               ( return to where we were in X Y)
+
+O230 IF [ #<_TravelZ> GT #<_newZ> ]
   G53 G1 F[#<_ProbeSlowReturnFeed>] Z[#<_newZ>] ( return to where we were in Z, ajusting for tool length change )
-O220 ENDIF
+O230 ENDIF
 
 #<_ToolDidFirst> = 1                         ( we have been in this section to set reference value already )
 #<_ToolZLast> = #<_ToolZ>                    ( save last tool length )
