@@ -8,3 +8,10 @@ data_plugins:
     provider: qtpyvcp.plugins.tool_table:ToolTable
     kwargs:
         columns: TPZDR
+
+data_plugins:
+  notifications:
+    provider: qtpyvcp.plugins.notifications:Notifications
+    kwargs:
+      enabled: True # True | False
+      mode: dbus # native | dbus
