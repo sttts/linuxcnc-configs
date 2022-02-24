@@ -40,7 +40,7 @@ setp axis.x.jog-vel-mode 1
 setp axis.y.jog-vel-mode 1
 setp axis.z.jog-vel-mode 1
 
-loadrt and2 names=shw.ena-x,shw.ena-y,shw.ena-z,shw.zero-x,shw.zero-y,shw.zero-z,key-run,key-resume,key-stop,key-pause,key-zero-all,key-zero-single,led-x,led-z,key-x-plus,key-x-minus,key-y-plus,key-y-minus
+loadrt and2 names=shw.ena-x,shw.ena-y,shw.ena-z,shw.zero-x,shw.zero-y,shw.zero-z,key-run,key-resume,key-stop,key-pause,key-zero-all,key-zero-single,led-x,led-z,key-x-plus,key-x-minus,key-y-plus,key-y-minus,resume-if-paused
 
 addf shw.ena-x servo-thread
 addf shw.ena-y servo-thread

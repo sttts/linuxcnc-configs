@@ -42,15 +42,19 @@ addf pause servo-thread
 net pause-out pause.out => halui.program.pause
 net key-pause => pause.in0
 net button-red hm2_7i76e.0.7i76.0.0.input-01-not => pause.in1
+# net is-paused => spindle.0.inhibit
 
 ##
 ## resume
 ##
 addf resume servo-thread
-net resume-out resume.out => halui.program.resume
+addf resume-if-paused servo-thread
+net resume-out resume.out => resume-if-paused.in0
+net resume-if-paused-out resume-if-paused.out => halui.program.resume
 net key-resume => resume.in0
 net button-green hm2_7i76e.0.7i76.0.0.input-02 => resume.in1
 net resume-out => hal_manualtoolchange.change_button
+net is-paused => resume-if-paused.in1
 
 ##
 ## coolant
