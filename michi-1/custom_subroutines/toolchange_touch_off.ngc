@@ -167,21 +167,19 @@ O210 ENDIF
 G10 L1 P #5400 Z[#<_ToolZ>]                  ( 5400 = tool number )
 T #5400 G43  H #5400                         ( enable tool length offset )
 
-G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( return to safe level )
-
 #<_newZ> = [#<_oldZ> - #<_ToolZLast> + #<_ToolZ>]
 
 O225 IF [ #<_newZ> EQ #<_oldZ> ]
-  (MSG,Fahre auf gleiche Höhe wie vorher)
+  (DEBUG,Fahre auf gleiche Höhe wie vorher auf #<_newZ>. Absaugung wieder montieren.)
 O225 ELSE IF [ #<_newZ> GT #<_oldZ> ]
   #<_diffZ> = [#<_newZ>-#<_oldZ>]
-  (MSG,Fahre #<_diffZ>mm WENIGER runter als vorher)
+  (DEBUG,Fahre #<_diffZ>mm WENIGER runter auf #<_newZ>. Absaugung wieder montieren.)
 O225 ELSE
   #<_diffZ> = [-#<_newZ>+#<_oldZ>]
-  (MSG,Fahre #<_diffZ>mm WEITER runter als vorher)
+  (DEBUG,Fahre #<_diffZ>mm WEITER runter auf #<_newZ>. Absaugung wieder montieren.)
 O225 ENDIF
 
-(MSG,Absaugung wieder montieren)
+G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( return to safe level )
 M0
 G53 G0 X[#<_oldX>] Y[#<_oldY>]               ( return to where we were in X Y)
 
