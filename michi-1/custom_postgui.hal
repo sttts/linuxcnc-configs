@@ -1,8 +1,9 @@
 # Include your custom_postgui HAL commands here
 # This file will not be overwritten when you run PNCconf again
 
-loadrt or2 names=pause,resume,led-y,led-0001,led-001,led-01,probes
+loadrt or2 names=pause,resume,led-y,led-0001,led-001,led-01,probes-raw
 loadrt mult2 names=spindle-current-factor,spindle-load-factor,z-scale-scale
+loadrt not names=spindle-disable,is-busy
 
 source TsHW_2_9.hal
 
@@ -64,10 +65,19 @@ net coolant-air  =>     hm2_7i76e.0.7i76.0.0.output-00
 ##
 ## probes
 ##
-unlinkp hm2_7i76e.0.7i76.0.0.input-08-not
 addf probes servo-thread
-net probe-tool  hm2_7i76e.0.7i76.0.0.input-08-not => probes.in0
-net probe-3d    hm2_7i76e.0.7i76.0.0.input-09-not => probes.in1
+addf probes-raw servo-thread
+addf spindle-disable servo-thread
+
+unlinkp hm2_7i76e.0.7i76.0.0.input-08-not
+net probe-tool  hm2_7i76e.0.7i76.0.0.input-08-not => probes-raw.in0
+net probe-3d    hm2_7i76e.0.7i76.0.0.input-09-not => probes-raw.in1
+
+#net M64-and-in  motion.digital-out-00             => probe-tool-active.in1
+net probes-raw-out probes-raw.out => probes.in0
+net spindle-enable => spindle-disable.in
+net spindle-disable-out spindle-disable.out => probes.in1
+
 net probe-in <= probes.out
 
 ##

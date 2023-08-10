@@ -15,13 +15,12 @@ net spindle-load spindle-load-factor.out => qtpyvcp.spindle-load-indicator.in-f
 ## Time
 ##
 loadrt time
-loadrt not
 
 addf time.0 servo-thread
-addf not.0 servo-thread
+addf is-busy servo-thread
 
-net is-idle => not.0.in
-net cycle-timer time.0.start <= not.0.out
+net is-idle => is-busy.in
+net cycle-timer time.0.start <= is-busy.out
 net cycle-seconds qtpyvcp.timerseconds.in <= time.0.seconds
 net cycle-minutes qtpyvcp.timerminutes.in <= time.0.minutes
 net cycle-hours qtpyvcp.timerhours.in <= time.0.hours
