@@ -179,13 +179,20 @@ O225 ELSE
   (DEBUG,Fahre #<_diffZ>mm WEITER runter auf #<_newZ>. Absaugung wieder montieren.)
 O225 ENDIF
 
-G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]      ( return to safe level )
-M0
-G53 G0 X[#<_oldX>] Y[#<_oldY>]               ( return to where we were in X Y)
+#<absolute> = #<_absolute>
+G90                                          ( use absolute positioning )
 
-O230 IF [ #<_TravelZ> GT #<_newZ> ]
-  G53 G1 F[#<_ProbeSlowReturnFeed>] Z[#<_newZ>] ( return to where we were in Z, ajusting for tool length change )
-O230 ENDIF
+  G53 G1 F[#<_TravelFeed>] Z[#<_TravelZ>]    ( return to safe level )
+  M0
+  G53 G0 X[#<_oldX>] Y[#<_oldY>]             ( return to where we were in X Y)
+
+  O230 IF [ #<_TravelZ> GT #<_newZ> ]
+    G53 G1 F[#<_ProbeSlowReturnFeed>] Z[#<_newZ>] ( return to where we were in Z, ajusting for tool length change )
+  O230 ENDIF
+
+O240 if [#<absolute>]
+    g90                                      (restore G90)
+O240 endif
 
 #<_ToolDidFirst> = 1                         ( we have been in this section to set reference value already )
 #<_ToolZLast> = #<_ToolZ>                    ( save last tool length )
