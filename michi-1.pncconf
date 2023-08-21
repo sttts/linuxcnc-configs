@@ -67,6 +67,7 @@
   <property name="ahomesearchvel" type="int" value="2"/>
   <property name="ahomesequence" type="int" value="3"/>
   <property name="ahomesw" type="int" value="0"/>
+  <property name="ahometandemsw" type="int" value="0"/>
   <property name="ahomevel" type="int" value="0"/>
   <property name="ainvertencoder" type="int" value="0"/>
   <property name="ainvertmotor" type="int" value="0"/>
@@ -119,7 +120,7 @@
   <property name="centerembededgvcp" type="bool" value="True"/>
   <property name="cl_haluicmds" type="int" value="0"/>
   <property name="classicladder" type="bool" value="False"/>
-  <property name="createshortcut" type="bool" value="True"/>
+  <property name="createshortcut" type="bool" value="False"/>
   <property name="createsymlink" type="bool" value="False"/>
   <property name="customhal" type="bool" value="False"/>
   <property name="default_angular_velocity" type="float" value="12.0"/>
@@ -1032,23 +1033,23 @@
   <property name="mesa0sserial0_0pin31" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin31inv" type="bool" value="False"/>
   <property name="mesa0sserial0_0pin31type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin32" type="string" value="unused-input"/>
-  <property name="mesa0sserial0_0pin32inv" type="bool" value="False"/>
+  <property name="mesa0sserial0_0pin32" type="string" value="min-x"/>
+  <property name="mesa0sserial0_0pin32inv" type="bool" value="True"/>
   <property name="mesa0sserial0_0pin32type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin33" type="string" value="unused-input"/>
-  <property name="mesa0sserial0_0pin33inv" type="bool" value="False"/>
+  <property name="mesa0sserial0_0pin33" type="string" value="max-home-x"/>
+  <property name="mesa0sserial0_0pin33inv" type="bool" value="True"/>
   <property name="mesa0sserial0_0pin33type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin34" type="string" value="unused-input"/>
-  <property name="mesa0sserial0_0pin34inv" type="bool" value="False"/>
+  <property name="mesa0sserial0_0pin34" type="string" value="min-y"/>
+  <property name="mesa0sserial0_0pin34inv" type="bool" value="True"/>
   <property name="mesa0sserial0_0pin34type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin35" type="string" value="both-home-x"/>
+  <property name="mesa0sserial0_0pin35" type="string" value="max-home-y"/>
   <property name="mesa0sserial0_0pin35inv" type="bool" value="True"/>
   <property name="mesa0sserial0_0pin35type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin36" type="string" value="both-home-y"/>
+  <property name="mesa0sserial0_0pin36" type="string" value="max-home-z"/>
   <property name="mesa0sserial0_0pin36inv" type="bool" value="True"/>
   <property name="mesa0sserial0_0pin36type" type="string" value="GPIO Input"/>
-  <property name="mesa0sserial0_0pin37" type="string" value="both-home-z"/>
-  <property name="mesa0sserial0_0pin37inv" type="bool" value="True"/>
+  <property name="mesa0sserial0_0pin37" type="string" value="unused-input"/>
+  <property name="mesa0sserial0_0pin37inv" type="bool" value="False"/>
   <property name="mesa0sserial0_0pin37type" type="string" value="GPIO Input"/>
   <property name="mesa0sserial0_0pin38" type="string" value="unused-input"/>
   <property name="mesa0sserial0_0pin38inv" type="bool" value="False"/>
@@ -4101,6 +4102,7 @@
   <property name="shomefinalvel" type="int" value="0"/>
   <property name="shomepos" type="int" value="0"/>
   <property name="shomesw" type="int" value="0"/>
+  <property name="shometandemsw" type="int" value="0"/>
   <property name="sideembededgvcp" type="bool" value="False"/>
   <property name="singlejogbuttons" type="bool" value="False"/>
   <property name="sinvertencoder" type="bool" value="False"/>
@@ -4250,6 +4252,7 @@
   <property name="xhomesearchvel" type="float" value="25.0"/>
   <property name="xhomesequence" type="float" value="1.0"/>
   <property name="xhomesw" type="float" value="2.0"/>
+  <property name="xhometandemsw" type="float" value="0.0"/>
   <property name="xhomevel" type="float" value="1.5"/>
   <property name="xinvertencoder" type="bool" value="False"/>
   <property name="xinvertmotor" type="bool" value="True"/>
@@ -4261,7 +4264,7 @@
   <property name="xmaxvel" type="float" value="166.666666667"/>
   <property name="xmicrostep" type="float" value="16.0"/>
   <property name="xminferror" type="float" value="1.0"/>
-  <property name="xminlim" type="float" value="-375.0"/>
+  <property name="xminlim" type="float" value="-460.0"/>
   <property name="xmotor_leadscrew" type="float" value="5.0"/>
   <property name="xmotor_leadscrew_tpi" type="float" value="5.0"/>
   <property name="xmotor_pulleydriven" type="float" value="1.0"/>
@@ -4343,6 +4346,7 @@
   <property name="yhomesearchvel" type="float" value="25.0"/>
   <property name="yhomesequence" type="float" value="1.0"/>
   <property name="yhomesw" type="float" value="2.0"/>
+  <property name="yhometandemsw" type="float" value="0.0"/>
   <property name="yhomevel" type="float" value="1.5"/>
   <property name="yinvertencoder" type="bool" value="False"/>
   <property name="yinvertmotor" type="bool" value="True"/>
@@ -4440,6 +4444,7 @@
   <property name="zhomesearchvel" type="float" value="16.6666666667"/>
   <property name="zhomesequence" type="float" value="0.0"/>
   <property name="zhomesw" type="float" value="2.0"/>
+  <property name="zhometandemsw" type="float" value="0.0"/>
   <property name="zhomevel" type="float" value="1.5"/>
   <property name="zinvertencoder" type="bool" value="False"/>
   <property name="zinvertmotor" type="bool" value="True"/>
