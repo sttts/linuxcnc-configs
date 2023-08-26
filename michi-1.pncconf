@@ -4358,7 +4358,7 @@
   <property name="ymaxvel" type="float" value="166.666666667"/>
   <property name="ymicrostep" type="float" value="16.0"/>
   <property name="yminferror" type="float" value="1.0"/>
-  <property name="yminlim" type="float" value="-450.0"/>
+  <property name="yminlim" type="float" value="-510.0"/>
   <property name="ymotor_leadscrew" type="float" value="5.0"/>
   <property name="ymotor_leadscrew_tpi" type="float" value="5.0"/>
   <property name="ymotor_pulleydriven" type="float" value="1.0"/>
