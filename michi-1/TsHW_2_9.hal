@@ -322,25 +322,25 @@ net key-green => key-run.in1
 net key-run key-run.out => halui.program.run halui.mode.auto
 
 # key-x-plus
-addf key-x-plus servo-thread
-net key-0001-raw => key-x-plus.in0
-net key-ena => key-x-plus.in1
-net jog-x-neg <= key-x-plus.out
+#addf key-x-plus servo-thread
+#net key-0001-raw => key-x-plus.in0
+#net key-ena => key-x-plus.in1
+#net jog-x-neg <= key-x-plus.out
 
 # key-x-minus
-addf key-x-minus servo-thread
-net key-01-raw => key-x-minus.in0
-net key-ena => key-x-minus.in1
-net jog-x-pos <= key-x-minus.out
+#addf key-x-minus servo-thread
+#net key-01-raw => key-x-minus.in0
+#net key-ena => key-x-minus.in1
+#net jog-x-pos <= key-x-minus.out
 
 # key-y-plus
-addf key-y-plus servo-thread
-net key-001-raw => key-y-plus.in0
-net key-ena => key-y-plus.in1
-net jog-y-neg <= key-y-plus.out
+#addf key-y-plus servo-thread
+#net key-001-raw => key-y-plus.in0
+#net key-ena => key-y-plus.in1
+#net jog-y-neg <= key-y-plus.out
 
 # key-y-minus
-addf key-y-minus servo-thread
-net key-y-raw => key-y-minus.in0
-net key-ena => key-y-minus.in1
-net jog-y-pos <= key-y-minus.out
+#addf key-y-minus servo-thread
+#net key-y-raw => key-y-minus.in0
+#net key-ena => key-y-minus.in1
+#net jog-y-pos <= key-y-minus.out
