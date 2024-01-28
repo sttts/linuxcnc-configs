@@ -1,14 +1,10 @@
+loadusr -W hal_manualtoolchange
+
+source custom_postgui.hal
+
 ##
 ## spindle
 ##
-net spindle-current-100 st500.current.state.float =>
-addf spindle-current-factor servo-thread
-net spindle-current-100 => spindle-current-factor.in0
-setp spindle-current-factor.in1 0.01
-net spindle-current <= spindle-current-factor.out
-addf spindle-load-factor servo-thread
-net spindle-current => spindle-load-factor.in0
-setp spindle-load-factor.in1 12.5
 net spindle-load spindle-load-factor.out => qtpyvcp.spindle-load-indicator.in-f
 
 ##

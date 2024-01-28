@@ -1,0 +1,16 @@
+source custom_postgui.hal
+
+##
+## probe
+##
+net probe-in => qtdragon.led-probe
+
+##
+## spindle
+##
+net spindle-current => qtdragon.spindle-amps
+net spindle-voltage => qtdragon.spindle-volts
+setp qtdragon.spindle-modbus-connection 1
+setp qtdragon.spindle-modbus-errors 0
+setp qtdragon.spindle-fault 0
+net spindle-inhibit spindle.0.inhibit <= qtdragon.spindle-inhibit

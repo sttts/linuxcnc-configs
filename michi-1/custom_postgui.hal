@@ -2,7 +2,7 @@
 # This file will not be overwritten when you run PNCconf again
 
 loadrt or2 names=pause,resume,led-y,led-0001,led-001,led-01,probes-raw
-loadrt mult2 names=spindle-current-factor,spindle-load-factor,z-scale-scale
+loadrt mult2 names=spindle-current-factor,spindle-load-factor,spindle-voltage-factor,z-scale-scale
 loadrt not names=spindle-disable,is-busy
 
 source TsHW_2_9.hal
@@ -99,4 +99,27 @@ loadrt conv_float_s32 names=rapid-override
 addf rapid-override servo-thread
 net rapid-override-in rapid-override-scale.out => rapid-override.in
 setp halui.rapid-override.scale 0.01
-net rapid-override-out rapid-override.out  => halui.rapid-override.counts
+net rapid-override-out rapid-override.out => halui.rapid-override.counts
+
+##
+## spindle
+##
+net spindle-current-100 st500.current.state.float =>
+addf spindle-current-factor servo-thread
+net spindle-current-100 => spindle-current-factor.in0
+setp spindle-current-factor.in1 0.01
+net spindle-current <= spindle-current-factor.out
+
+net spindle-voltage-100 st500.voltage.state.float =>
+addf spindle-voltage-factor servo-thread
+net spindle-voltage-100 => spindle-voltage-factor.in0
+setp spindle-voltage-factor.in1 0.01
+net spindle-voltage <= spindle-voltage-factor.out
+
+##
+##  manual tool change signals
+##
+net tool-change      hal_manualtoolchange.change   <=  iocontrol.0.tool-change
+net tool-changed     hal_manualtoolchange.changed  <=  iocontrol.0.tool-changed
+net tool-prep-number hal_manualtoolchange.number   <=  iocontrol.0.tool-prep-number
+net tool-prepare-loopback iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
