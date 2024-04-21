@@ -1,0 +1,31 @@
+net atc-sensor <= hm2_7i76e.0.7i76.0.0.input-31
+
+loadrt sum2 names=atc-x-sum,atc-y-sum
+addf atc-x-sum servo-thread
+addf atc-y-sum servo-thread
+
+setp atc-x-sum.in1 330
+setp atc-y-sum.in1 8
+
+net atc-x-sum-in atc-x-sum.in0 <= joint.0.pos-fb # axis.0.motor-pos-cmd
+net atc-y-sum-in atc-y-sum.in0 <= joint.1.pos-fb # axis.1.motor-pos-cmd
+
+loadrt abs names=atc-x-abs,atc-y-abs
+addf atc-x-abs servo-thread
+addf atc-y-abs servo-thread
+
+net atc-x-sum-out atc-x-sum.out => atc-x-abs.in
+net atc-y-sum-out atc-y-sum.out => atc-y-abs.in
+
+# loadrt or2 names=atc-or
+addf atc-or servo-thread
+
+net atc-x-abs-sign atc-x-abs.sign => atc-or.in0
+net atc-y-abs-sign atc-y-abs.sign => atc-or.in1
+
+# load not names=atc-door-not
+addf atc-door-not servo-thread
+
+net atc-door-not-in atc-or.out => atc-door-not.in
+net atc-door atc-door-not.out => hm2_7i76e.0.7i76.0.0.output-08
+

@@ -1,11 +1,12 @@
 # Include your custom_postgui HAL commands here
 # This file will not be overwritten when you run PNCconf again
 
-loadrt or2 names=pause,resume,led-y,led-0001,led-001,led-01,probes-raw
+loadrt or2 names=pause,resume,led-y,led-0001,led-001,led-01,probes-raw,atc-or
 loadrt mult2 names=spindle-current-factor,spindle-load-factor,spindle-voltage-factor,z-scale-scale
-loadrt not names=spindle-disable,is-busy
+loadrt not names=spindle-disable,is-busy,atc-door-not
 
 source TsHW_2_9.hal
+source atc.hal
 
 ##
 ## estop
