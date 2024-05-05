@@ -1,31 +1,41 @@
 net atc-sensor <= hm2_7i76e.0.7i76.0.0.input-31
 
-loadrt sum2 names=atc-x-sum,atc-y-sum
+loadrt sum2 names=atc-x-sum,atc-y-sum,atc-z-sum
 addf atc-x-sum servo-thread
 addf atc-y-sum servo-thread
+addf atc-z-sum servo-thread
 
 setp atc-x-sum.in1 330
 setp atc-y-sum.in1 8
+setp atc-z-sum.in1 10
 
 net atc-x-sum-in atc-x-sum.in0 <= joint.0.pos-fb # axis.0.motor-pos-cmd
 net atc-y-sum-in atc-y-sum.in0 <= joint.1.pos-fb # axis.1.motor-pos-cmd
+net atc-z-sum-in atc-z-sum.in0 <= joint.2.pos-fb # axis.1.motor-pos-cmd
 
-loadrt abs names=atc-x-abs,atc-y-abs
+loadrt abs names=atc-x-abs,atc-y-abs,atc-z-abs
 addf atc-x-abs servo-thread
 addf atc-y-abs servo-thread
+addf atc-z-abs servo-thread
 
 net atc-x-sum-out atc-x-sum.out => atc-x-abs.in
 net atc-y-sum-out atc-y-sum.out => atc-y-abs.in
+net atc-z-sum-out atc-z-sum.out => atc-z-abs.in
 
-# loadrt or2 names=atc-or
-addf atc-or servo-thread
+# loadrt or2 names=atc-or1,atc-oo2
+addf atc-or1 servo-thread
+addf atc-or2 servo-thread
 
-net atc-x-abs-sign atc-x-abs.sign => atc-or.in0
-net atc-y-abs-sign atc-y-abs.sign => atc-or.in1
+net atc-x-abs-sign atc-x-abs.sign => atc-or1.in0
+net atc-y-abs-sign atc-y-abs.sign => atc-or1.in1
+net atc-or1-out atc-or1.out => atc-or2.in0
+net atc-z-abs-sign atc-z-abs.sign => atc-z-sum-sign-not.in
+net atc-z-sum-sign-not-out atc-z-sum-sign-not.out => atc-or2.in1
 
-# load not names=atc-door-not
+# load not names=atc-door-not,atc-z-sum-sign-not
 addf atc-door-not servo-thread
+addf atc-z-sum-sign-not servo-thread
 
-net atc-door-not-in atc-or.out => atc-door-not.in
+net atc-door-not-in atc-or2.out => atc-door-not.in
 net atc-door atc-door-not.out => hm2_7i76e.0.7i76.0.0.output-08
 
