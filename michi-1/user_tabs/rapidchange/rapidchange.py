@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QSpinBox
 import linuxcnc
 from dataclasses import dataclass, field, fields
 
+
 from qtpy import uic
 from qtpy.QtCore import Qt
 from qtpy.QtWidgets import QWidget
@@ -18,8 +19,8 @@ LOG = logger.getLogger(__name__)
 
 STATUS = getPlugin('status')
 TOOL_TABLE = getPlugin('tooltable')
+NOTIFICIATIONS = getPlugin('notifications')
 INI_FILE = linuxcnc.ini(os.getenv('INI_FILE_NAME'))
-
 
 @dataclass
 class HalPins:
@@ -109,9 +110,27 @@ class UserTab(QWidget):
         ui_file = os.path.splitext(os.path.basename(__file__))[0] + ".ui"
         uic.loadUi(os.path.join(os.path.dirname(__file__), ui_file), self)
 
-        pins = HalPins()
-        LOG.info(f"Pins: {pins}")
+        self.pins = HalPins()
+        LOG.info(f"Pins: {self.pins}")
+        LOG.info(f"Fields: {self}")
 
-        self.numPockets.setValue(pins.POCKETS)
-        # pins.signal("NUM_POCKETS").connect(self.numPockets.setValue)
-        self.numPockets.valueChanged.connect(lambda w: setattr(pins, "NUM_POCKETS", self.numPockets.value()))
+        self.numPockets.setValue(self.pins.POCKETS)
+        # pins.signal("POCKETS").connect(self.numPockets.setValue)
+        self.numPockets.valueChanged.connect(lambda w: setattr(self.pins, "POCKETS", self.numPockets.value()))
+        self.saveIniButton.clicked.connect(self.saveIniFile)
+
+    def saveIniFile(self):
+        try:
+            with open("atc.ini.new", "w") as f:
+                # write [ATC] header
+                f.write("[ATC]\n")
+                # write the pin values
+                for fld in fields(HalPins):
+                    v = getattr(self.pins, fld.name)
+                    f.write(f"{fld.name}={v}\n")
+                os.rename("atc.ini.new", "atc.ini")
+                LOG.info("Saved atc.ini file")
+                # NOTIFICIATIONS.info_message("Saved atc.ini file")
+        except Exception as e:
+            LOG.error(f"Error saving ini file: {e}")
+            # NOTIFICIATIONS.error_message(f"Error saving ini file: {e}")
