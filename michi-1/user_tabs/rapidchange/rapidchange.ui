@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1010</width>
-    <height>619</height>
+    <width>1397</width>
+    <height>618</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -25,17 +25,151 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTabWidget" name="formTabWidget">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
      <property name="currentIndex">
       <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
-       <string>Page</string>
+       <string>Tool Change</string>
       </attribute>
+      <widget class="QLabel" name="label_7">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>901</width>
+         <height>241</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>../../../../../Downloads/6s.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>100</y>
+         <width>561</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="p1">
+          <property name="styleSheet">
+           <string notr="true">color: white;
+font: 15pt &quot;Cantarell&quot;;</string>
+          </property>
+          <property name="text">
+           <string>empty</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="p2">
+          <property name="styleSheet">
+           <string notr="true">color: white;
+font: 15pt &quot;Cantarell&quot;;</string>
+          </property>
+          <property name="text">
+           <string>empty</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="p3">
+          <property name="styleSheet">
+           <string notr="true">color: white;
+font: 15pt &quot;Cantarell&quot;;</string>
+          </property>
+          <property name="text">
+           <string>empty</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="p4">
+          <property name="styleSheet">
+           <string notr="true">color: white;
+font: 15pt &quot;Cantarell&quot;;</string>
+          </property>
+          <property name="text">
+           <string>empty</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="p5">
+          <property name="styleSheet">
+           <string notr="true">color: white;
+font: 15pt &quot;Cantarell&quot;;</string>
+          </property>
+          <property name="text">
+           <string>empty</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="p6">
+          <property name="styleSheet">
+           <string notr="true">color: white;
+font: 15pt &quot;Cantarell&quot;;</string>
+          </property>
+          <property name="text">
+           <string>empty</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="HalLedIndicator" name="irLED">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>780</x>
+         <y>70</y>
+         <width>30</width>
+         <height>30</height>
+        </rect>
+       </property>
+      </widget>
      </widget>
-     <widget class="QWidget" name="formTabWidgetPage1" native="true">
+     <widget class="QWidget" name="formTabWidgetPage1">
       <attribute name="title">
-       <string/>
+       <string>Settings</string>
       </attribute>
       <layout class="QFormLayout" name="form">
        <property name="sizeConstraint">
@@ -122,6 +256,20 @@
          </property>
         </widget>
        </item>
+       <item row="12" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="1">
+        <widget class="QPushButton" name="saveIniButton">
+         <property name="text">
+          <string>Save to atc.ini</string>
+         </property>
+        </widget>
+       </item>
        <item row="6" column="0">
         <widget class="QLabel" name="label_6">
          <property name="text">
@@ -136,17 +284,13 @@
          </property>
         </widget>
        </item>
-       <item row="8" column="0">
-        <widget class="QLabel" name="label_2">
+       <item row="7" column="1">
+        <widget class="LEDButton" name="irEnabled">
          <property name="text">
-          <string/>
+          <string>IR Enabled</string>
          </property>
-        </widget>
-       </item>
-       <item row="8" column="1">
-        <widget class="QPushButton" name="saveIniButton">
-         <property name="text">
-          <string>Save to atc.ini</string>
+         <property name="checkable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -156,6 +300,23 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ActionButton</class>
+   <extends>QPushButton</extends>
+   <header>qtpyvcp.widgets.button_widgets.action_button</header>
+  </customwidget>
+  <customwidget>
+   <class>LEDButton</class>
+   <extends>ActionButton</extends>
+   <header>qtpyvcp.widgets.button_widgets.led_button</header>
+  </customwidget>
+  <customwidget>
+   <class>HalLedIndicator</class>
+   <extends>QWidget</extends>
+   <header>qtpyvcp.widgets.hal_widgets.hal_led</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -1,7 +1,8 @@
 import os
 import hal as linuxcnchal
-from PyQt5.QtCore import pyqtSignal
-from PyQt5.QtWidgets import QSpinBox
+from PyQt5.QtCore import pyqtSignal, QTimer
+from PyQt5.QtGui import QColor
+from PyQt5.QtWidgets import QSpinBox, qApp
 
 import linuxcnc
 from dataclasses import dataclass, field, fields
@@ -14,6 +15,7 @@ from qtpy.QtWidgets import QWidget
 from qtpyvcp.plugins import getPlugin
 from qtpyvcp.utilities import logger
 from qtpyvcp import hal
+import qtpyvcp
 
 LOG = logger.getLogger(__name__)
 
@@ -110,14 +112,70 @@ class UserTab(QWidget):
         ui_file = os.path.splitext(os.path.basename(__file__))[0] + ".ui"
         uic.loadUi(os.path.join(os.path.dirname(__file__), ui_file), self)
 
+        # create pins
         self.pins = HalPins()
         LOG.info(f"Pins: {self.pins}")
         LOG.info(f"Fields: {self}")
 
+        # connect pins
         self.numPockets.setValue(self.pins.POCKETS)
         # pins.signal("POCKETS").connect(self.numPockets.setValue)
         self.numPockets.valueChanged.connect(lambda w: setattr(self.pins, "POCKETS", self.numPockets.value()))
+
+        self.irEnabled.setChecked(self.pins.IR_ENABLED)
+        self.irEnabled.toggled.connect(lambda w: setattr(self.pins, "IR_ENABLED", self.irEnabled.isChecked()))
+
         self.saveIniButton.clicked.connect(self.saveIniFile)
+
+        # connect IR LED
+        LOG.info(f"din = {STATUS.stat.din}")
+        self.irTimer = QTimer()
+        self.irTimer.timeout.connect(self.__updateIR)
+        self.irTimer.setInterval(100)
+        self.irTimer.start()
+
+        # hook into atc widget for tool updates
+        QTimer.singleShot(1, self.__connectDynATC)
+
+    def __connectDynATC(self):
+        try:
+            dynATC = self.__getWidget("dynatc")
+            dynATC.showToolSig.connect(self.__storeTool)
+            dynATC.hideToolSig.connect(self.__hideTool)
+        except:
+            LOG.info(f"Error connecting to dynatc, trying again")
+            QTimer.singleShot(1, self.__connectDynATC)
+
+    def __updateIR(self):
+        try:
+            if self.pins.IR_ENABLED:
+                self.irLED.setEnabled(True)
+                self.irLED.setColor(QColor(0,255,0) if (STATUS.stat.din[self.pins.IR_HAL_DPIN] == 1) else QColor("red"))
+            else:
+                self.irLED.setEnabled(False)
+        except Exception as e:
+            LOG.error(f"Error updating IR: {e}")
+            self.irLED.setEnabled(False)
+            # NOTIFICIATIONS.error_message(f"Error updating IR: {e}")
+
+    def __storeTool(self, pocket, tool):
+        try:
+            pocket=int(pocket)
+            tool=int(tool)
+            LOG.info(f"Storing tool {tool} in pocket {pocket}")
+            self.__getattribute__(f"p{pocket}").setText(f"T{tool}")
+        except Exception as e:
+            LOG.error(f"Error storing tool: {e}")
+            # NOTIFICIATIONS.error_message(f"Error storing tool: {e}")
+
+    def __hideTool(self, pocket):
+        try:
+            pocket=int(pocket)
+            LOG.info(f"Hiding tool in pocket {pocket}")
+            self.__getattribute__(f"p{pocket}").setText("empty")
+        except Exception as e:
+            LOG.error(f"Error hiding tool: {e}")
+            # NOTIFICIATIONS.error_message(f"Error hiding tool: {e}")
 
     def saveIniFile(self):
         try:
@@ -134,3 +192,18 @@ class UserTab(QWidget):
         except Exception as e:
             LOG.error(f"Error saving ini file: {e}")
             # NOTIFICIATIONS.error_message(f"Error saving ini file: {e}")
+
+    def __getWidget(self, name):
+        """Searches for a widget by name in the application windows.
+
+        Args:
+            name (str) : ObjectName of the widget.
+
+        Returns: QWidget
+        """
+        LOG.info(f"Getting widget {name} from {qtpyvcp.WINDOWS.items()}")
+        for win_name, obj in list(qtpyvcp.WINDOWS.items()):
+            if hasattr(obj, name):
+                return getattr(obj, name)
+
+        raise AttributeError("Could not find widget with name: %s" % name)

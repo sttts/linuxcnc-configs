@@ -1,4 +1,5 @@
-net atc-sensor <= hm2_7i76e.0.7i76.0.0.input-31
+net atc-sensor motion.digital-in-00 <= hm2_7i76e.0.7i76.0.0.input-31
+#net atc-sensor-m atc-sensor => motion.digital-in-00
 
 loadrt sum2 names=atc-x-sum,atc-y-sum,atc-z-sum
 addf atc-x-sum servo-thread
