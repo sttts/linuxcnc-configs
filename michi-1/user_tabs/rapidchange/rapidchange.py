@@ -1,6 +1,6 @@
 import os
-from PyQt5.QtCore import QTimer, pyqtSignal
-from PyQt5.QtGui import QColor
+from PyQt5.QtCore import QTimer, pyqtSignal, QEvent, Qt
+from PyQt5.QtGui import QColor, QPixmap
 
 import linuxcnc
 from dataclasses import fields, dataclass, field
@@ -62,12 +62,12 @@ class UserTab(QWidget):
             if n == 0:
                 continue
             tool = tbl[n]
-            LOG.info(f"Tool: {n}:{tool}")
+            # LOG.info(f"Tool: {n}:{tool}")
             try:
                 if tool['P'] != 0 and tool['P'] <= self.pins.POCKETS:
-                    label = self.__getattribute__(f"p{ool['P']}")
-                    label.setText(f"T{tool[T]}")
-                    occupied[tool[P]] = tool[T]
+                    label = self.__getattribute__(f"p{tool['P']}")
+                    label.setText(f"T{tool['T']}")
+                    occupied[tool['P']] = tool['T']
             except Exception as e:
                 LOG.error(f"Error updating pocket {tool}: {e}")
                 # NOTIFICIATIONS.error_message(f"Error updating pocket {tool.P}: {e}")
