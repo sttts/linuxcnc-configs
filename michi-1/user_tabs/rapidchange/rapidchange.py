@@ -1,20 +1,16 @@
 import os
-import hal as linuxcnchal
-from PyQt5.QtCore import pyqtSignal, QTimer
+from PyQt5.QtCore import QTimer, pyqtSignal
 from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import QSpinBox, qApp
 
 import linuxcnc
-from dataclasses import dataclass, field, fields
-
+from dataclasses import fields, dataclass, field
 
 from qtpy import uic
-from qtpy.QtCore import Qt
 from qtpy.QtWidgets import QWidget
 
+from qtpyvcp import hal
 from qtpyvcp.plugins import getPlugin
 from qtpyvcp.utilities import logger
-from qtpyvcp import hal
 import qtpyvcp
 
 LOG = logger.getLogger(__name__)
@@ -23,6 +19,106 @@ STATUS = getPlugin('status')
 TOOL_TABLE = getPlugin('tooltable')
 NOTIFICIATIONS = getPlugin('notifications')
 INI_FILE = linuxcnc.ini(os.getenv('INI_FILE_NAME'))
+
+
+class UserTab(QWidget):
+    def __init__(self, parent=None):
+        super(UserTab, self).__init__(parent)
+        ui_file = os.path.splitext(os.path.basename(__file__))[0] + ".ui"
+        uic.loadUi(os.path.join(os.path.dirname(__file__), ui_file), self)
+
+        # create pins
+        self.pins = HalPins()
+        LOG.info(f"Pins: {self.pins}")
+        LOG.info(f"Fields: {self}")
+
+        # connect pins to widgets
+        self.numPockets.setValue(self.pins.POCKETS)
+        # pins.signal("POCKETS").connect(self.numPockets.setValue)
+        self.numPockets.valueChanged.connect(lambda w: setattr(self.pins, "POCKETS", self.numPockets.value()))
+
+        self.irEnabled.setChecked(self.pins.IR_ENABLED)
+        self.irEnabled.toggled.connect(lambda w: setattr(self.pins, "IR_ENABLED", self.irEnabled.isChecked()))
+
+        self.saveIniButton.clicked.connect(self.saveIniFile)
+
+        # connect IR LED
+        LOG.info(f"din = {STATUS.stat.din}")
+        self.irTimer = QTimer()
+        self.irTimer.timeout.connect(self.__updateIR)
+        self.irTimer.setInterval(100)
+        self.irTimer.start()
+
+        # update pockets
+        self.updatePocketsTimer = QTimer()
+        self.updatePocketsTimer.timeout.connect(self.__updatePockets)
+        self.updatePocketsTimer.setInterval(500)
+        self.updatePocketsTimer.start()
+
+    def __updatePockets(self):
+        occupied = {}
+        tbl = TOOL_TABLE.getToolTable()
+        for n in tbl:
+            if n == 0:
+                continue
+            tool = tbl[n]
+            LOG.info(f"Tool: {n}:{tool}")
+            try:
+                if tool['P'] != 0 and tool['P'] <= self.pins.POCKETS:
+                    label = self.__getattribute__(f"p{ool['P']}")
+                    label.setText(f"T{tool[T]}")
+                    occupied[tool[P]] = tool[T]
+            except Exception as e:
+                LOG.error(f"Error updating pocket {tool}: {e}")
+                # NOTIFICIATIONS.error_message(f"Error updating pocket {tool.P}: {e}")
+        for pocket in range(1, self.pins.POCKETS+1):
+            if pocket not in occupied:
+                label = self.__getattribute__(f"p{pocket}")
+                label.setText("empty")
+
+    def __updateIR(self):
+        try:
+            if self.pins.IR_ENABLED:
+                self.irLED.setEnabled(True)
+                self.irLED.setColor(QColor(0,255,0) if (STATUS.stat.din[self.pins.IR_HAL_DPIN] == 1) else QColor("red"))
+            else:
+                self.irLED.setEnabled(False)
+        except Exception as e:
+            LOG.error(f"Error updating IR: {e}")
+            self.irLED.setEnabled(False)
+            # NOTIFICIATIONS.error_message(f"Error updating IR: {e}")
+
+    def saveIniFile(self):
+        try:
+            with open("atc.ini.new", "w") as f:
+                # write [ATC] header
+                f.write("[ATC]\n")
+                # write the pin values
+                for fld in fields(HalPins):
+                    v = getattr(self.pins, fld.name)
+                    f.write(f"{fld.name}={v}\n")
+                os.rename("atc.ini.new", "atc.ini")
+                LOG.info("Saved atc.ini file")
+                # NOTIFICIATIONS.info_message("Saved atc.ini file")
+        except Exception as e:
+            LOG.error(f"Error saving ini file: {e}")
+            # NOTIFICIATIONS.error_message(f"Error saving ini file: {e}")
+
+    def __getWidget(self, name):
+        """Searches for a widget by name in the application windows.
+
+        Args:
+            name (str) : ObjectName of the widget.
+
+        Returns: QWidget
+        """
+        LOG.info(f"Getting widget {name} from {qtpyvcp.WINDOWS.items()}")
+        for win_name, obj in list(qtpyvcp.WINDOWS.items()):
+            if hasattr(obj, name):
+                return getattr(obj, name)
+
+        raise AttributeError("Could not find widget with name: %s" % name)
+
 
 @dataclass
 class HalPins:
@@ -49,7 +145,7 @@ class HalPins:
     DUST_COVER_STATE: bool = field(metadata={"pin": 'dust_cover_state', "type": "bit", "dir": "in"}, default=False)
 
     signals = {}
-    pins = {}
+    pinsByName = {}
     comp = hal.getComponent("rapid_atc")
 
     def __init__(self):
@@ -70,7 +166,7 @@ class HalPins:
                 super.__setattr__(self, f.name, v)
 
             self.comp.addPin(f.metadata["pin"], f.metadata["type"], f.metadata["dir"])
-            self.pins[f.name] = f.metadata["pin"]
+            self.pinsByName[f.name] = f.metadata["pin"]
             LOG.info(f"Added rapidchange pin {f.metadata['pin']} of type {f.metadata['type']} and direction {f.metadata['dir']}")
 
             if f.metadata["dir"] == "in":
@@ -103,107 +199,4 @@ class HalPins:
         if name in self.signals:
             self.signals[name].emit(value)
         else:
-            self.comp.getPin(self.pins[name]).value = value
-
-
-class UserTab(QWidget):
-    def __init__(self, parent=None):
-        super(UserTab, self).__init__(parent)
-        ui_file = os.path.splitext(os.path.basename(__file__))[0] + ".ui"
-        uic.loadUi(os.path.join(os.path.dirname(__file__), ui_file), self)
-
-        # create pins
-        self.pins = HalPins()
-        LOG.info(f"Pins: {self.pins}")
-        LOG.info(f"Fields: {self}")
-
-        # connect pins
-        self.numPockets.setValue(self.pins.POCKETS)
-        # pins.signal("POCKETS").connect(self.numPockets.setValue)
-        self.numPockets.valueChanged.connect(lambda w: setattr(self.pins, "POCKETS", self.numPockets.value()))
-
-        self.irEnabled.setChecked(self.pins.IR_ENABLED)
-        self.irEnabled.toggled.connect(lambda w: setattr(self.pins, "IR_ENABLED", self.irEnabled.isChecked()))
-
-        self.saveIniButton.clicked.connect(self.saveIniFile)
-
-        # connect IR LED
-        LOG.info(f"din = {STATUS.stat.din}")
-        self.irTimer = QTimer()
-        self.irTimer.timeout.connect(self.__updateIR)
-        self.irTimer.setInterval(100)
-        self.irTimer.start()
-
-        # hook into atc widget for tool updates
-        QTimer.singleShot(1, self.__connectDynATC)
-
-    def __connectDynATC(self):
-        try:
-            dynATC = self.__getWidget("dynatc")
-            dynATC.showToolSig.connect(self.__storeTool)
-            dynATC.hideToolSig.connect(self.__hideTool)
-        except:
-            LOG.info(f"Error connecting to dynatc, trying again")
-            QTimer.singleShot(1, self.__connectDynATC)
-
-    def __updateIR(self):
-        try:
-            if self.pins.IR_ENABLED:
-                self.irLED.setEnabled(True)
-                self.irLED.setColor(QColor(0,255,0) if (STATUS.stat.din[self.pins.IR_HAL_DPIN] == 1) else QColor("red"))
-            else:
-                self.irLED.setEnabled(False)
-        except Exception as e:
-            LOG.error(f"Error updating IR: {e}")
-            self.irLED.setEnabled(False)
-            # NOTIFICIATIONS.error_message(f"Error updating IR: {e}")
-
-    def __storeTool(self, pocket, tool):
-        try:
-            pocket=int(pocket)
-            tool=int(tool)
-            LOG.info(f"Storing tool {tool} in pocket {pocket}")
-            self.__getattribute__(f"p{pocket}").setText(f"T{tool}")
-        except Exception as e:
-            LOG.error(f"Error storing tool: {e}")
-            # NOTIFICIATIONS.error_message(f"Error storing tool: {e}")
-
-    def __hideTool(self, pocket):
-        try:
-            pocket=int(pocket)
-            LOG.info(f"Hiding tool in pocket {pocket}")
-            self.__getattribute__(f"p{pocket}").setText("empty")
-        except Exception as e:
-            LOG.error(f"Error hiding tool: {e}")
-            # NOTIFICIATIONS.error_message(f"Error hiding tool: {e}")
-
-    def saveIniFile(self):
-        try:
-            with open("atc.ini.new", "w") as f:
-                # write [ATC] header
-                f.write("[ATC]\n")
-                # write the pin values
-                for fld in fields(HalPins):
-                    v = getattr(self.pins, fld.name)
-                    f.write(f"{fld.name}={v}\n")
-                os.rename("atc.ini.new", "atc.ini")
-                LOG.info("Saved atc.ini file")
-                # NOTIFICIATIONS.info_message("Saved atc.ini file")
-        except Exception as e:
-            LOG.error(f"Error saving ini file: {e}")
-            # NOTIFICIATIONS.error_message(f"Error saving ini file: {e}")
-
-    def __getWidget(self, name):
-        """Searches for a widget by name in the application windows.
-
-        Args:
-            name (str) : ObjectName of the widget.
-
-        Returns: QWidget
-        """
-        LOG.info(f"Getting widget {name} from {qtpyvcp.WINDOWS.items()}")
-        for win_name, obj in list(qtpyvcp.WINDOWS.items()):
-            if hasattr(obj, name):
-                return getattr(obj, name)
-
-        raise AttributeError("Could not find widget with name: %s" % name)
+            self.comp.getPin(self.pinsByName[name]).value = value
