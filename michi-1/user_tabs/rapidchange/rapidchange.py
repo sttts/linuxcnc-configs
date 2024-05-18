@@ -33,12 +33,74 @@ class UserTab(QWidget):
         LOG.info(f"Fields: {self}")
 
         # connect pins to widgets
+        self.safeZ.setValue(self.pins.SAFE_Z)
+        self.safeZ.valueChanged.connect(lambda w: setattr(self.pins, "SAFE_Z", self.safeZ.value()))
+
+        self.zIREngage.setValue(self.pins.Z_IR_ENGAGE)
+        self.zIREngage.setEnabled(self.pins.IR_ENABLED)
+        self.zIREngage.valueChanged.connect(lambda w: setattr(self.pins, "Z_IR_ENGAGE", self.zIREngage.value()))
+
         self.numPockets.setValue(self.pins.POCKETS)
         # pins.signal("POCKETS").connect(self.numPockets.setValue)
         self.numPockets.valueChanged.connect(lambda w: setattr(self.pins, "POCKETS", self.numPockets.value()))
 
+        self.pocketOffset.setValue(self.pins.POCKET_OFFSET)
+        self.pocketOffset.valueChanged.connect(lambda w: setattr(self.pins, "POCKET_OFFSET", self.pocketOffset.value()))
+
+        self.firstPocketX.setValue(self.pins.FIRST_POCKET_X)
+        self.firstPocketX.valueChanged.connect(lambda w: setattr(self.pins, "FIRST_POCKET_X", self.firstPocketX.value()))
+
+        self.firstPocketY.setValue(self.pins.FIRST_POCKET_Y)
+        self.firstPocketY.valueChanged.connect(lambda w: setattr(self.pins, "FIRST_POCKET_Y", self.firstPocketY.value()))
+
+        self.engageZ.setValue(self.pins.ENGAGE_Z)
+        self.engageZ.valueChanged.connect(lambda w: setattr(self.pins, "ENGAGE_Z", self.engageZ.value()))
+
+        self.alignAxis.addItem("X")
+        self.alignAxis.addItem("Y")
+        self.alignAxis.setCurrentIndex(0 if self.pins.ALIGN_AXIS else 1)
+        self.alignAxis.currentIndexChanged.connect(lambda w: setattr(self.pins, "ALIGN_AXIS", True if self.alignAxis.currentIndex() == 0 else False))
+
+        self.alignDir.setChecked(self.pins.ALIGN_DIR == 1)
+        self.alignDir.toggled.connect(lambda w: setattr(self.pins, "ALIGN_DIR", 1 if self.alignDir.isChecked() else -1))
+
+        self.irHalDPin.setValue(self.pins.IR_HAL_DPIN)
+        self.irHalDPin.setEnabled(self.pins.IR_ENABLED)
+        self.irHalDPin.valueChanged.connect(lambda w: setattr(self.pins, "IR_HAL_DPIN", self.irHalDPin.value()))
+
+        self.coverHalDPin.setValue(self.pins.COVER_HAL_DPIN)
+        self.coverHalDPin.setEnabled(self.pins.COVER_ENABLED)
+        self.coverHalDPin.valueChanged.connect(lambda w: setattr(self.pins, "COVER_HAL_DPIN", self.coverHalDPin.value()))
+
+        self.engageFeedRate.setValue(self.pins.ENGAGE_FEED_RATE)
+        self.engageFeedRate.valueChanged.connect(lambda w: setattr(self.pins, "ENGAGE_FEED_RATE", self.engageFeedRate.value()))
+
+        self.dropRate.setValue(self.pins.DROP_RATE)
+        self.dropRate.valueChanged.connect(lambda w: setattr(self.pins, "DROP_RATE", self.dropRate.value()))
+
+        self.pickupRate.setValue(self.pins.PICKUP_RATE)
+        self.pickupRate.valueChanged.connect(lambda w: setattr(self.pins, "PICKUP_RATE", self.pickupRate.value()))
+
+        self.spindleSpeed.setValue(self.pins.SPINDLE_SPEED)
+        self.spindleSpeed.valueChanged.connect(lambda w: setattr(self.pins, "SPINDLE_SPEED", self.spindleSpeed.value()))
+
+        self.xManualChangePos.setValue(self.pins.X_MANUAL_CHANGE_POS)
+        self.xManualChangePos.valueChanged.connect(lambda w: setattr(self.pins, "X_MANUAL_CHANGE_POS", self.xManualChangePos.value()))
+
+        self.yManualChangePos.setValue(self.pins.Y_MANUAL_CHANGE_POS)
+        self.yManualChangePos.valueChanged.connect(lambda w: setattr(self.pins, "Y_MANUAL_CHANGE_POS", self.yManualChangePos.value()))
+
         self.irEnabled.setChecked(self.pins.IR_ENABLED)
+        self.irEnabled.setLedState(self.irEnabled.isChecked())
+        self.irEnabled.toggled.connect(lambda w: self.irEnabled.setLedState(self.irEnabled.isChecked()))
+        self.irEnabled.toggled.connect(lambda w: self.irHalDPin.setEnabled(self.irEnabled.isChecked()))
+        self.irEnabled.toggled.connect(lambda w: self.zIREngage.setEnabled(self.irEnabled.isChecked()))
         self.irEnabled.toggled.connect(lambda w: setattr(self.pins, "IR_ENABLED", self.irEnabled.isChecked()))
+
+        self.coverEnabled.setChecked(self.pins.COVER_ENABLED)
+        self.coverEnabled.toggled.connect(lambda w: self.coverHalDPin.setEnabled(self.coverEnabled.isChecked()))
+        self.coverEnabled.toggled.connect(lambda w: setattr(self.pins, "COVER_ENABLED", self.coverEnabled.isChecked()))
+
 
         self.saveIniButton.clicked.connect(self.saveIniFile)
 
@@ -80,7 +142,9 @@ class UserTab(QWidget):
         try:
             if self.pins.IR_ENABLED:
                 self.irLED.setEnabled(True)
-                self.irLED.setColor(QColor(0,255,0) if (STATUS.stat.din[self.pins.IR_HAL_DPIN] == 1) else QColor("red"))
+                on = (STATUS.stat.din[self.pins.IR_HAL_DPIN] == 1)
+                self.irEnabled.setLedColor(QColor(0,255,0) if on else QColor("red"))
+                self.irLED.setColor(QColor(0,255,0) if on else QColor("red"))
             else:
                 self.irLED.setEnabled(False)
         except Exception as e:
@@ -130,7 +194,7 @@ class HalPins:
     FIRST_POCKET_Y: float = field(metadata={"pin": 'first_pocket_y', "type": "float", "dir": "out"}, default=0.0)
     ENGAGE_Z: float = field(metadata={"pin": 'engage_z', "type": "float", "dir": "out"}, default=0.0)
     ALIGN_AXIS: bool = field(metadata={"pin": 'align_axis', "type": "bit", "dir": "out"}, default=False)
-    ALIGN_DIR: int = field(metadata={"pin": 'align_dir', "type": "s32", "dir": "out"}, default=0)
+    ALIGN_DIR: int = field(metadata={"pin": 'align_dir', "type": "s32", "dir": "out"}, default=1)
     IR_HAL_DPIN: int = field(metadata={"pin": 'ir_hal_dpin', "type": "s32", "dir": "out"}, default=0)
     COVER_HAL_DPIN: int = field(metadata={"pin": 'cover_hal_dpin', "type": "s32", "dir": "in"}, default=0)
     ENGAGE_FEED_RATE: int = field(metadata={"pin": 'engage_feed_rate', "type": "s32", "dir": "out"}, default=10)
@@ -158,7 +222,7 @@ class HalPins:
                 if t == "float":
                     v = float(v)
                 elif t == "s32":
-                    v = int(v)
+                    v = int(float(v))
                 elif t == "bit":
                     v = v in ["1", "True", "true"]
                 else:
