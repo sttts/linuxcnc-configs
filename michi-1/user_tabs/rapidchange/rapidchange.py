@@ -101,6 +101,9 @@ class UserTab(QWidget):
         self.coverEnabled.toggled.connect(lambda w: self.coverHalDPin.setEnabled(self.coverEnabled.isChecked()))
         self.coverEnabled.toggled.connect(lambda w: setattr(self.pins, "COVER_ENABLED", self.coverEnabled.isChecked()))
 
+        self.currentToolPocket.setText(str(self.pins.CURRENT_TOOL_POCKET))
+        self.currentToolPocket.textChanged.connect(lambda w: setattr(self.pins, "CURRENT_TOOL_POCKET", int(self.currentToolPocket.text())))
+        # self.pins.signal("CURRENT_TOOL_POCKET").connect(lambda p: self.currentToolPocket.setText(str(p)))
 
         self.saveIniButton.clicked.connect(self.saveIniFile)
 
@@ -120,6 +123,7 @@ class UserTab(QWidget):
     def __updatePockets(self):
         occupied = {}
         tbl = TOOL_TABLE.getToolTable()
+        foundCurrent = False
         for n in tbl:
             if n == 0:
                 continue
@@ -130,9 +134,14 @@ class UserTab(QWidget):
                     label = self.__getattribute__(f"p{tool['P']}")
                     label.setText(f"T{tool['T']}")
                     occupied[tool['P']] = tool['T']
+                    if STATUS.tool_in_spindle == tool['T']:
+                        self.currentToolPocket.setText(str(tool['P']))
+                        foundCurrent = True
             except Exception as e:
                 LOG.error(f"Error updating pocket {tool}: {e}")
                 # NOTIFICIATIONS.error_message(f"Error updating pocket {tool.P}: {e}")
+        if not foundCurrent:
+            self.currentToolPocket.setText("0")
         for pocket in range(1, self.pins.POCKETS+1):
             if pocket not in occupied:
                 label = self.__getattribute__(f"p{pocket}")
