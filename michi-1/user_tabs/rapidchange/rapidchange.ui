@@ -716,7 +716,7 @@ QTabWidget QTabBar::tab {
                       </widget>
                      </item>
                      <item>
-                      <widget class="VCPLineEdit" name="load_spindle_tool_number_2">
+                      <widget class="VCPLineEdit" name="load_spindle_tool_number_3">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                          <horstretch>200</horstretch>
@@ -771,7 +771,7 @@ QTabWidget QTabBar::tab {
                    </widget>
                   </item>
                   <item>
-                   <widget class="SubCallButton" name="load_spindle_button_2">
+                   <widget class="SubCallButton" name="load_spindle_button_3">
                     <property name="minimumSize">
                      <size>
                       <width>125</width>
@@ -1042,7 +1042,7 @@ QPushButton:checked {
                    </widget>
                   </item>
                   <item>
-                   <widget class="SubCallButton" name="store_tool_in_spindle_2">
+                   <widget class="SubCallButton" name="store_tool_in_spindle_3">
                     <property name="minimumSize">
                      <size>
                       <width>125</width>
@@ -1191,7 +1191,7 @@ QPushButton:checked {
                       </widget>
                      </item>
                      <item>
-                      <widget class="VCPLineEdit" name="tool_number_entry_atc_page_2">
+                      <widget class="VCPLineEdit" name="tool_number_entry_atc_page_3">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                          <horstretch>200</horstretch>
@@ -1499,7 +1499,7 @@ QPushButton:checked {
                    </widget>
                   </item>
                   <item>
-                   <widget class="SubCallButton" name="m6_tool_call_button_atc_page_2">
+                   <widget class="SubCallButton" name="m6_tool_call_button_atc_page_3">
                     <property name="minimumSize">
                      <size>
                       <width>125</width>
@@ -1687,7 +1687,7 @@ QPushButton:checked {
                    <number>2</number>
                   </property>
                   <item>
-                   <widget class="SubCallButton" name="tool_touch_off_button_atc_2">
+                   <widget class="SubCallButton" name="tool_touch_off_button_atc_3">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                       <horstretch>0</horstretch>
@@ -3638,9 +3638,9 @@ SubCallButton:pressed {
  </resources>
  <connections>
   <connection>
-   <sender>load_spindle_tool_number_2</sender>
+   <sender>load_spindle_tool_number_3</sender>
    <signal>returnPressed()</signal>
-   <receiver>load_spindle_button_2</receiver>
+   <receiver>load_spindle_button_3</receiver>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -3656,7 +3656,7 @@ SubCallButton:pressed {
   <connection>
    <sender>currentToolPocket</sender>
    <signal>returnPressed()</signal>
-   <receiver>store_tool_in_spindle_2</receiver>
+   <receiver>store_tool_in_spindle_3</receiver>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -3670,9 +3670,9 @@ SubCallButton:pressed {
    </hints>
   </connection>
   <connection>
-   <sender>tool_number_entry_atc_page_2</sender>
+   <sender>tool_number_entry_atc_page_3</sender>
    <signal>returnPressed()</signal>
-   <receiver>m6_tool_call_button_atc_page_2</receiver>
+   <receiver>m6_tool_call_button_atc_page_3</receiver>
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -3682,6 +3682,22 @@ SubCallButton:pressed {
     <hint type="destinationlabel">
      <x>1331</x>
      <y>365</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>remove_current_tool_2</sender>
+   <signal>clicked()</signal>
+   <receiver>load_spindle_tool_number_3</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1266</x>
+     <y>244</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1213</x>
+     <y>183</y>
     </hint>
    </hints>
   </connection>

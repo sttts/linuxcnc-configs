@@ -1,6 +1,7 @@
 import os
-from PyQt5.QtCore import QTimer, pyqtSignal, QEvent, Qt
-from PyQt5.QtGui import QColor, QPixmap
+from PyQt5.QtCore import QTimer, pyqtSignal
+from PyQt5.QtGui import QColor
+from PyQt5.QtWidgets import qApp
 
 import linuxcnc
 from dataclasses import fields, dataclass, field
@@ -40,9 +41,9 @@ class UserTab(QWidget):
         self.zIREngage.setEnabled(self.pins.IR_ENABLED)
         self.zIREngage.valueChanged.connect(lambda w: setattr(self.pins, "Z_IR_ENGAGE", self.zIREngage.value()))
 
-        self.numPockets.setValue(self.pins.POCKETS)
-        # pins.signal("POCKETS").connect(self.numPockets.setValue)
-        self.numPockets.valueChanged.connect(lambda w: setattr(self.pins, "POCKETS", self.numPockets.value()))
+        self.numPockets.setValue(self.pins.NUM_POCKETS)
+        # pins.signal("NUM_POCKETS").connect(self.numPockets.setValue)
+        self.numPockets.valueChanged.connect(lambda w: setattr(self.pins, "NUM_POCKETS", self.numPockets.value()))
 
         self.pocketOffset.setValue(self.pins.POCKET_OFFSET)
         self.pocketOffset.valueChanged.connect(lambda w: setattr(self.pins, "POCKET_OFFSET", self.pocketOffset.value()))
@@ -120,6 +121,14 @@ class UserTab(QWidget):
         self.updatePocketsTimer.setInterval(500)
         self.updatePocketsTimer.start()
 
+        self.t = QTimer()
+        self.t.setSingleShot(True)
+        self.t.setInterval(2000)
+        self.t.timeout.connect(lambda: LOG.info(f"widgets = {qApp.activeWindow().__dict__}"))
+#        self.t.timeout.connect(lambda: LOG.info(f"widgets = {qApp.activeWindow().findChildren(QWidget)}"))
+#        self.t.timeout.connect(lambda: LOG.info(f"widgets = {[w.name() for w in qApp.activeWindow().findChildren(QWidget)]}"))
+        self.t.start()
+
     def __updatePockets(self):
         occupied = {}
         tbl = TOOL_TABLE.getToolTable()
@@ -130,7 +139,7 @@ class UserTab(QWidget):
             tool = tbl[n]
             # LOG.info(f"Tool: {n}:{tool}")
             try:
-                if tool['P'] != 0 and tool['P'] <= self.pins.POCKETS:
+                if tool['P'] != 0 and tool['P'] <= self.pins.NUM_POCKETS:
                     label = self.__getattribute__(f"p{tool['P']}")
                     label.setText(f"T{tool['T']}")
                     occupied[tool['P']] = tool['T']
@@ -142,7 +151,7 @@ class UserTab(QWidget):
                 # NOTIFICIATIONS.error_message(f"Error updating pocket {tool.P}: {e}")
         if not foundCurrent:
             self.currentToolPocket.setText("0")
-        for pocket in range(1, self.pins.POCKETS+1):
+        for pocket in range(1, self.pins.NUM_POCKETS + 1):
             if pocket not in occupied:
                 label = self.__getattribute__(f"p{pocket}")
                 label.setText("empty")
@@ -177,27 +186,11 @@ class UserTab(QWidget):
             LOG.error(f"Error saving ini file: {e}")
             # NOTIFICIATIONS.error_message(f"Error saving ini file: {e}")
 
-    def __getWidget(self, name):
-        """Searches for a widget by name in the application windows.
-
-        Args:
-            name (str) : ObjectName of the widget.
-
-        Returns: QWidget
-        """
-        LOG.info(f"Getting widget {name} from {qtpyvcp.WINDOWS.items()}")
-        for win_name, obj in list(qtpyvcp.WINDOWS.items()):
-            if hasattr(obj, name):
-                return getattr(obj, name)
-
-        raise AttributeError("Could not find widget with name: %s" % name)
-
-
 @dataclass
 class HalPins:
     SAFE_Z: float = field(metadata={"pin": 'safe_z', "type": "float", "dir": "out"}, default=0.0)
     Z_IR_ENGAGE: float = field(metadata={"pin": 'z_ir_engage', "type": "float", "dir": "out"}, default=0.0)
-    POCKETS: int = field(metadata={"pin": 'num_pockets', "type": "s32", "dir": "out"}, default=6)
+    NUM_POCKETS: int = field(metadata={"pin": 'num_pockets', "type": "s32", "dir": "out"}, default=6)
     POCKET_OFFSET: float = field(metadata={"pin": 'pocket_offset', "type": "float", "dir": "out"}, default=0.0)
     FIRST_POCKET_X: float = field(metadata={"pin": 'first_pocket_x', "type": "float", "dir": "out"}, default=0.0)
     FIRST_POCKET_Y: float = field(metadata={"pin": 'first_pocket_y', "type": "float", "dir": "out"}, default=0.0)
