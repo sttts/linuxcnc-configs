@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1471</width>
+    <width>1542</width>
     <height>619</height>
    </rect>
   </property>
@@ -32,7 +32,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="toolChange">
       <attribute name="title">
@@ -189,7 +189,7 @@ font: 15pt &quot;Cantarell&quot;;</string>
               <string/>
              </property>
              <property name="pixmap">
-              <pixmap>../../../../../Downloads/6s.png</pixmap>
+              <pixmap>6s.png</pixmap>
              </property>
              <property name="scaledContents">
               <bool>true</bool>
@@ -825,7 +825,7 @@ QPushButton:checked {
                      <string>LOAD SPINDLE</string>
                     </property>
                     <property name="filename" stdset="0">
-                     <string>_load_selected_tool.ngc</string>
+                     <string>atc_load_selected_tool.ngc</string>
                     </property>
                    </widget>
                   </item>
@@ -1096,7 +1096,7 @@ QPushButton:checked {
                      <string>Store Tool</string>
                     </property>
                     <property name="filename" stdset="0">
-                     <string>_drop_tool.ngc</string>
+                     <string>atc_drop_tool.ngc</string>
                     </property>
                    </widget>
                   </item>
@@ -3157,58 +3157,43 @@ SubCallButton:pressed {
       <attribute name="title">
        <string>Settings</string>
       </attribute>
-      <layout class="QFormLayout" name="form">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetDefaultConstraint</enum>
-       </property>
-       <property name="leftMargin">
-        <number>5</number>
-       </property>
-       <property name="topMargin">
-        <number>5</number>
-       </property>
-       <property name="rightMargin">
-        <number>5</number>
-       </property>
-       <property name="bottomMargin">
-        <number>5</number>
-       </property>
-       <item row="2" column="0">
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
         <widget class="QLabel" name="numPocketsLabel">
          <property name="text">
           <string>Pockets</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
+       <item row="0" column="1">
         <widget class="QSpinBox" name="numPockets">
          <property name="minimum">
           <number>1</number>
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="1" column="0">
         <widget class="QLabel" name="label_3">
          <property name="text">
           <string>Pocket Offset</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
+       <item row="1" column="1">
         <widget class="QDoubleSpinBox" name="pocketOffset">
          <property name="suffix">
           <string> mm</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="2" column="0">
         <widget class="QLabel" name="label_4">
          <property name="text">
           <string>First Pocket </string>
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="2" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
           <widget class="QDoubleSpinBox" name="firstPocketX">
@@ -3238,14 +3223,14 @@ SubCallButton:pressed {
          </item>
         </layout>
        </item>
-       <item row="5" column="0">
+       <item row="3" column="0">
         <widget class="QLabel" name="label_6">
          <property name="text">
           <string>Engage Z</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="1">
+       <item row="3" column="1">
         <widget class="QDoubleSpinBox" name="engageZ">
          <property name="suffix">
           <string> mm</string>
@@ -3258,14 +3243,14 @@ SubCallButton:pressed {
          </property>
         </widget>
        </item>
-       <item row="6" column="0">
+       <item row="4" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
           <string>Safe Z</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="1">
+       <item row="4" column="1">
         <widget class="QDoubleSpinBox" name="safeZ">
          <property name="suffix">
           <string> mm</string>
@@ -3275,14 +3260,14 @@ SubCallButton:pressed {
          </property>
         </widget>
        </item>
-       <item row="7" column="0">
+       <item row="5" column="0">
         <widget class="QLabel" name="label_7">
          <property name="text">
           <string>Alignment</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="1">
+       <item row="5" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_5">
          <item>
           <widget class="QComboBox" name="alignAxis"/>
@@ -3296,14 +3281,14 @@ SubCallButton:pressed {
          </item>
         </layout>
        </item>
-       <item row="9" column="0">
+       <item row="6" column="0">
         <widget class="QLabel" name="label_17">
          <property name="text">
           <string>IR Sensor</string>
          </property>
         </widget>
        </item>
-       <item row="9" column="1">
+       <item row="6" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_7">
          <property name="topMargin">
           <number>0</number>
@@ -3359,14 +3344,14 @@ SubCallButton:pressed {
          </item>
         </layout>
        </item>
-       <item row="10" column="0">
+       <item row="7" column="0">
         <widget class="QLabel" name="label_9">
          <property name="text">
           <string>Z IR Engage</string>
          </property>
         </widget>
        </item>
-       <item row="10" column="1">
+       <item row="7" column="1">
         <widget class="QDoubleSpinBox" name="zIREngage">
          <property name="suffix">
           <string> mm</string>
@@ -3379,14 +3364,14 @@ SubCallButton:pressed {
          </property>
         </widget>
        </item>
-       <item row="11" column="0">
+       <item row="8" column="0">
         <widget class="QLabel" name="label_16">
          <property name="text">
           <string>Cover</string>
          </property>
         </widget>
        </item>
-       <item row="11" column="1">
+       <item row="8" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_8">
          <property name="topMargin">
           <number>0</number>
@@ -3423,14 +3408,14 @@ SubCallButton:pressed {
          </item>
         </layout>
        </item>
-       <item row="12" column="0">
+       <item row="9" column="0">
         <widget class="QLabel" name="label_11">
          <property name="text">
           <string>Engage Feedrate</string>
          </property>
         </widget>
        </item>
-       <item row="12" column="1">
+       <item row="9" column="1">
         <widget class="QDoubleSpinBox" name="engageFeedRate">
          <property name="suffix">
           <string> mm/min</string>
@@ -3446,14 +3431,14 @@ SubCallButton:pressed {
          </property>
         </widget>
        </item>
-       <item row="13" column="0">
+       <item row="10" column="0">
         <widget class="QLabel" name="label_12">
          <property name="text">
           <string>Drop Rate</string>
          </property>
         </widget>
        </item>
-       <item row="13" column="1">
+       <item row="10" column="1">
         <widget class="QDoubleSpinBox" name="dropRate">
          <property name="suffix">
           <string> mm/min</string>
@@ -3472,14 +3457,14 @@ SubCallButton:pressed {
          </property>
         </widget>
        </item>
-       <item row="14" column="0">
+       <item row="11" column="0">
         <widget class="QLabel" name="label_13">
          <property name="text">
           <string>Pickup Rate</string>
          </property>
         </widget>
        </item>
-       <item row="14" column="1">
+       <item row="11" column="1">
         <widget class="QDoubleSpinBox" name="pickupRate">
          <property name="suffix">
           <string> mm/min</string>
@@ -3498,37 +3483,86 @@ SubCallButton:pressed {
          </property>
         </widget>
        </item>
-       <item row="15" column="0">
+       <item row="12" column="0">
         <widget class="QLabel" name="label_14">
          <property name="text">
           <string>Spindle Speed</string>
          </property>
         </widget>
        </item>
-       <item row="15" column="1">
-        <widget class="QDoubleSpinBox" name="spindleSpeed">
-         <property name="suffix">
-          <string> rpm</string>
-         </property>
-         <property name="decimals">
-          <number>0</number>
-         </property>
-         <property name="maximum">
-          <double>40000.000000000000000</double>
-         </property>
-         <property name="singleStep">
-          <double>100.000000000000000</double>
-         </property>
-        </widget>
+       <item row="12" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_19">
+         <item>
+          <widget class="QLabel" name="label_18">
+           <property name="text">
+            <string>Pickup</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="spindleSpeedPickup">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>100</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="suffix">
+            <string> rpm</string>
+           </property>
+           <property name="decimals">
+            <number>0</number>
+           </property>
+           <property name="maximum">
+            <double>40000.000000000000000</double>
+           </property>
+           <property name="singleStep">
+            <double>100.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_19">
+           <property name="text">
+            <string>Drop</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="spindleSpeedDrop">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>100</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="suffix">
+            <string> rpm</string>
+           </property>
+           <property name="decimals">
+            <number>0</number>
+           </property>
+           <property name="maximum">
+            <double>40000.000000000000000</double>
+           </property>
+           <property name="singleStep">
+            <double>100.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
-       <item row="16" column="0">
+       <item row="13" column="0">
         <widget class="QLabel" name="label_15">
          <property name="text">
           <string>Manual Change Pos</string>
          </property>
         </widget>
        </item>
-       <item row="16" column="1">
+       <item row="13" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
           <widget class="QDoubleSpinBox" name="xManualChangePos">
@@ -3558,7 +3592,7 @@ SubCallButton:pressed {
          </item>
         </layout>
        </item>
-       <item row="17" column="1">
+       <item row="14" column="1">
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -3571,14 +3605,14 @@ SubCallButton:pressed {
          </property>
         </spacer>
        </item>
-       <item row="18" column="1">
+       <item row="15" column="1">
         <widget class="QPushButton" name="saveIniButton">
          <property name="text">
           <string>Save to atc.ini</string>
          </property>
         </widget>
        </item>
-       <item row="23" column="0">
+       <item row="17" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
           <string/>

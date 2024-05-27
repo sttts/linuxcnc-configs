@@ -82,8 +82,11 @@ class UserTab(QWidget):
         self.pickupRate.setValue(self.pins.PICKUP_RATE)
         self.pickupRate.valueChanged.connect(lambda w: setattr(self.pins, "PICKUP_RATE", self.pickupRate.value()))
 
-        self.spindleSpeed.setValue(self.pins.SPINDLE_SPEED)
-        self.spindleSpeed.valueChanged.connect(lambda w: setattr(self.pins, "SPINDLE_SPEED", self.spindleSpeed.value()))
+        self.spindleSpeedDrop.setValue(self.pins.SPINDLE_SPEED_DROP)
+        self.spindleSpeedDrop.valueChanged.connect(lambda w: setattr(self.pins, "SPINDLE_SPEED_DROP", self.spindleSpeedDrop.value()))
+
+        self.spindleSpeedPickup.setValue(self.pins.SPINDLE_SPEED_PICKUP)
+        self.spindleSpeedPickup.valueChanged.connect(lambda w: setattr(self.pins, "SPINDLE_SPEED_PICKUP", self.spindleSpeedPickup.value()))
 
         self.xManualChangePos.setValue(self.pins.X_MANUAL_CHANGE_POS)
         self.xManualChangePos.valueChanged.connect(lambda w: setattr(self.pins, "X_MANUAL_CHANGE_POS", self.xManualChangePos.value()))
@@ -121,13 +124,19 @@ class UserTab(QWidget):
         self.updatePocketsTimer.setInterval(500)
         self.updatePocketsTimer.start()
 
+        # make our widgets accessible through the mainwindow such that the subcall button find them
         self.t = QTimer()
         self.t.setSingleShot(True)
-        self.t.setInterval(2000)
-        self.t.timeout.connect(lambda: LOG.info(f"widgets = {qApp.activeWindow().__dict__}"))
-#        self.t.timeout.connect(lambda: LOG.info(f"widgets = {qApp.activeWindow().findChildren(QWidget)}"))
-#        self.t.timeout.connect(lambda: LOG.info(f"widgets = {[w.name() for w in qApp.activeWindow().findChildren(QWidget)]}"))
+        self.t.setInterval(0)
+        self.t.timeout.connect(self.__addWidgetsToMainWindow)
         self.t.start()
+
+    def __addWidgetsToMainWindow(self):
+        rootWidget = self.parent()
+        while rootWidget.parent() is not None:
+            rootWidget = rootWidget.parent()
+        for w in self.findChildren(QWidget):
+            rootWidget.__setattr__(w.objectName(), w)
 
     def __updatePockets(self):
         occupied = {}
@@ -143,7 +152,7 @@ class UserTab(QWidget):
                     label = self.__getattribute__(f"p{tool['P']}")
                     label.setText(f"T{tool['T']}")
                     occupied[tool['P']] = tool['T']
-                    if STATUS.tool_in_spindle == tool['T']:
+                    if str(STATUS.tool_in_spindle) == str(tool['T']):
                         self.currentToolPocket.setText(str(tool['P']))
                         foundCurrent = True
             except Exception as e:
@@ -202,7 +211,8 @@ class HalPins:
     ENGAGE_FEED_RATE: int = field(metadata={"pin": 'engage_feed_rate', "type": "s32", "dir": "out"}, default=10)
     DROP_RATE: int = field(metadata={"pin": 'drop_feed_rate', "type": "s32", "dir": "out"}, default=100)
     PICKUP_RATE: int = field(metadata={"pin": 'pickup_feed_rate', "type": "s32", "dir": "out"}, default=100)
-    SPINDLE_SPEED: int = field(metadata={"pin": 'spindle_speed', "type": "s32", "dir": "out"}, default=1000)
+    SPINDLE_SPEED_DROP: int = field(metadata={"pin": 'spindle_speed_drop', "type": "s32", "dir": "out"}, default=1000)
+    SPINDLE_SPEED_PICKUP: int = field(metadata={"pin": 'spindle_speed_pickup', "type": "s32", "dir": "out"}, default=1000)
     X_MANUAL_CHANGE_POS: float = field(metadata={"pin": 'x_manual_change_pos', "type": "float", "dir": "out"}, default=0.0)
     Y_MANUAL_CHANGE_POS: float = field(metadata={"pin": 'y_manual_change_pos', "type": "float", "dir": "out"}, default=0.0)
     CURRENT_TOOL_POCKET: int = field(metadata={"pin": 'current_tool_pocket', "type": "s32", "dir": "out"}, default=0)
