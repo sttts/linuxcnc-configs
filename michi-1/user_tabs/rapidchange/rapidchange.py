@@ -59,8 +59,8 @@ class UserTab(QWidget):
 
         self.alignAxis.addItem("X")
         self.alignAxis.addItem("Y")
-        self.alignAxis.setCurrentIndex(0 if self.pins.ALIGN_AXIS else 1)
-        self.alignAxis.currentIndexChanged.connect(lambda w: setattr(self.pins, "ALIGN_AXIS", True if self.alignAxis.currentIndex() == 0 else False))
+        self.alignAxis.setCurrentIndex(1 if self.pins.ALIGN_AXIS else 0)
+        self.alignAxis.currentIndexChanged.connect(lambda w: setattr(self.pins, "ALIGN_AXIS", True if self.alignAxis.currentIndex() == 1 else False))
 
         self.alignDir.setChecked(self.pins.ALIGN_DIR == 1)
         self.alignDir.toggled.connect(lambda w: setattr(self.pins, "ALIGN_DIR", 1 if self.alignDir.isChecked() else -1))

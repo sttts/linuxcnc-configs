@@ -1,6 +1,6 @@
 ;Tool  Pocket Z Offset     Diameter     Remark
 T10    P1     Z+61.904917  D+1.000000   ; VHM ultratools Schaft Z2 1mm SL3 uni
-T20    P0     Z+59.086917  D+2.000000   ; VHM ultratools Schaft Z2 2mm SL6.3 uni
+T20    P2     Z+59.086900  D+2.000000   ; VHM ultratools Schaft Z2 2mm SL6.3 uni
 T21    P0     Z+55.279583  D+2.000000   ; VHM Schaft Z1 2mm SL16 Acryl
 T25    P0     Z+0.000000   D+2.000000   ; VHM Sorotec Gravur 2mm 3,175
 T26    P0     Z+0.000000   D+2.000000   ; VHM AlTiN Kugel Z2 2mm SL4 Alu
