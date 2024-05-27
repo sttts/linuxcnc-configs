@@ -1,11 +1,12 @@
 (drop current tool into target pocket)
 o<_load_selected_tool> sub
+M73 ; Save and autorestore model states. This will be used only in case of error, otherwise we will invalidate it.
 G40 ; Compensation off
 G49 ; Cancel Tool Length Compensation
 o100 if[#1 EQ 0]
     M72 ; Restore modal state
     (ABORT, Invalid tool selected!)
-o100 endif
+o100 endif 
 M61 Q#1
 o<_load_selected_tool> endsub
 M2
