@@ -32,7 +32,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="toolChange">
       <attribute name="title">
@@ -195,7 +195,7 @@ font: 15pt &quot;Cantarell&quot;;</string>
               <bool>true</bool>
              </property>
             </widget>
-            <widget class="StatusLED" name="irLED">
+            <widget class="StatusLED" name="irLED" native="true">
              <property name="geometry">
               <rect>
                <x>770</x>
@@ -1890,7 +1890,7 @@ QPushButton:checked {
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>246</width>
+                     <width>89</width>
                      <height>814</height>
                     </rect>
                    </property>
