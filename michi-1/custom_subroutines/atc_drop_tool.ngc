@@ -1,0 +1,6 @@
+o<atc_drop_tool> sub
+  #<currentToolPocket> = #1
+  o<_drop_tool> call [#1]
+  o<atc_drop_tool> return #<_value>
+o<atc_drop_tool> endsub
+M2

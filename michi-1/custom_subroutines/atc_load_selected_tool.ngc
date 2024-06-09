@@ -1,0 +1,6 @@
+o<atc_load_selected_tool> sub
+  #<load_spindle_tool_number_3> = #1
+  o<_load_selected_tool> call [#1]
+  o<atc_load_selected_tool> return [#<_value>]
+o<atc_load_selected_tool> endsub
+M2
