@@ -1,36 +1,40 @@
-;Tool  Pocket Z Offset     Diameter     Remark
-T10    P1     Z+61.904917  D+1.000000   ; VHM ultratools Schaft Z2 1mm SL3 uni
-T20    P0     Z+59.086900  D+2.000000   ; VHM ultratools Schaft Z2 2mm SL6.3 uni
-T21    P0     Z+55.279583  D+2.000000   ; VHM Schaft Z1 2mm SL16 Acryl
-T25    P0     Z+0.000000   D+2.000000   ; VHM Sorotec Gravur 2mm 3,175
-T26    P0     Z+0.000000   D+2.000000   ; VHM AlTiN Kugel Z2 2mm SL4 Alu
-T30    P0     Z+23.174250  D+3.000000   ; HSS Garant Schaft Z3 3mm SL8 Alu
-T31    P0     Z+51.387083  D+3.000000   ; VHM ultratools Schaft Z2 3mm SL12 uni
-T35    P0     Z+0.000000   D+3.000000   ; VHM AlTiN Kugel Z2 3mm SL6 Alu
-T40    P0     Z+64.582250  D+4.000000   ; VHM Sorotec Schaft Z1 4mm SL16 Alu
-T41    P0     Z+0.000000   D+4.000000   ; VHM Sorotec Schaft Z1 4mm SL16 Acryl
-T42    P0     Z+57.365417  D+4.000000   ; VHM Sorotec Schaft Z1 4mm SL22 Eco
-T43    P0     Z+57.365417  D+4.000000   ; VHM Sorotec Schaft Z1 4mm SL21 Alu
-T45    P0     Z+109.313750 D+4.000000   ; VHM Ti Radius 4mm Z2 SL8 Alu
-T46    P0     Z+0.000000   D+4.000000   ; VHM AlTiN Kugel Z2 4mm SL8 Alu
-T49    P0     Z+0.000000   D+3.000000   ; Carbide NV Spotting Drill Bit
-T60    P0     Z+0.000000   D+6.000000   ; VHM Azzkor Schaft Z3 6mm SL15 Alu
-T61    P0     Z+0.000000   D+6.000000   ; HSS Garant Schaft Z3 6mm SL27 Alu
-T62    P0     Z+64.121250  D+6.000000   ; VHM Sorotec Schaft Z1 6mm SL22 Alu
-T64    P0     Z+0.000000   D+6.000000   ; VHM Ti Augusttools Z4 6mm SL16 Stahl
-T80    P0     Z+31.067083  D+8.000000   ; VHM Sorotec Schaft Z1 8mm SL16 Alu
-T81    P0     Z+38.197083  D+8.000000   ; VHM Sorotec Schaft Z1 36 D8 Proalu
-T83    P0     Z+70.179583  D+8.000000   ; VHM Sorotec Schaft Z1 21 D8 Alu
-T85    P0     Z+0.000000   D+8.000000   ; VHM Ti Rund Z2 8mm SL16 Alu
-T86    P0     Z+64.316083  D+8.000000   ; VHM Sorotec Phase Z3 90 D8 Alu
-T768   P0     Z+0.000000   D+6.800000   ; VHM 6.8mm
-T824   P0     Z+0.000000   D+2.400000   ; HSS Profi Super 2.4mm (Blaue Kiste)
-T825   P0     Z+31.491917  D+2.500000   ; HSS Profi Super 2.5mm (bLaue Kiste)
-T833   P0     Z+81.072750  D+3.300000   ; HSS Profi super 3.3mm (Blaue kiste)
-T840   P0     Z+0.000000   D+4.000000   ; HSS Profi Super 4mm (blaue Kiste)
-T842   P0     Z+74.548583  D+4.200000   ; HSS Profi SUPER 4.2MM (Blaue Kiste)
-T855   P0     Z+52.188417  D+5.500000   ; HSS Profi Super 5.5mm (blaue Kiste)
-T868   P0     Z+103.134917 D+6.800000   ; HSS PROFI SUPER 6.8mm (blaue kiste)
-T880   P0     Z+115.221750 D+8.000000   ; HSS PROFI SUPER 8MM (blaue Kiste)
-T910   P0     Z+0.000000   D+4.000000   ; Sorotec Gewindewirbler M5-M10
-T999   P0     Z+69.279083  D+2.000000   ; 3D Finder
+T10  P0   D+1.000000 ; VHM ultratools Schaft Z2 1mm SL3 uni
+T20  P0   D+2.000000 Z+18.640917 ; Firstatec HSESN.020.06.075
+T21  P0   D+2.000000 ; VHM Schaft Z1 2mm SL16 Acryl
+T22  P0   D+2.000000 ; Firstatec HSESN.020.06.075
+T25  P0   D+2.000000 ; VHM Sorotec Gravur 2mm 3,175
+T30  P0   D+3.000000 ; VHM Sorotec Schaft Z1 3mm SL16 Alu
+T31  P0   D+3.000000 ; VHM Schaft Z4 3mm SL20
+T32  P0   D+3.000000 ; Garant HSS Schaft Z3 3mm SL8 Alu
+T40  P0   D+4.000000 ; VHM Sorotec Schaft Z1 4mm SL16 Alu
+T41  P0   D+4.000000 ; VHM Sorotec Schaft Z1 4mm SL16 Acryl
+T42  P0   D+4.000000 ; VHM Sorotec Schaft Z1 4mm SL22 Eco (kein Alu!)
+T43  P0   D+4.000000 ; VHM Sorotec Schaft Z1 4mm SL21 Alu
+T45  P0   D+4.000000 ; VHM Ti Radius 4mm Z2 SL8 Alu
+T46  P0   D+4.000000 ; Datron Z1 Senkloch D6 D4 SL2+5
+T49  P0   D+3.000000 ; Carbide NV Spotting Drill Bit
+T60  P0   D+6.000000 ; VHM Azzkor Schaft Z3 6mm SL15 Alu
+T61  P0   D+6.000000 ; HSS Garant Schaft Z3 6mm SL27 Alu
+T62  P0   D+6.000000 ; VHM Sorotec Schaft Z1 4mm SL22 Eco (kein Alu!)
+T63  P0   D+6.000000 ; Datron D6 25mm
+T64  P0   D+6.000000 ; VHM Ti Augusttools Z4 6mm SL16 Stahl
+T65  P0   D+6.000000 ; Datron Z1 D6 SL15
+T768 P0   D+6.800000 ; VHM 6.8mm
+T80  P0   D+8.000000 Z+23.061417 ; VHM Sorotec Schaft Z1 8mm SL16 Alu
+T81  P0   D+8.000000 ; VHM Sorotec Schaft Z1 36 D8 Proalu
+T825 P0   D+2.500000 ; HSS Profi Super 2.5mm (blaue Kiste)
+T825 P0   D+2.500000 ; HSS Profi Super 2.5mm (blaue Kiste)
+T83  P0   D+8.000000 ; VHM Sorotec Schaft Z1 8mm SL21 Alu
+T833 P0   D+3.300000 ; HSS Profi Super 3.3mm (blaue Kiste)
+T84  P0   D+8.000000 ; Datron Z1 D8 14mm
+T840 P0   D+4.000000 ; HSS Profi Super 4mm (blaue Kiste)
+T842 P0   D+4.200000 ; HSS Profi Super 4.2mm (blaue Kiste)
+T845 P0   D+4.500000 ; HSS Profi Super 4.5mm (blaue Kiste)
+T85  P0   D+8.000000 ; VHM Ti Rund Z2 8mm SL16 Alu
+T855 P0   D+5.500000 ; HSS Profi Super 5.5mm (blaue Kiste)
+T86  P0   D+8.000000 ; VHM Sorotec Phase Z3 90 D8 Alu
+T868 P0   D+6.800000 ; HSS Profi Super 6.8mm (blaue Kiste)
+T880 P0   D+8.000000 ; HSS Profi Super 8mm (blaue Kiste)
+T904 P0   D+2.000000 ; Sorotec Gewindewirbler M2.5 - M4.0
+T910 P0   D+4.000000 ; Sorotec Gewindewirbler M5-M10
+T999 P0   D+2.000000 Z+68.633917 ; 3D Finder
