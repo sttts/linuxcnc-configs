@@ -16,3 +16,6 @@ hallib
 *.backup
 michi-1/backups
 michi-1/qtvcp
+
+__pycache__/
+*.py[cod]
